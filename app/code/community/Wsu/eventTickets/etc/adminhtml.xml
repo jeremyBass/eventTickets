@@ -2,10 +2,10 @@
 <!--  
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets
- * @author    Piyush Kumar <phpteamlead.mca@gmail.com,er.piyush.kumar@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @link      N/A 
+ * @package   Wsu_eventTickets 
+ * @author    Jeremy Bass <jeremy.bass@wsu.edu>
+ * @license   MIT/GPL
+ * @link N/A 
  */
  -->
 <config>
