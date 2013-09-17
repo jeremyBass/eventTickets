@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/* 
+ * @category  Event Manager Module
+ * @package   Wsu_eventTickets 
+ * @author    Jeremy Bass <jeremy.bass@wsu.edu>
+ * @license   MIT/GPL
+ * @link N/A 
+ */
+ -->
+<config>
+    <modules>
+        <Wsu_eventTickets>
+            <version>1.0.1</version>
+        </Wsu_eventTickets>
+    </modules>
+    <global>
+        <models>
+            <wsu_eventtickets>
+                <class>Wsu_eventTickets_Model</class>
+                <resourceModel>eventtickets_resource</resourceModel>
+            </wsu_eventtickets>
+            <eventtickets_resource>
+                <class>Wsu_eventTickets_Model_Resource</class>
+                <entities>
+                    <eventtickets>
+                        <table>wsu_eventtickets</table>
+                    </eventtickets>
+                </entities>
+            </eventtickets_resource>
+        </models>
+        <helpers>
+            <wsu_eventtickets>
+                <class>Wsu_eventTickets_Helper</class>
+            </wsu_eventtickets>
+        </helpers>
+        <blocks>
+            <wsu_eventtickets>
+                <class>Wsu_eventTickets_Block</class>
+            </wsu_eventtickets>
+        </blocks>
+        <resources>
+            <wsu_eventtickets_setup>
+                <setup>
+                    <module>Wsu_eventTickets</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </wsu_eventtickets_setup>
+        </resources>
+        <eventtickets>
+            <before_eventtickets_item_display>
+                <observers>
+                    <wsu_eventtickets>
+                        <class>wsu_eventtickets/observer</class>
+                        <method>beforeeventTicketsDisplayed</method>
+                    </wsu_eventtickets>
+                </observers>
+            </before_eventtickets_item_display>
+        </eventtickets>
+    </global>
+    <frontend>
+        <routers>
+            <wsu_eventtickets>
+                <use>standard</use>
+                <args>
+                    <module>Wsu_eventTickets</module>
+                    <frontName>eventtickets</frontName>
+                </args>
+            </wsu_eventtickets>
+        </routers>
+        <layout>
+            <updates>
+                <wsu_eventtickets>
+                    <file>wsu_eventtickets.xml</file>
+                </wsu_eventtickets>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Wsu_eventTickets before="Mage_Adminhtml">Wsu_eventTickets_Adminhtml</Wsu_eventTickets>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <wsu_eventtickets>
+                    <file>wsu_eventtickets.xml</file>
+                </wsu_eventtickets>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <eventtickets>
+            <view>
+                <enabled>1</enabled>
+                <items_per_page>10</items_per_page>
+                <days_difference>3</days_difference>
+            </view>
+        </eventtickets>
+    </default>
+</config>

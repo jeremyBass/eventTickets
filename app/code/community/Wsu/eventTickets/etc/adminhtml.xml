@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--  
+/* 
+ * @category  Event Manager Module
+ * @package   Wsu_eventTickets
+ * @author    Piyush Kumar <phpteamlead.mca@gmail.com,er.piyush.kumar@gmail.com>
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      N/A 
+ */
+ -->
+<config>
+    <menu>
+		<catalog>
+            <children>
+				 <eventtickets translate="title" module="wsu_eventtickets">
+					<title>eventTickets</title>
+					<sort_order>30</sort_order>
+					<children>
+						<manage translate="title" module="wsu_eventtickets">
+							<title>Manage eventTickets</title>
+							<action>adminhtml/eventtickets</action>
+							<sort_order>35</sort_order>
+						</manage>
+					</children>
+				 </eventtickets>
+			</children>
+		</catalog>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <eventtickets translate="title" module="wsu_eventtickets">
+                        <title>eventTickets</title>
+                        <sort_order>30</sort_order>
+                        <children>
+                            <manage translate="title">
+                                <title>Manage eventTickets</title>
+                                <sort_order>0</sort_order>
+                                <children>
+                                    <save translate="title">
+                                        <title>Save eventTickets</title>
+                                        <sort_order>0</sort_order>
+                                    </save>
+                                    <delete translate="title">
+                                        <title>Delete eventTickets</title>
+                                        <sort_order>10</sort_order>
+                                    </delete>
+                                </children>
+                            </manage>
+                        </children>
+                    </eventtickets>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <eventtickets translate="title" module="wsu_eventtickets">
+                                        <title>eventTickets Management</title>
+                                    </eventtickets>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

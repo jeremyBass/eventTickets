@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/* 
+ * @category  Event Manager Module
+ * @package   Wsu_eventTickets 
+ * @author    Jeremy Bass <jeremy.bass@wsu.edu>
+ * @license   MIT/GPL
+ * @link N/A 
+ */
+-->
+<layout>
+    <adminhtml_eventtickets_index>
+        <reference name="content">
+            <block type="wsu_eventtickets/adminhtml_eventtickets" name="eventtickets" />
+        </reference>
+    </adminhtml_eventtickets_index>
+
+    <adminhtml_eventtickets_grid>
+        <block type="wsu_eventtickets/adminhtml_eventtickets_grid" name="root"/>
+    </adminhtml_eventtickets_grid>
+
+    <adminhtml_eventtickets_new>
+        <update handle="adminhtml_eventtickets_edit" />
+    </adminhtml_eventtickets_new>
+
+    <adminhtml_eventtickets_edit>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="wsu_eventtickets/adminhtml_eventtickets_edit" name="eventtickets_edit" />
+        </reference>
+        <reference name="left">
+            <block type="wsu_eventtickets/adminhtml_eventtickets_edit_tabs" name="eventtickets_edit_tabs">
+                <block type="wsu_eventtickets/adminhtml_eventtickets_edit_tab_main" name="eventtickets_edit_tab_main" />
+                <block type="wsu_eventtickets/adminhtml_eventtickets_edit_tab_content" name="eventtickets_edit_tab_content" />
+                <block type="wsu_eventtickets/adminhtml_eventtickets_edit_tab_image" name="eventtickets_edit_tab_image" />
+                <action method="addTab"><name>main_section</name><block>eventtickets_edit_tab_main</block></action>
+                <action method="addTab"><name>content_section</name><block>eventtickets_edit_tab_content</block></action>
+                <action method="addTab"><name>image_section</name><block>eventtickets_edit_tab_image</block></action>
+            </block>
+        </reference>
+    </adminhtml_eventtickets_edit>
+</layout>

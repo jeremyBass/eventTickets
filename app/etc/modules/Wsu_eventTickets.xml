@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--  
+ * @category  Event Manager Module
+ * @package   Wsu_eventTickets 
+ * @author    Jeremy Bass <jeremy.bass@wsu.edu>
+ * @license   MIT/GPL
+ * @link N/A
+ -->
+<config>
+    <modules>
+        <Wsu_eventTickets>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Wsu_eventTickets>
+    </modules>
+</config> 

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/* 
+ * @category  Event Manager Module
+ * @package   Wsu_eventTickets 
+ * @author    Jeremy Bass <jeremy.bass@wsu.edu>
+ * @license   MIT/GPL
+ * @link N/A 
+ */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="footer_links">
+            <action method="addLink" translate="label title" module="wsu_eventtickets">
+                <label>eventTickets</label>
+                <url>eventtickets</url>
+                <title>eventTickets</title>
+                <prepare>true</prepare>
+            </action>
+        </reference>
+		 <reference name="top.links">
+			 <action method="addLink" translate="label title" module="wsu_eventtickets">
+                <label>eventTickets</label>
+                <url>eventtickets</url>
+                <title>eventTickets</title>
+                <prepare>true</prepare>
+            </action>
+        </reference>
+    </default>
+    <wsu_eventtickets_index_index translate="label">
+        <label>eventTickets Page</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+            <action method="setHeaderTitle" translate="title" module="wsu_eventtickets">
+                <title>Site eventTickets</title>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="wsu_eventtickets/list" name="eventtickets.list" template="WsueventTickets/eventtickets/list.phtml">
+                <block type="page/html_pager" name="eventtickets.list.pager" as="eventtickets_list_pager" />
+            </block>
+        </reference>
+    </wsu_eventtickets_index_index>
+
+    <wsu_eventtickets_index_view translate="label">
+        <label>eventTickets Item Page</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="wsu_eventtickets/item" name="eventtickets.item" template="WsueventTickets/eventtickets/item.phtml" />
+        </reference>
+    </wsu_eventtickets_index_view>
+</layout>
