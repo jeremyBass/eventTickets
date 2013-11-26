@@ -57,6 +57,32 @@
                 </observers>
             </before_eventtickets_item_display>
         </eventtickets>
+        <catalog>
+            <product>
+                <type>
+                    <seating translate="label" module="wsu_eventtickets">
+                        <label>Seating</label>
+                        <model>wsu_eventtickets/product_type</model>
+                        <is_qty>0</is_qty>
+                        <composite>0</composite>
+                        <can_use_qty_decimals>0</can_use_qty_decimals>
+                    </seating>
+                    <event translate="label" module="wsu_eventtickets">
+                        <label>Event</label>
+                        <model>wsu_eventtickets/product_type_grouped</model>
+						<price_model>catalog/product_type_grouped_price</price_model>
+						<composite>1</composite>
+						<allow_product_types>
+							<seating/>
+							<simple/>
+							<virtual/>
+						</allow_product_types>
+						<index_priority>50</index_priority>
+						<price_indexer>catalog/product_indexer_price_grouped</price_indexer>
+                    </event>
+                </type>
+            </product>
+        </catalog>
     </global>
     <frontend>
         <routers>

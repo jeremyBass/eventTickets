@@ -65,3 +65,104 @@ $table = $installer->getConnection()
     ->setComment('Event item');
 
 $installer->getConnection()->createTable($table);
+
+
+$installer->addAttribute(
+    Mage_Catalog_Model_Product::ENTITY,
+    'affiliate_link',
+    array(
+        'type'                    => 'text',
+        'backend'                 => '',
+        'frontend'                => '',
+        'label'                   => 'Affiliate Link',
+        'input'                   => 'text',
+        'class'                   => '',
+        'source'                  => '',
+        'global'                  => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
+        'visible'                 => true,
+        'required'                => true,
+        'user_defined'            => false,
+        'default'                 => '',
+        'searchable'              => false,
+        'filterable'              => false,
+        'comparable'              => false,
+        'visible_on_front'        => false,
+        'unique'                  => false,
+        'apply_to'                => 'event',
+        'is_configurable'         => false,
+        'used_in_product_listing' => false
+    )
+);
+
+
+
+
+
+
+
+
+
+/* http://schema.org/Place
+$table_venues = $installer->getTable('wsu_events_venue');
+$installer->run("
+    DROP TABLE IF EXISTS `{$table_venues}`;
+    CREATE TABLE `{$table_venues}` (
+	`venue_id` int(10) NOT NULL AUTO_INCREMENT,
+	`updated_at` timestamp,
+	`name` varchar(255) NULL,
+	`description` text NULL,
+	`sameAs` varchar(255) NULL,
+	`capacity`  int(10) NOT NULL DEFAULT '1',
+	`address` text NULL,
+	`telephone` varchar(255) NULL,
+	`faxNumber` varchar(255) NULL,
+	`geo` text NULL,
+	`globalLocationNumber` varchar(255) NULL,
+	`isicV4` varchar(255) NULL,
+	`logo` varchar(255) NULL,
+	`map` varchar(255) NULL,
+	PRIMARY KEY (`spamlog_id`)
+	) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+");
+
+
+
+
+
+
+
+
+$installer->addAttribute(
+    Mage_Catalog_Model_Product::ENTITY,
+    'affiliate_link',
+    array(
+        'type'                    => 'text',
+        'backend'                 => '',
+        'frontend'                => '',
+        'label'                   => 'Affiliate Link',
+        'input'                   => 'text',
+        'class'                   => '',
+        'source'                  => '',
+        'global'                  => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
+        'visible'                 => true,
+        'required'                => true,
+        'user_defined'            => false,
+        'default'                 => '',
+        'searchable'              => false,
+        'filterable'              => false,
+        'comparable'              => false,
+        'visible_on_front'        => false,
+        'unique'                  => false,
+        'apply_to'                => 'event',
+        'is_configurable'         => false,
+        'used_in_product_listing' => false
+    )
+);
+
+
+
+
+
+ */
+
+

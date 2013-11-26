@@ -21,8 +21,7 @@ class Wsu_eventTickets_Model_eventTickets extends Mage_Core_Model_Abstract
      *
      * @return Wsu_eventTickets_Model_eventTickets
      */
-    protected function _beforeSave()
-    {
+    protected function _beforeSave(){
         parent::_beforeSave();
         if ($this->isObjectNew()) {
             $this->setData('created_at', Varien_Date::now());
