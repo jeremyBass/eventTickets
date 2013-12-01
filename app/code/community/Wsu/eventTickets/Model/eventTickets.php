@@ -1,18 +1,9 @@
 <?php
-/* 
- * @category  Event Manager Module
- * @package   Wsu_eventTickets 
- * @author    Jeremy Bass <jeremy.bass@wsu.edu>
- * @license   MIT/GPL
- * @link N/A 
- */
-class Wsu_eventTickets_Model_eventTickets extends Mage_Core_Model_Abstract
-{
+class Wsu_eventTickets_Model_eventTickets extends Mage_Core_Model_Abstract {
     /**
      * Define resource model
      */
-    protected function _construct()
-    {
+    protected function _construct(){
         $this->_init('wsu_eventtickets/eventtickets');
     }
 

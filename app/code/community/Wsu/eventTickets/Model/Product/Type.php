@@ -1,8 +1,8 @@
 <?php
-class Wsu_eventTickets_Model_Product_Type
-        extends Mage_Catalog_Model_Product_Type_Virtual
-{
-    const TYPE_AFFILIATE          = 'affiliate';
+class Wsu_eventTickets_Model_Product_Type extends Mage_Catalog_Model_Product_Type_Abstract { //extends Mage_Catalog_Model_Product_Type_Virtual {//
+	
+	        
+    /*const TYPE_AFFILIATE          = 'affiliate';
     const XML_PATH_AUTHENTICATION = 'catalog/affiliate/authentication';
  
     protected function _prepareProduct(Varien_Object $buyRequest, $product, $processMode) {
@@ -15,5 +15,8 @@ class Wsu_eventTickets_Model_Product_Type
             );
         }
         return parent::_prepareProduct($buyRequest, $product, $processMode);
-    }
+    }*/
+	
+	
+	const TYPE_CP_PRODUCT = 'event';
 }

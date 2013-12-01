@@ -43,7 +43,7 @@
             <wsu_eventtickets_setup>
                 <setup>
                     <module>Wsu_eventTickets</module>
-                    <class>Mage_Core_Model_Resource_Setup</class>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
                 </setup>
             </wsu_eventtickets_setup>
         </resources>
@@ -57,9 +57,46 @@
                 </observers>
             </before_eventtickets_item_display>
         </eventtickets>
+		<importexport>
+			<import_product_types>
+				<event>wsu_eventtickets/import_entity_product_type_event</event>
+			</import_product_types>
+		</importexport>
         <catalog>
             <product>
                 <type>
+
+                    <!--<event translate="label" module="wsu_eventtickets">
+                        <label>Event</label>
+                        <model>wsu_eventtickets/product_type_cp</model>
+                        <is_qty>1</is_qty>
+                        <index_data_retreiver>wsu_eventtickets/catalogIndex_data_cp</index_data_retreiver>
+                        <price_model>wsu_eventtickets/product_price</price_model>
+                        <composite>0</composite>
+                    </event>
+					-->
+                    <seating translate="label" module="wsu_eventtickets">
+                        <label>Seating</label>
+                        <model>wsu_eventtickets/product_type</model>
+                        <is_qty>0</is_qty>
+                        <composite>0</composite>
+                        <can_use_qty_decimals>0</can_use_qty_decimals>
+                    </seating>
+                    <event translate="label" module="wsu_eventtickets">
+                        <label>Event</label>
+						<model>wsu_eventtickets/product_type_cp</model>
+						<index_data_retreiver>wsu_eventtickets/catalogIndex_data_cp</index_data_retreiver>
+                        <price_model>wsu_eventtickets/product_price</price_model>
+						<is_qty>0</is_qty>
+						<index_priority>50</index_priority>
+						<price_indexer>catalog/product_indexer_price_grouped</price_indexer>
+                    </event>
+					
+					
+					
+					
+					
+				<!-- adds a new type
                     <seating translate="label" module="wsu_eventtickets">
                         <label>Seating</label>
                         <model>wsu_eventtickets/product_type</model>
@@ -80,9 +117,12 @@
 						<index_priority>50</index_priority>
 						<price_indexer>catalog/product_indexer_price_grouped</price_indexer>
                     </event>
+					-->
                 </type>
             </product>
         </catalog>
+
+		
     </global>
     <frontend>
         <routers>
@@ -121,6 +161,166 @@
                 </wsu_eventtickets>
             </updates>
         </layout>
+		<events>
+			<catalog_product_new_action>
+			    <observers>
+			        <event_observer_catalog_product_new_action>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductNewAction</method>
+			        </event_observer_catalog_product_new_action>
+			    </observers>
+			</catalog_product_new_action>
+			<catalog_product_edit_action>
+			    <observers>
+			        <event_observer_catalog_product_edit_action>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductEditAction</method>
+			        </event_observer_catalog_product_edit_action>
+			    </observers>
+			</catalog_product_edit_action>			
+            <catalog_product_prepare_save>
+                <observers>
+                	<event_observer_catalog_product_prepare_save>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductPrepareSave</method>
+			        </event_observer_catalog_product_prepare_save>
+                </observers>
+            </catalog_product_prepare_save>
+            <catalog_product_delete_before>
+                <observers>
+                	<event_observer_catalog_product_delete_before>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductDeleteBefore</method>
+			        </event_observer_catalog_product_delete_before>
+                </observers>
+            </catalog_product_delete_before>            
+            <catalog_product_save_after>
+                <observers>
+                	<event_observer_catalog_product_save_after>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductSaveAfter</method>
+			        </event_observer_catalog_product_save_after>
+                </observers>
+            </catalog_product_save_after>
+            <catalog_product_status_update>
+                <observers>
+                	<event_observer_catalog_product_status_update>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductStatusUpdate</method>
+			        </event_observer_catalog_product_status_update>
+                </observers>
+            </catalog_product_status_update>            
+            
+            
+            
+            
+            <sales_order_item_save_after>
+                <observers>
+                	<event_observer_sales_order_item_save_after>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoSalesOrderItemSaveAfter</method>
+			        </event_observer_sales_order_item_save_after>
+                </observers>
+            </sales_order_item_save_after>
+            <sales_order_save_before>
+                <observers>
+                	<event_observer_sales_order_save_before>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoSalesOrderSaveBefore</method>
+			        </event_observer_sales_order_save_before>
+                </observers>
+            </sales_order_save_before>            
+            <sales_order_save_after>
+                <observers>
+                	<event_observer_sales_order_save_after>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoSalesOrderSaveAfter</method>
+			        </event_observer_sales_order_save_after>
+                </observers>
+            </sales_order_save_after>
+            <catalogrule_before_apply>
+                <observers>
+                	<event_observer_catalogrule_before_apply>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogruleBeforeApply</method>
+			        </event_observer_catalogrule_before_apply>
+                </observers>
+            </catalogrule_before_apply>
+            <catalogrule_after_apply>
+                <observers>
+                	<event_observer_catalogrule_after_apply>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogruleAfterApply</method>
+			        </event_observer_catalogrule_after_apply>
+                </observers>
+            </catalogrule_after_apply>
+            <catalog_entity_attribute_save_after>
+                <observers>
+                	<event_observer_catalog_entity_attribute_save_after>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogEntityAttributeSaveAfter</method>
+			        </event_observer_catalog_entity_attribute_save_after>
+                </observers>
+            </catalog_entity_attribute_save_after>
+            <catalog_product_delete_after_done>
+                <observers>
+                	<event_observer_catalog_product_delete_after_done>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductDeleteAfterDone</method>
+			        </event_observer_catalog_product_delete_after_done>
+                </observers>
+            </catalog_product_delete_after_done>
+
+            <customer_login>
+                <observers>
+                	<event_observer_customer_login>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCustomerLogin</method>
+			        </event_observer_customer_login>
+                </observers>
+            </customer_login>
+            <customer_logout>
+                <observers>
+                	<event_observer_customer_logout>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCustomerLogout</method>
+			        </event_observer_customer_logout>
+                </observers>
+            </customer_logout>
+            <sales_quote_save_after>
+                <observers>
+                	<event_observer_sales_quote_save_after>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoSalesQuoteSaveAfter</method>
+			        </event_observer_sales_quote_save_after>
+                </observers>
+            </sales_quote_save_after>
+            <catalog_product_collection_load_after>
+                <observers>
+                	<event_observer_catalog_product_collection_load_after>
+			            <type>singleton</type>
+			            <class>wsu_eventtickets/observer</class>
+			            <method>hookIntoCatalogProductCollectionLoadAfter</method>
+			        </event_observer_catalog_product_collection_load_after>
+                </observers>
+            </catalog_product_collection_load_after>
+		</events>
     </adminhtml>
     <default>
         <eventtickets>

@@ -11,50 +11,37 @@
  * @var $installer Mage_Core_Model_Resource_Setup
  */
 $installer = $this;
+$installer->startSetup();
+
 
 /**
  * Creating table wsu_eventtickets
  */
+ $table_eventtickets = $installer->getTable('wsu_eventtickets/eventtickets');
+$installer->run("
+	DROP TABLE IF EXISTS `{$table_eventtickets}`;
+	CREATE TABLE `{$table_eventtickets}` (
+		`eventtickets_id` int(10) NOT NULL AUTO_INCREMENT,
+		`title` varchar(255) NULL,
+		`details` text NULL,
+		`venue` text NULL,
+		`eligibility` text NULL,
+		`entry_fee` varchar(255) NOT NULL DEFAULT '0.0.0.0',
+		`image` text NULL,
+		`published_at` timestamp,
+		`created_at` timestamp,
+		`reported_at` timestamp,
+		`updated_at` timestamp,
+	  PRIMARY KEY (`eventtickets_id`)
+	) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+");
+ 
+/* $connection = $this->getConnection();
+$connection->addColumn($this->getTable('wsu_eventtickets/eventtickets'), "spam","TINYINT(1) UNSIGNED DEFAULT 0");
+ 
+ 
 $table = $installer->getConnection()
-    ->newTable($installer->getTable('wsu_eventtickets/eventtickets'))
-    ->addColumn('eventtickets_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
-        'unsigned' => true,
-        'identity' => true,
-        'nullable' => false,
-        'primary'  => true,
-    ), 'Entity id')
-    ->addColumn('title', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array(
-        'nullable' => true,
-    ), 'Title')
-	 ->addColumn('details', Varien_Db_Ddl_Table::TYPE_TEXT, '2M', array(
-        'nullable' => true,
-        'default'  => null,
-    ), 'Details')
-    ->addColumn('venue', Varien_Db_Ddl_Table::TYPE_TEXT, 63, array(
-        'nullable' => true,
-        'default'  => null,
-    ), 'Venue')
-	->addColumn('eligibility', Varien_Db_Ddl_Table::TYPE_TEXT, '2M', array(
-        'nullable' => true,
-        'default'  => null,
-    ), 'Eligibility')
-    ->addColumn('entry_fee', Varien_Db_Ddl_Table::TYPE_INTEGER, 100, array(
-        'nullable' => true,
-        'default'  => null,
-    ), 'Entry Fee')
-    ->addColumn('image', Varien_Db_Ddl_Table::TYPE_TEXT, null, array(
-        'nullable' => true,
-        'default'  => null,
-    ), 'eventTickets image media path')
-    ->addColumn('published_at', Varien_Db_Ddl_Table::TYPE_DATE, null, array(
-        'nullable' => true,
-        'default'  => null,
-    ), 'World publish date')
-    ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, array(
-        'nullable' => true,
-        'default'  => null,
-    ), 'Creation Time')
-    ->addIndex($installer->getIdxName(
+    ->newTable($installer->getTable('wsu_eventtickets/eventtickets'))->addIndex($installer->getIdxName(
             $installer->getTable('wsu_eventtickets/eventtickets'),
             array('published_at'),
             Varien_Db_Adapter_Interface::INDEX_TYPE_INDEX
@@ -93,10 +80,48 @@ $installer->addAttribute(
         'used_in_product_listing' => false
     )
 );
+*/
+	$fieldList = array(
+		'price',
+		'special_price',
+		'special_from_date',
+		'special_to_date',
+		'minimal_price',
+		'cost',
+		'tier_price',
+		'weight',
+		'tax_class_id'
+	);
 
+	// make these attributes applicable to downloadable products
+	foreach ($fieldList as $field) {
+		$applyTo = explode(',',$installer->getAttribute('catalog_product', $field, 'apply_to'));
+		if (!in_array('event', $applyTo)) {
+			$applyTo[] = 'event';
+			$installer->updateAttribute('catalog_product', $field, 'apply_to', join(',', $applyTo));
+		}
+	}
 
-
-
+	$installer->addAttribute(
+		Mage_Catalog_Model_Product::ENTITY,
+		'product_type', array(
+			'group'             => 'Product Options',
+			'label'             => 'Product Type',
+			'note'              => '',
+			'type'              => 'int',    //backend_type
+			'input'             => 'select', //frontend_input
+			'frontend_class'    => '',
+			'source'            => 'wsu_eventtickets/attribute_source_type',
+			'backend'           => '',
+			'frontend'          => '',
+			'global'            => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
+			'required'          => true,
+			'visible_on_front'  => false,
+			'apply_to'          => 'simple',
+			'is_configurable'   => false,
+			'used_in_product_listing'   => false,
+			'sort_order'        => 5,
+    ));
 
 
 
