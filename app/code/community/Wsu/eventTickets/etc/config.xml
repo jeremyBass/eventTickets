@@ -137,7 +137,7 @@
         <layout>
             <updates>
                 <wsu_eventtickets>
-                    <file>wsu_eventtickets.xml</file>
+                    <file>wsu/eventtickets.xml</file>
                 </wsu_eventtickets>
             </updates>
         </layout>

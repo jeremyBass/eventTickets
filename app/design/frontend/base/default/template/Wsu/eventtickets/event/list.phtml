@@ -1,0 +1,37 @@
+<?php
+/* 
+ * @category  Event Manager Module
+ * @package   Wsu_eventTickets 
+ * @author    Jeremy Bass <jeremy.bass@wsu.edu>
+ * @license   MIT/GPL
+ * @link N/A 
+ */
+?>
+<div id="eventtickets_list_messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+    <h1><?php echo Mage::helper('wsu_eventtickets')->__('eventTickets Listing') ?></h1>
+</div>
+
+<div class="eventtickets_list_view">
+    <?php foreach ($this->getCollection() as $eventticketsItem): ?>
+        <div id="item_<?php echo $eventticketsItem->getId() ?>" class="page-title">
+            <h2>
+                <a href="<?php echo $this->getItemUrl($eventticketsItem) ?>">
+                    <?php echo $this->escapeHtml($eventticketsItem->getTitle()) ?>
+                </a>
+            </h2>
+            <div class="eventtickets_item_subtitle">
+                <?php echo $this->formatDate($eventticketsItem->getTimePublished(), 'medium') ?> 
+                <?php echo "<br/>Venue Details: ". $this->escapeHtml($eventticketsItem->getVenue())?> 
+				<?php echo "<br/>Entry Fee: ".Mage::helper('core')->currency($eventticketsItem->getEntryFee()); ?>
+            </div>
+
+            <?php if ($imageUrl = $this->getImageUrl($eventticketsItem, 100)): ?>
+               <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($eventticketsItem->getTitle()); ?>" /></p>
+            <?php endif; ?>
+			
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<?php echo $this->getPager() ?>
