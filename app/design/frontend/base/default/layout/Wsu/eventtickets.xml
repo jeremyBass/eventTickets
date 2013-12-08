@@ -27,14 +27,14 @@
                 <prepare>true</prepare>
             </action>
         </reference>
-		 <reference name="top.links">
+		 <!--<reference name="top.links">
 			 <action method="addLink" translate="label title" module="wsu_eventtickets">
                 <label>eventTickets</label>
                 <url>eventtickets</url>
                 <title>eventTickets</title>
                 <prepare>true</prepare>
             </action>
-        </reference>
+        </reference>-->
     </default>
     <wsu_eventtickets_index_index translate="label">
         <label>eventTickets Page</label>
