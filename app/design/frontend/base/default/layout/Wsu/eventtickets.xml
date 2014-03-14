@@ -35,6 +35,9 @@
                 <prepare>true</prepare>
             </action>
         </reference>-->
+
+		
+		
     </default>
     <wsu_eventtickets_index_index translate="label">
         <label>eventTickets Page</label>
@@ -47,7 +50,7 @@
             </action>
         </reference>
         <reference name="content">
-            <block type="wsu_eventtickets/list" name="eventtickets.list" template="WsueventTickets/eventtickets/list.phtml">
+            <block type="wsu_eventtickets/list" name="eventtickets.list" template="Wsu/eventTickets/eventtickets/list.phtml">
                 <block type="page/html_pager" name="eventtickets.list.pager" as="eventtickets_list_pager" />
             </block>
         </reference>
@@ -61,7 +64,7 @@
             </action>
         </reference>
         <reference name="content">
-            <block type="wsu_eventtickets/item" name="eventtickets.item" template="WsueventTickets/eventtickets/item.phtml" />
+            <block type="wsu_eventtickets/item" name="eventtickets.item" template="Wsu/eventTickets/eventtickets/item.phtml" />
         </reference>
     </wsu_eventtickets_index_view>
 </layout>
