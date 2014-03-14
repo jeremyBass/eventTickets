@@ -39,16 +39,18 @@
 		
 		
     </default>
+	
 	<catalog_category_default>
 		<reference name="product_list">		
 			<block name="block_category_above_product">
-                <block type="wsu_eventtickets/item" name="eventtickets.above_product" template="Wsu/eventtickets/catalog/product/list/above_product.phtml" />
+                <block type="catalog/product_list_aboveproduct" name="eventtickets.above_product" template="Wsu/eventtickets/catalog/product/list/aboveproduct.phtml" />
             </block>
 			<block name="block_category_below_product">
-                <block type="wsu_eventtickets/item" name="eventtickets.below_product" template="Wsu/eventtickets/catalog/product/list/below_product.phtml" />
+                <block type="catalog/product_list_belowproduct" name="eventtickets.below_product" template="Wsu/eventtickets/catalog/product/list/belowproduct.phtml" />
             </block>
 		</reference>
 	</catalog_category_default>
+	
     <wsu_eventtickets_index_index translate="label">
         <label>eventTickets Page</label>
         <reference name="root">
