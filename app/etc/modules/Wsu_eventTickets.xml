@@ -11,6 +11,9 @@
         <Wsu_eventTickets>
             <active>true</active>
             <codePool>community</codePool>
+			<depends>
+                <Wsu_Storeutilities/>
+            </depends>
         </Wsu_eventTickets>
     </modules>
 </config> 
