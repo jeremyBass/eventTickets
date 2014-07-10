@@ -131,13 +131,13 @@ $defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId(
 $SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
 										  $defaultAttrSetId,
 										  array('Gift Options','Recurring Profile'),
-										  array('enable_googlecheckout','weight','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+										  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 					 ); 
 					 
 $EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
 										  $defaultAttrSetId,
 										  array('Gift Options','Recurring Profile'),
-										  array('enable_googlecheckout','weight','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+										  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 					 ); 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
 					 
