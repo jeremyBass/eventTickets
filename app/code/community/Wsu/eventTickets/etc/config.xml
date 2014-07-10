@@ -87,7 +87,9 @@
 						<model>wsu_eventtickets/product_type_cp</model>
 						<index_data_retreiver>wsu_eventtickets/catalogIndex_data_cp</index_data_retreiver>
                         <!--<price_model>wsu_eventtickets/product_price</price_model>-->
-						<is_qty>0</is_qty>
+						<is_qty>1</is_qty>
+						<composite>1</composite>
+						<virtual>1</virtual>
 						<index_priority>50</index_priority>
 						<!--<price_indexer>catalog/product_indexer_price_grouped</price_indexer>-->
                     </event>

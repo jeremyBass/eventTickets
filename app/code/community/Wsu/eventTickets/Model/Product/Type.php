@@ -19,4 +19,11 @@ class Wsu_eventTickets_Model_Product_Type extends Mage_Catalog_Model_Product_Typ
 	
 	
 	const TYPE_CP_PRODUCT = 'event';
+	
+    public function isVirtual($product = null){
+        return true;
+    }
+	
+	
+	
 }
