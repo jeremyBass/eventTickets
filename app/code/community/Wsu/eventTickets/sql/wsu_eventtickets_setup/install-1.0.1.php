@@ -101,7 +101,7 @@ $installer->addAttribute(
 			$installer->updateAttribute('catalog_product', $field, 'apply_to', join(',', $applyTo));
 		}
 	}
-
+/*
 	$installer->addAttribute(
 		Mage_Catalog_Model_Product::ENTITY,
 		'product_type', array(
@@ -122,6 +122,146 @@ $installer->addAttribute(
 			'used_in_product_listing'   => false,
 			'sort_order'        => 5,
     ));
+*/
+
+$SU_helper = Mage::helper('storeutilities/utilities');
+
+
+$defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
+$SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
+										  $defaultAttrSetId,
+										  array('Gift Options','Recurring Profile'),
+										  array('enable_googlecheckout','weight','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+					 ); 
+					 
+$EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
+										  $defaultAttrSetId,
+										  array('Gift Options','Recurring Profile'),
+										  array('enable_googlecheckout','weight','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+					 ); 
+$allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
+					 
+$SU_helper->createAttribute("Event start","eventstartdate", array(
+		'is_global'                     => '0',
+		'frontend_input'                => 'date',
+		'default_value_text'            => '',
+		'default_value_yesno'           => '0',
+		'default_value_date'            => '',
+		'default_value_textarea'        => '',
+		'is_unique'                     => '0',
+		'is_required'                   => '0',
+		'frontend_class'                => '',
+		'is_searchable'                 => '1',
+		'is_visible_in_advanced_search' => '1',
+		'is_comparable'                 => '0',
+		'is_used_for_promo_rules'       => '0',
+		'is_html_allowed_on_front'      => '1',
+		'is_visible_on_front'           => '0',
+		'used_in_product_listing'       => '1',
+		'used_for_sort_by'              => '1',
+		'is_configurable'               => '0',
+		'is_filterable'                 => '0',
+		'is_filterable_in_search'       => '0',
+		'backend_type'                  => 'datetime',
+		'default_value'                 => ''
+	),array("event"), $allEventSets);
+
+$SU_helper->createAttribute("Event end","eventenddate", array(
+		'is_global'                     => '0',
+		'frontend_input'                => 'date',
+		'default_value_text'            => '',
+		'default_value_yesno'           => '0',
+		'default_value_date'            => '',
+		'default_value_textarea'        => '',
+		'is_unique'                     => '0',
+		'is_required'                   => '0',
+		'frontend_class'                => '',
+		'is_searchable'                 => '1',
+		'is_visible_in_advanced_search' => '1',
+		'is_comparable'                 => '0',
+		'is_used_for_promo_rules'       => '0',
+		'is_html_allowed_on_front'      => '1',
+		'is_visible_on_front'           => '0',
+		'used_in_product_listing'       => '0',
+		'used_for_sort_by'              => '1',
+		'is_configurable'               => '0',
+		'is_filterable'                 => '0',
+		'is_filterable_in_search'       => '0',
+		'backend_type'                  => 'datetime',
+		'default_value'                 => ''
+	),array("event"), $allEventSets);
+
+Mage::helper('storeutilities/utilities')->createAttribute("Opponent","opponent", array(
+		'is_global'                     => '0',
+		'frontend_input'                => 'text',
+		'default_value_text'            => '',
+		'default_value_yesno'           => '0',
+		'default_value_date'            => '',
+		'default_value_textarea'        => '',
+		'is_unique'                     => '0',
+		'is_required'                   => '0',
+		'frontend_class'                => '',
+		'is_searchable'                 => '1',
+		'is_visible_in_advanced_search' => '1',
+		'is_comparable'                 => '0',
+		'is_used_for_promo_rules'       => '0',
+		'is_html_allowed_on_front'      => '1',
+		'is_visible_on_front'           => '0',
+		'used_in_product_listing'       => '0',
+		'used_for_sort_by'              => '1',
+		'is_configurable'               => '0',
+		'is_filterable'                 => '0',
+		'is_filterable_in_search'       => '0',
+		'backend_type'                  => 'text',
+		'default_value'                 => ''
+	),array("event"), $SportingAttrSetInfo);
+Mage::helper('storeutilities/utilities')->createAttribute("Away Game","awaygame", array(
+		'is_global'                     => '0',
+		'frontend_input'                => 'boolean',
+		'default_value_text'            => '',
+		'default_value_yesno'           => '0',
+		'default_value_date'            => '',
+		'default_value_textarea'        => '',
+		'is_unique'                     => '0',
+		'is_required'                   => '0',
+		'frontend_class'                => '',
+		'is_searchable'                 => '1',
+		'is_visible_in_advanced_search' => '1',
+		'is_comparable'                 => '0',
+		'is_used_for_promo_rules'       => '0',
+		'is_html_allowed_on_front'      => '1',
+		'is_visible_on_front'           => '0',
+		'used_in_product_listing'       => '1',
+		'used_for_sort_by'              => '1',
+		'is_configurable'               => '0',
+		'is_filterable'                 => '0',
+		'is_filterable_in_search'       => '0',
+		'backend_type'                  => 'int',
+		'default_value'                 => ''
+	),array("event"), $SportingAttrSetInfo);			
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
