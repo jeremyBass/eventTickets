@@ -14,6 +14,22 @@ $installer = $this;
 $installer->startSetup();
 
 
+
+ $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'test_date_time', array(
+     'input'         => 'datetime',
+     'type'          => 'datetime',
+     'time'          => true,
+     'label'         => 'Date&Time',
+     'visible'       => true,
+     'required'      => false,
+     'user_defined'  => true,
+     'visible_on_front' => true,
+     'backend'       => 'eav/entity_attribute_backend_time_created',
+     'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
+ ));
+
+
+
 /**
  * Creating table wsu_eventtickets
  */
@@ -128,17 +144,33 @@ $SU_helper = Mage::helper('storeutilities/utilities');
 
 
 $defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
-$SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
-										  $defaultAttrSetId,
-										  array('Gift Options','Recurring Profile'),
-										  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
-					 ); 
+
+
+
+$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection();
+$attribute_set->addFieldToFilter("attribute_set_name", "Sporting Events")->getFirstItem();
+if($attribute_set->getAttributeSetId()<=0){
+	$SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
+		  $defaultAttrSetId,
+		  array('Gift Options','Recurring Profile'),
+		  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+	); 
+}else{
+	$SportingAttrSetInfo = array($attribute_set->getAttributeSetId());
+}
+
+$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection();
+$attribute_set->addFieldToFilter("attribute_set_name", "Entertainment Events")->getFirstItem();
+if($attribute_set->getAttributeSetId()<=0){
+	$EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
+		  $defaultAttrSetId,
+		  array('Gift Options','Recurring Profile'),
+		  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+	);
+}else{
+	$EntertainmentSetInfo = array($attribute_set->getAttributeSetId());
+}
 					 
-$EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
-										  $defaultAttrSetId,
-										  array('Gift Options','Recurring Profile'),
-										  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
-					 ); 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
 
 
