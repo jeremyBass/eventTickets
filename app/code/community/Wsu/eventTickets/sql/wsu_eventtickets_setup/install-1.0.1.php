@@ -19,7 +19,7 @@ $installer->startSetup();
      'input'         => 'datetime',
      'type'          => 'datetime',
      'time'          => true,
-     'label'         => 'Date&Time',
+     'label'         => 'Date & Time',
      'visible'       => true,
      'required'      => false,
      'user_defined'  => true,
@@ -147,35 +147,24 @@ $defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId(
 
 
 
-$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection();
-$attribute_set->addFieldToFilter("attribute_set_name", "Sporting Events")->getFirstItem();
-if($attribute_set->getAttributeSetId()<=0){
+
 	$SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
 		  $defaultAttrSetId,
 		  array('Gift Options','Recurring Profile'),
 		  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	); 
-}else{
-	$SportingAttrSetInfo = array($attribute_set->getAttributeSetId());
-}
 
-$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection();
-$attribute_set->addFieldToFilter("attribute_set_name", "Entertainment Events")->getFirstItem();
-if($attribute_set->getAttributeSetId()<=0){
+
+
 	$EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
 		  $defaultAttrSetId,
 		  array('Gift Options','Recurring Profile'),
 		  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	);
-}else{
-	$EntertainmentSetInfo = array($attribute_set->getAttributeSetId());
-}
 					 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
 
-
-$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventstartdate");
-if(null===$m->getId()) {				 
+			 
 $SU_helper->createAttribute("Event start date","eventstartdate", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
@@ -200,9 +189,7 @@ $SU_helper->createAttribute("Event start date","eventstartdate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-}
-$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventstarttime");
-if(null===$m->getId()) {	
+	
 $SU_helper->createAttribute("Event start time","eventstarttime", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
@@ -227,10 +214,7 @@ $SU_helper->createAttribute("Event start time","eventstarttime", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-}
 
-$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventenddate");
-if(null===$m->getId()) {	
 $SU_helper->createAttribute("Event end date","eventenddate", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
@@ -255,10 +239,7 @@ $SU_helper->createAttribute("Event end date","eventenddate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-}
 
-$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventendtime");
-if(null===$m->getId()) {
 $SU_helper->createAttribute("Event end time","eventendtime", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
@@ -283,10 +264,7 @@ $SU_helper->createAttribute("Event end time","eventendtime", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-}
 
-$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"location");
-if(null===$m->getId()) {
 Mage::helper('storeutilities/utilities')->createAttribute("Location","location", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
@@ -311,10 +289,7 @@ Mage::helper('storeutilities/utilities')->createAttribute("Location","location",
 		'backend_type'                  => 'text',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-}
 
-$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"opponent");
-if(null===$m->getId()) {
 Mage::helper('storeutilities/utilities')->createAttribute("Opponent","opponent", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
@@ -339,9 +314,7 @@ Mage::helper('storeutilities/utilities')->createAttribute("Opponent","opponent",
 		'backend_type'                  => 'text',
 		'default_value'                 => ''
 	),array("event"), $SportingAttrSetInfo);
-}
-$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"awaygame");
-if(null===$m->getId()) {
+
 Mage::helper('storeutilities/utilities')->createAttribute("Away Game","awaygame", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'boolean',
@@ -367,9 +340,6 @@ Mage::helper('storeutilities/utilities')->createAttribute("Away Game","awaygame"
 		'default_value'                 => ''
 	),array("event"), $SportingAttrSetInfo);			
 	
-}
-
-
 
 
 
