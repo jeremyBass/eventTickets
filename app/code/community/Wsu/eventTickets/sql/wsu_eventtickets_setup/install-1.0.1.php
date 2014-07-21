@@ -140,7 +140,10 @@ $EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
 										  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 					 ); 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
-					 
+
+
+$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventstartdate");
+if(null===$m->getId()) {				 
 $SU_helper->createAttribute("Event start date","eventstartdate", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
@@ -165,8 +168,10 @@ $SU_helper->createAttribute("Event start date","eventstartdate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-	
-$SU_helper->createAttribute("Event start time","eventstartdate", array(
+}
+$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventstarttime");
+if(null===$m->getId()) {	
+$SU_helper->createAttribute("Event start time","eventstarttime", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
 		'default_value_text'            => '',
@@ -190,9 +195,10 @@ $SU_helper->createAttribute("Event start time","eventstartdate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
+}
 
-
-
+$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventenddate");
+if(null===$m->getId()) {	
 $SU_helper->createAttribute("Event end date","eventenddate", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
@@ -217,9 +223,11 @@ $SU_helper->createAttribute("Event end date","eventenddate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-	
-	
-$SU_helper->createAttribute("Event end time","eventenddate", array(
+}
+
+$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"eventendtime");
+if(null===$m->getId()) {
+$SU_helper->createAttribute("Event end time","eventendtime", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
 		'default_value_text'            => '',
@@ -243,8 +251,10 @@ $SU_helper->createAttribute("Event end time","eventenddate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-	
+}
 
+$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"location");
+if(null===$m->getId()) {
 Mage::helper('storeutilities/utilities')->createAttribute("Location","location", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
@@ -269,8 +279,10 @@ Mage::helper('storeutilities/utilities')->createAttribute("Location","location",
 		'backend_type'                  => 'text',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
+}
 
-
+$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"opponent");
+if(null===$m->getId()) {
 Mage::helper('storeutilities/utilities')->createAttribute("Opponent","opponent", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
@@ -295,6 +307,9 @@ Mage::helper('storeutilities/utilities')->createAttribute("Opponent","opponent",
 		'backend_type'                  => 'text',
 		'default_value'                 => ''
 	),array("event"), $SportingAttrSetInfo);
+}
+$m = Mage::getModel('catalog/resource_eav_attribute')->loadByCode('catalog_product',"awaygame");
+if(null===$m->getId()) {
 Mage::helper('storeutilities/utilities')->createAttribute("Away Game","awaygame", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'boolean',
@@ -320,7 +335,7 @@ Mage::helper('storeutilities/utilities')->createAttribute("Away Game","awaygame"
 		'default_value'                 => ''
 	),array("event"), $SportingAttrSetInfo);			
 	
-
+}
 
 
 
