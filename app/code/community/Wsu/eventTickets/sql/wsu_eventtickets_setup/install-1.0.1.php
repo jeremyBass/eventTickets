@@ -15,18 +15,7 @@ $installer->startSetup();
 
 
 
- $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'test_date_time', array(
-     'input'         => 'datetime',
-     'type'          => 'datetime',
-     'time'          => true,
-     'label'         => 'Date & Time',
-     'visible'       => true,
-     'required'      => false,
-     'user_defined'  => true,
-     'visible_on_front' => true,
-     'backend'       => 'eav/entity_attribute_backend_time_created',
-     'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
- ));
+
 
 
 
@@ -161,7 +150,44 @@ $defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId(
 		  array('Gift Options','Recurring Profile'),
 		  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	);
-					 
+
+
+ $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time', array(
+     'input'         => 'datetime',
+     'type'          => 'datetime',
+     'time'          => true,
+     'label'         => 'Date & Time',
+     'visible'       => true,
+     'required'      => false,
+     'user_defined'  => true,
+     'visible_on_front' => true,
+     'backend'       => 'eav/entity_attribute_backend_time_created',
+     'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
+ ));
+
+  $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_end_date_time', array(
+     'input'         => 'datetime',
+     'type'          => 'datetime',
+     'time'          => true,
+     'label'         => 'Date & Time',
+     'visible'       => true,
+     'required'      => false,
+     'user_defined'  => true,
+     'visible_on_front' => true,
+     'backend'       => 'eav/entity_attribute_backend_time_created',
+     'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
+ ));
+
+ 
+ 
+ 
+
+
+
+
+
+
+				 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
 
 			 
