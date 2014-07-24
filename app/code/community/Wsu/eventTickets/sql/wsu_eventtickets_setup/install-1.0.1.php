@@ -173,19 +173,19 @@ $defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId(
 
 
 
-	$SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
-		  $defaultAttrSetId,
-		  array('Gift Options','Recurring Profile'),
-		  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
-	); 
+$SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
+	$defaultAttrSetId,
+	array('Gift Options','Recurring Profile'),
+	array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+); 
 
 
 
-	$EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
-		  $defaultAttrSetId,
-		  array('Gift Options','Recurring Profile'),
-		  array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
-	);
+$EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
+	$defaultAttrSetId,
+	array('Gift Options','Recurring Profile'),
+	array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+);
 
 
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time')) {
