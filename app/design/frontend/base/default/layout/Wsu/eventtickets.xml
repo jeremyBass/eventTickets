@@ -36,18 +36,12 @@
             </action>
         </reference>-->
 
-		
-		
     </default>
 	
 	<catalog_category_default>
-		<reference name="product_list">		
-			<block name="block_category_above_product">
-                <block type="catalog/product_list_aboveproduct" name="eventtickets.above_product" template="Wsu/eventtickets/catalog/product/list/aboveproduct.phtml" />
-            </block>
-			<block name="block_category_below_product">
-                <block type="catalog/product_list_belowproduct" name="eventtickets.below_product" template="Wsu/eventtickets/catalog/product/list/belowproduct.phtml" />
-            </block>
+		<reference name="product_list">
+			<block type="core/template" name="block_category_above_product" template="Wsu/eventtickets/catalog/product/list/aboveproduct.phtml" />
+			<block type="core/template" name="block_category_below_product" template="Wsu/eventtickets/catalog/product/list/belowproduct.phtml" />
 		</reference>
 	</catalog_category_default>
 	
