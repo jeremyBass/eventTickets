@@ -220,6 +220,39 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_end_d
 	));
 }
  
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'guest_limit')) {
+	$installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'guest_limit', array(
+		'attribute_model' => NULL,
+		'backend'       => 'eav/entity_attribute_backend_array',
+		'type'          => 'int',
+		'table'         => '',
+		'frontend'      => '',
+		'input'         => 'select',
+		'label'         => 'Date & Time',
+		'input_renderer'=> 'wsu_eventtickets/adminhtml_renderer_attribute_datetime',
+		'visible'       => true,
+		'required'      => false,
+		'user_defined'  => true,
+		'visible_on_front' => true,
+		'backend'       => 'eav/entity_attribute_backend_time_created',
+		'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+		'option'        =>  array ( 'values' => 
+								array (
+									0 => 'unlimited',
+									1 => '1',
+									2 => '2',
+									3 => '3',
+									4 => '4',
+									5 => '5',
+									6 => '6',
+									7 => '7',
+									8 => '8',
+									9 => '9',
+									10 => '10',
+								),
+							),
+	));
+}
  
  
 
