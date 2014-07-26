@@ -170,23 +170,29 @@ $SU_helper = Mage::helper('storeutilities/utilities');
 
 $defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
 
+$SportingAttrSetInfo=null;
+$attributeSetName="Sporting Events";
+$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection(); 
+$attribute_set->addFieldToFilter("attribute_set_name", $attributeSetName)->getFirstItem();
+if($attribute_set->getAttributeSetId()){
+	$SportingAttrSetInfo = $SU_helper->createAttributeSet($attributeSetName,
+		$defaultAttrSetId,
+		array('Gift Options','Recurring Profile'),
+		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+	); 
+}
 
-
-
-$SportingAttrSetInfo = $SU_helper->createAttributeSet("Sporting Events",
-	$defaultAttrSetId,
-	array('Gift Options','Recurring Profile'),
-	array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
-); 
-
-
-
-$EntertainmentSetInfo = $SU_helper->createAttributeSet("Entertainment Events",
-	$defaultAttrSetId,
-	array('Gift Options','Recurring Profile'),
-	array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
-);
-
+$EntertainmentSetInfo=null;
+$attributeSetName="Entertainment Events";
+$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection(); 
+$attribute_set->addFieldToFilter("attribute_set_name", $attributeSetName)->getFirstItem();
+if($attribute_set->getAttributeSetId()){
+	$EntertainmentSetInfo = $SU_helper->createAttributeSet($attributeSetName,
+		$defaultAttrSetId,
+		array('Gift Options','Recurring Profile'),
+		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
+	);
+}
 
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time')) {
 	 $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time', array(
