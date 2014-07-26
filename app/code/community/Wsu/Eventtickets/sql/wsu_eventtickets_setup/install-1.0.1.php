@@ -187,7 +187,12 @@ if($attribute_set_id<=0){
 		array('Gift Options','Recurring Profile'),
 		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	); 
+}else{
+	$groupID=0;
+	$SportingAttrSetInfo=array( 'SetID' => $attribute_set_id, 'GroupID' => $groupID, );
 }
+
+
 
 $EntertainmentSetInfo=null;
 $attributeSetName="Entertainment Events";
@@ -198,7 +203,11 @@ if($attribute_set_id<=0){
 		array('Gift Options','Recurring Profile'),
 		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	);
+}else{
+	$groupID=0;
+	$EntertainmentSetInfo=array( 'SetID'  => $attribute_set_id, 'GroupID' => $groupID, );
 }
+
 
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time')) {
 	 $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time', array(
