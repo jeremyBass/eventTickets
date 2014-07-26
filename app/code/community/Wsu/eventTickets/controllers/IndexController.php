@@ -1,12 +1,12 @@
  <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_IndexController extends Mage_Core_Controller_Front_Action
+class Wsu_Eventtickets_IndexController extends Mage_Core_Controller_Front_Action
 {
     /**
      * Pre dispatch action that allows to redirect to no route page in case of disabled extension through admin panel
@@ -42,7 +42,7 @@ class Wsu_eventTickets_IndexController extends Mage_Core_Controller_Front_Action
     }
 
     /**
-     * eventTickets view action
+     * Eventtickets view action
      */
     public function viewAction()
     {
@@ -51,7 +51,7 @@ class Wsu_eventTickets_IndexController extends Mage_Core_Controller_Front_Action
             return $this->_forward('noRoute');
         }
 
-        /** @var $model Wsu_eventTickets_Model_eventTickets */
+        /** @var $model Wsu_Eventtickets_Model_Eventtickets */
         $model = Mage::getModel('wsu_eventtickets/eventtickets');
         $model->load($eventticketsId);
 

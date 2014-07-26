@@ -2,7 +2,7 @@
 <!--
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
@@ -21,17 +21,17 @@
     <default>
         <reference name="footer_links">
             <action method="addLink" translate="label title" module="wsu_eventtickets">
-                <label>eventTickets</label>
+                <label>Eventtickets</label>
                 <url>eventtickets</url>
-                <title>eventTickets</title>
+                <title>Eventtickets</title>
                 <prepare>true</prepare>
             </action>
         </reference>
 		 <!--<reference name="top.links">
 			 <action method="addLink" translate="label title" module="wsu_eventtickets">
-                <label>eventTickets</label>
+                <label>Eventtickets</label>
                 <url>eventtickets</url>
-                <title>eventTickets</title>
+                <title>Eventtickets</title>
                 <prepare>true</prepare>
             </action>
         </reference>-->
@@ -46,13 +46,13 @@
 	</catalog_category_default>
 	
     <wsu_eventtickets_index_index translate="label">
-        <label>eventTickets Page</label>
+        <label>Eventtickets Page</label>
         <reference name="root">
             <action method="setTemplate">
                 <template>page/2columns-right.phtml</template>
             </action>
             <action method="setHeaderTitle" translate="title" module="wsu_eventtickets">
-                <title>Site eventTickets</title>
+                <title>Site Eventtickets</title>
             </action>
         </reference>
         <reference name="content">
@@ -63,7 +63,7 @@
     </wsu_eventtickets_index_index>
 
     <wsu_eventtickets_index_view translate="label">
-        <label>eventTickets Item Page</label>
+        <label>Eventtickets Item Page</label>
         <reference name="root">
             <action method="setTemplate">
                 <template>page/2columns-right.phtml</template>

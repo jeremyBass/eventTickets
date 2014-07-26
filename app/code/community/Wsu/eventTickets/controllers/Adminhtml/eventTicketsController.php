@@ -1,17 +1,17 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_Controller_Action
+class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Init actions
      *
-     * @return Wsu_eventTickets_Adminhtml_eventTicketsController
+     * @return Wsu_Eventtickets_Adminhtml_EventticketsController
      */
     protected function _initAction()
     {
@@ -19,12 +19,12 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
         $this->loadLayout()
             ->_setActiveMenu('eventtickets/manage')
             ->_addBreadcrumb(
-                  Mage::helper('wsu_eventtickets')->__('eventTickets'),
-                  Mage::helper('wsu_eventtickets')->__('eventTickets')
+                  Mage::helper('wsu_eventtickets')->__('Eventtickets'),
+                  Mage::helper('wsu_eventtickets')->__('Eventtickets')
               )
             ->_addBreadcrumb(
-                  Mage::helper('wsu_eventtickets')->__('Manage eventTickets'),
-                  Mage::helper('wsu_eventtickets')->__('Manage eventTickets')
+                  Mage::helper('wsu_eventtickets')->__('Manage Eventtickets'),
+                  Mage::helper('wsu_eventtickets')->__('Manage Eventtickets')
               )
         ;
         return $this;
@@ -35,15 +35,15 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
      */
     public function indexAction()
     {
-        $this->_title($this->__('eventTickets'))
-             ->_title($this->__('Manage eventTickets'));
+        $this->_title($this->__('Eventtickets'))
+             ->_title($this->__('Manage Eventtickets'));
 
         $this->_initAction();
         $this->renderLayout();
     }
 
     /**
-     * Create new eventTickets item
+     * Create new Eventtickets item
      */
     public function newAction()
     {
@@ -52,15 +52,15 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
     }
 
     /**
-     * Edit eventTickets item
+     * Edit Eventtickets item
      */
     public function editAction()
     {
-        $this->_title($this->__('eventTickets'))
-             ->_title($this->__('Manage eventTickets'));
+        $this->_title($this->__('Eventtickets'))
+             ->_title($this->__('Manage Eventtickets'));
 
         // 1. instance eventtickets model
-        /* @var $model Wsu_eventTickets_Model_Item */
+        /* @var $model Wsu_Eventtickets_Model_Item */
         $model = Mage::getModel('wsu_eventtickets/eventtickets');
 
         // 2. if exists id, check it and load data
@@ -70,7 +70,7 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
 
             if (!$model->getId()) {
                 $this->_getSession()->addError(
-                    Mage::helper('wsu_eventtickets')->__('eventTickets item does not exist.')
+                    Mage::helper('wsu_eventtickets')->__('Eventtickets item does not exist.')
                 );
                 return $this->_redirect('*/*/');
             }
@@ -111,7 +111,7 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
         if ($data) {
             $data = $this->_filterPostData($data);
             // init model and set data
-            /* @var $model Wsu_eventTickets_Model_Item */
+            /* @var $model Wsu_Eventtickets_Model_Item */
             $model = Mage::getModel('wsu_eventtickets/eventtickets');
 
             // if eventtickets item exists, try to load it
@@ -130,7 +130,7 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
 
             try {
                 $hasError = false;
-                /* @var $imageHelper Wsu_eventTickets_Helper_Image */
+                /* @var $imageHelper Wsu_Eventtickets_Helper_Image */
                 $imageHelper = Mage::helper('wsu_eventtickets/image');
                 // remove image
 
@@ -190,7 +190,7 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
         if ($itemId) {
             try {
                 // init model and delete
-                /** @var $model Wsu_eventTickets_Model_Item */
+                /** @var $model Wsu_Eventtickets_Model_Item */
                 $model = Mage::getModel('wsu_eventtickets/eventtickets');
                 $model->load($itemId);
                 if (!$model->getId()) {
@@ -258,7 +258,7 @@ class Wsu_eventTickets_Adminhtml_eventTicketsController extends Mage_Adminhtml_C
     }
 
     /**
-     * Flush eventTickets Posts Images Cache action
+     * Flush Eventtickets Posts Images Cache action
      */
     public function flushAction()
     {

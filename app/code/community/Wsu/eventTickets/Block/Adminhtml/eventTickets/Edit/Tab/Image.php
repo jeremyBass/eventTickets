@@ -1,12 +1,12 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Image
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Image
     extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
@@ -30,7 +30,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Image
 
         $form->setHtmlIdPrefix('eventtickets_image_');
 
-        $model = Mage::helper('wsu_eventtickets')->geteventTicketsItemInstance();
+        $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
 
 
         $fieldset = $form->addFieldset('image_fieldset', array(

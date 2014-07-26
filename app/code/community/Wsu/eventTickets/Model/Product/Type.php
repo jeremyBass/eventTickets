@@ -1,5 +1,5 @@
 <?php
-class Wsu_eventTickets_Model_Product_Type extends Mage_Catalog_Model_Product_Type_Abstract { //extends Mage_Catalog_Model_Product_Type_Virtual {//
+class Wsu_Eventtickets_Model_Product_Type extends Mage_Catalog_Model_Product_Type_Abstract { //extends Mage_Catalog_Model_Product_Type_Virtual {//
 	
 	        
     /*const TYPE_AFFILIATE          = 'affiliate';

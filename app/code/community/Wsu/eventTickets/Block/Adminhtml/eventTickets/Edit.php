@@ -1,12 +1,12 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
     /**
      * Initialize edit form container
@@ -21,7 +21,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit extends Mage_Adminhtml_
         parent::__construct();
 
         if (Mage::helper('wsu_eventtickets/admin')->isActionAllowed('save')) {
-            $this->_updateButton('save', 'label', Mage::helper('wsu_eventtickets')->__('Save eventTickets Item'));
+            $this->_updateButton('save', 'label', Mage::helper('wsu_eventtickets')->__('Save Eventtickets Item'));
             $this->_addButton('saveandcontinue', array(
                 'label'   => Mage::helper('adminhtml')->__('Save and Continue Edit'),
                 'onclick' => 'saveAndContinueEdit()',
@@ -32,7 +32,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit extends Mage_Adminhtml_
         }
 
         if (Mage::helper('wsu_eventtickets/admin')->isActionAllowed('delete')) {
-            $this->_updateButton('delete', 'label', Mage::helper('wsu_eventtickets')->__('Delete eventTickets Item'));
+            $this->_updateButton('delete', 'label', Mage::helper('wsu_eventtickets')->__('Delete Eventtickets Item'));
         } else {
             $this->_removeButton('delete');
         }
@@ -59,12 +59,12 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit extends Mage_Adminhtml_
      */
     public function getHeaderText()
     {
-        $model = Mage::helper('wsu_eventtickets')->geteventTicketsItemInstance();
+        $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
         if ($model->getId()) {
-            return Mage::helper('wsu_eventtickets')->__("Edit eventTickets Item '%s'",
+            return Mage::helper('wsu_eventtickets')->__("Edit Eventtickets Item '%s'",
                  $this->escapeHtml($model->getTitle()));
         } else {
-            return Mage::helper('wsu_eventtickets')->__('New eventTickets Item');
+            return Mage::helper('wsu_eventtickets')->__('New Eventtickets Item');
         }
     }
 }

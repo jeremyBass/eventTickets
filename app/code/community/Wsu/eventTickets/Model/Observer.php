@@ -1,13 +1,13 @@
 <?php
-class Wsu_eventTickets_Model_Observer {
+class Wsu_Eventtickets_Model_Observer {
     /**
      * Event before show event item on frontend
      * If specified new post was added recently (term is defined in config) we'll see message about this on front-end.
      *
      * @param Varien_Event_Observer $observer
      */
-    public function beforeeventTicketsDisplayed(Varien_Event_Observer $observer) {
-        $eventticketsItem      = $observer->getEvent()->geteventTicketsItem();
+    public function beforeEventticketsDisplayed(Varien_Event_Observer $observer) {
+        $eventticketsItem      = $observer->getEvent()->getEventticketsItem();
         $currentDate           = Mage::app()->getLocale()->date();
         $eventticketsCreatedAt = Mage::app()->getLocale()->date(strtotime($eventticketsItem->getCreatedAt()));
         $daysDifference        = $currentDate->sub($eventticketsCreatedAt)->getTimestamp() / (60 * 60 * 24);

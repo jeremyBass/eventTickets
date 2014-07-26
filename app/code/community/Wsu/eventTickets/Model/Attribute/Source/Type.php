@@ -1,5 +1,5 @@
 <?php
-class Wsu_eventTickets_Model_Attribute_Source_Type extends Mage_Eav_Model_Entity_Attribute_Source_Abstract {
+class Wsu_Eventtickets_Model_Attribute_Source_Type extends Mage_Eav_Model_Entity_Attribute_Source_Abstract {
     const MAIN = 1;
     const OTHER = 2;
     public function getAllOptions() {

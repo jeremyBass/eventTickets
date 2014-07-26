@@ -2,7 +2,7 @@
 <!--  
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
@@ -13,11 +13,11 @@
 		<catalog>
             <children>
 				 <eventtickets translate="title" module="wsu_eventtickets">
-					<title>eventTickets</title>
+					<title>Eventtickets</title>
 					<sort_order>30</sort_order>
 					<children>
 						<manage translate="title" module="wsu_eventtickets">
-							<title>Manage eventTickets</title>
+							<title>Manage Eventtickets</title>
 							<action>adminhtml/eventtickets</action>
 							<sort_order>35</sort_order>
 						</manage>
@@ -31,19 +31,19 @@
             <admin>
                 <children>
                     <eventtickets translate="title" module="wsu_eventtickets">
-                        <title>eventTickets</title>
+                        <title>Eventtickets</title>
                         <sort_order>30</sort_order>
                         <children>
                             <manage translate="title">
-                                <title>Manage eventTickets</title>
+                                <title>Manage Eventtickets</title>
                                 <sort_order>0</sort_order>
                                 <children>
                                     <save translate="title">
-                                        <title>Save eventTickets</title>
+                                        <title>Save Eventtickets</title>
                                         <sort_order>0</sort_order>
                                     </save>
                                     <delete translate="title">
-                                        <title>Delete eventTickets</title>
+                                        <title>Delete Eventtickets</title>
                                         <sort_order>10</sort_order>
                                     </delete>
                                 </children>
@@ -55,7 +55,7 @@
                             <config>
                                 <children>
                                     <eventtickets translate="title" module="wsu_eventtickets">
-                                        <title>eventTickets Management</title>
+                                        <title>Eventtickets Management</title>
                                     </eventtickets>
                                 </children>
                             </config>

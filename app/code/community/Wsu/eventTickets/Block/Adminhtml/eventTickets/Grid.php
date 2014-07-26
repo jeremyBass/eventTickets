@@ -1,12 +1,12 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Block_Adminhtml_eventTickets_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
     /**
      * Init Grid default properties
@@ -25,7 +25,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Grid extends Mage_Adminhtml_
     /**
      * Prepare collection for Grid
      *
-     * @return Wsu_eventTickets_Block_Adminhtml_Grid
+     * @return Wsu_Eventtickets_Block_Adminhtml_Grid
      */
     protected function _prepareCollection()
     {

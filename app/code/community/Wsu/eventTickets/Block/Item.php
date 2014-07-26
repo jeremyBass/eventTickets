@@ -1,9 +1,9 @@
 <?php
-class Wsu_eventTickets_Block_Item extends Mage_Core_Block_Template {
+class Wsu_Eventtickets_Block_Item extends Mage_Core_Block_Template {
     /**
      * Current news item instance
      *
-     * @var Wsu_eventTickets_Model_eventTickets
+     * @var Wsu_Eventtickets_Model_Eventtickets
      */
     protected $_item;
     /**
@@ -28,9 +28,9 @@ class Wsu_eventTickets_Block_Item extends Mage_Core_Block_Template {
         ));
     }
     /**
-     * Return URL for resized eventTickets Item image
+     * Return URL for resized Eventtickets Item image
      *
-     * @param Wsu_eventTickets_Model_eventTickets $item
+     * @param Wsu_Eventtickets_Model_Eventtickets $item
      * @param integer $width
      * @return string|false
      */

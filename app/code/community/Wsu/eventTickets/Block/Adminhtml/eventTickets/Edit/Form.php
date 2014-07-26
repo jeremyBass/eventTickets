@@ -1,17 +1,17 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
     /**
      * Prepare form action
      *
-     * @return Wsu_eventTickets_Block_Adminhtml_News_Edit_Form
+     * @return Wsu_Eventtickets_Block_Adminhtml_News_Edit_Form
      */
     protected function _prepareForm()
     {

@@ -1,5 +1,5 @@
 <?php
-class Wsu_eventTickets_Model_Resource_eventTickets extends Mage_Core_Model_Resource_Db_Abstract {
+class Wsu_Eventtickets_Model_Resource_Eventtickets extends Mage_Core_Model_Resource_Db_Abstract {
     /**
      * Initialize connection and define main table and primary key
      */

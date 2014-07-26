@@ -1,9 +1,9 @@
 <?php
-class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Content extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface {
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Content extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface {
     /**
      * Load WYSIWYG on demand and prepare layout
      *
-     * @return Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Content
+     * @return Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Content
      */
     protected function _prepareLayout() {
         parent::_prepareLayout();
@@ -18,7 +18,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Content extends Mag
      * @return Mage_Adminhtml_Block_Widget_Form
      */
     protected function _prepareForm() {
-        $model = Mage::helper('wsu_eventtickets')->geteventTicketsItemInstance();
+        $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
         /**
          * Checking if user have permissions to save information
          */
@@ -33,7 +33,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Content extends Mag
             'tab_id' => $this->getTabId()
         ));
         $fieldset         = $form->addFieldset('eligibility_fieldset', array(
-            'legend' => Mage::helper('wsu_eventtickets')->__('eventTickets Eligibility'),
+            'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Eligibility'),
             'class' => 'fieldset-wide'
         ));
         $eligibilityField = $fieldset->addField('eligibility', 'editor', array(
@@ -44,7 +44,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Content extends Mag
             'config' => $wysiwygConfig
         ));
         $fieldset         = $form->addFieldset('content_fieldset', array(
-            'legend' => Mage::helper('wsu_eventtickets')->__('eventTickets Details'),
+            'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Details'),
             'class' => 'fieldset-wide'
         ));
         $contentField     = $fieldset->addField('details', 'editor', array(

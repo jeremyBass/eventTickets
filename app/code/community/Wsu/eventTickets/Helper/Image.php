@@ -1,12 +1,12 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Helper_Image extends Mage_Core_Helper_Abstract
+class Wsu_Eventtickets_Helper_Image extends Mage_Core_Helper_Abstract
 {
     /**
      * Media path to extension imahes
@@ -71,7 +71,7 @@ class Wsu_eventTickets_Helper_Image extends Mage_Core_Helper_Abstract
     protected $_allowedExtensions = array('jpg', 'gif', 'png');
 
     /**
-     * Return the base media directory for eventTickets Item images
+     * Return the base media directory for Eventtickets Item images
      *
      * @return string
      */
@@ -81,7 +81,7 @@ class Wsu_eventTickets_Helper_Image extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Return the Base URL for eventTickets Item images
+     * Return the Base URL for Eventtickets Item images
      *
      * @return string
      */
@@ -136,14 +136,14 @@ class Wsu_eventTickets_Helper_Image extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Return URL for resized eventTickets Item Image
+     * Return URL for resized Eventtickets Item Image
      *
-     * @param Wsu_eventTickets_Model_Item $item
+     * @param Wsu_Eventtickets_Model_Item $item
      * @param integer $width
      * @param integer $height
      * @return bool|string
      */
-    public function resize(Wsu_eventTickets_Model_eventTickets $item, $width, $height = null)
+    public function resize(Wsu_Eventtickets_Model_Eventtickets $item, $width, $height = null)
     {
         if (!$item->getImage()) {
             return false;

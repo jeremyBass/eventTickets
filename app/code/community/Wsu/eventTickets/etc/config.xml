@@ -2,7 +2,7 @@
 <!--
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
@@ -10,18 +10,18 @@
  -->
 <config>
     <modules>
-        <Wsu_eventTickets>
+        <Wsu_Eventtickets>
             <version>1.0.1</version>
-        </Wsu_eventTickets>
+        </Wsu_Eventtickets>
     </modules>
     <global>
         <models>
             <wsu_eventtickets>
-                <class>Wsu_eventTickets_Model</class>
+                <class>Wsu_Eventtickets_Model</class>
                 <resourceModel>eventtickets_resource</resourceModel>
             </wsu_eventtickets>
             <eventtickets_resource>
-                <class>Wsu_eventTickets_Model_Resource</class>
+                <class>Wsu_Eventtickets_Model_Resource</class>
                 <entities>
                     <eventtickets>
                         <table>wsu_eventtickets</table>
@@ -31,18 +31,18 @@
         </models>
         <helpers>
             <wsu_eventtickets>
-                <class>Wsu_eventTickets_Helper</class>
+                <class>Wsu_Eventtickets_Helper</class>
             </wsu_eventtickets>
         </helpers>
         <blocks>
             <wsu_eventtickets>
-                <class>Wsu_eventTickets_Block</class>
+                <class>Wsu_Eventtickets_Block</class>
             </wsu_eventtickets>
         </blocks>
         <resources>
             <wsu_eventtickets_setup>
                 <setup>
-                    <module>Wsu_eventTickets</module>
+                    <module>Wsu_Eventtickets</module>
                     <class>Mage_Catalog_Model_Resource_Setup</class>
                 </setup>
             </wsu_eventtickets_setup>
@@ -52,7 +52,7 @@
                 <observers>
                     <wsu_eventtickets>
                         <class>wsu_eventtickets/observer</class>
-                        <method>beforeeventTicketsDisplayed</method>
+                        <method>beforeEventticketsDisplayed</method>
                     </wsu_eventtickets>
                 </observers>
             </before_eventtickets_item_display>
@@ -131,7 +131,7 @@
             <wsu_eventtickets>
                 <use>standard</use>
                 <args>
-                    <module>Wsu_eventTickets</module>
+                    <module>Wsu_Eventtickets</module>
                     <frontName>eventtickets</frontName>
                 </args>
             </wsu_eventtickets>
@@ -149,7 +149,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <Wsu_eventTickets before="Mage_Adminhtml">Wsu_eventTickets_Adminhtml</Wsu_eventTickets>
+                        <Wsu_Eventtickets before="Mage_Adminhtml">Wsu_Eventtickets_Adminhtml</Wsu_Eventtickets>
                     </modules>
                 </args>
             </adminhtml>

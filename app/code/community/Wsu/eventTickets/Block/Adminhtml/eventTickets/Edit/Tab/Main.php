@@ -1,12 +1,12 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Main
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main
     extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
@@ -17,7 +17,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Main
      */
     protected function _prepareForm()
     {
-        $model = Mage::helper('wsu_eventtickets')->geteventTicketsItemInstance();
+        $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
 
         /**
          * Checking if user have permissions to save information
@@ -33,7 +33,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Main
         $form->setHtmlIdPrefix('news_main_');
 
         $fieldset = $form->addFieldset('base_fieldset', array(
-            'legend' => Mage::helper('wsu_eventtickets')->__('eventTickets Item Info')
+            'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Item Info')
         ));
 
         if ($model->getId()) {
@@ -44,8 +44,8 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Main
 
         $fieldset->addField('title', 'text', array(
             'name'     => 'title',
-            'label'    => Mage::helper('wsu_eventtickets')->__('eventTickets Title'),
-            'title'    => Mage::helper('wsu_eventtickets')->__('eventTickets Title'),
+            'label'    => Mage::helper('wsu_eventtickets')->__('Eventtickets Title'),
+            'title'    => Mage::helper('wsu_eventtickets')->__('Eventtickets Title'),
             'required' => true,
             'disabled' => $isElementDisabled
         ));
@@ -90,7 +90,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Main
      */
     public function getTabLabel()
     {
-        return Mage::helper('wsu_eventtickets')->__('eventTickets Info');
+        return Mage::helper('wsu_eventtickets')->__('Eventtickets Info');
     }
 
     /**
@@ -100,7 +100,7 @@ class Wsu_eventTickets_Block_Adminhtml_eventTickets_Edit_Tab_Main
      */
     public function getTabTitle()
     {
-        return Mage::helper('wsu_eventtickets')->__('eventTickets Info');
+        return Mage::helper('wsu_eventtickets')->__('Eventtickets Info');
     }
 
     /**

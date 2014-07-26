@@ -1,12 +1,12 @@
 <?php
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_eventTickets_Helper_Data extends Mage_Core_Helper_Data
+class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
 {
     /**
      * Path to store config if front-end output is enabled
@@ -30,9 +30,9 @@ class Wsu_eventTickets_Helper_Data extends Mage_Core_Helper_Data
     const XML_PATH_DAYS_DIFFERENCE    = 'eventtickets/view/days_difference';
 
     /**
-     * eventTickets Item instance for lazy loading
+     * Eventtickets Item instance for lazy loading
      *
-     * @var Wsu_eventTickets_Model_eventTickets
+     * @var Wsu_Eventtickets_Model_Eventtickets
      */
     protected $_eventticketsItemInstance;
 
@@ -53,7 +53,7 @@ class Wsu_eventTickets_Helper_Data extends Mage_Core_Helper_Data
      * @param integer|string|Mage_Core_Model_Store $store
      * @return int
      */
-    public function geteventTicketsPerPage($store = null)
+    public function getEventticketsPerPage($store = null)
     {
         return abs((int)Mage::getStoreConfig(self::XML_PATH_ITEMS_PER_PAGE, $store));
     }
@@ -72,15 +72,15 @@ class Wsu_eventTickets_Helper_Data extends Mage_Core_Helper_Data
     /**
      * Return current eventtickets item instance from the Registry
      *
-     * @return Wsu_eventTickets_Model_eventTickets
+     * @return Wsu_Eventtickets_Model_Eventtickets
      */
-    public function geteventTicketsItemInstance()
+    public function getEventticketsItemInstance()
     {
         if (!$this->_eventticketsItemInstance) {
             $this->_eventticketsItemInstance = Mage::registry('eventtickets_item');
 
             if (!$this->_eventticketsItemInstance) {
-                Mage::throwException($this->__('eventTickets item instance does not exist in Registry'));
+                Mage::throwException($this->__('Eventtickets item instance does not exist in Registry'));
             }
         }
 

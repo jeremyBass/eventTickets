@@ -1,5 +1,5 @@
 <?php
-class Wsu_eventTickets_Model_Resource_eventTickets_Collection extends Mage_Core_Model_Resource_Db_Collection_Abstract {
+class Wsu_Eventtickets_Model_Resource_Eventtickets_Collection extends Mage_Core_Model_Resource_Db_Collection_Abstract {
     /**
      * Define collection model
      */
@@ -11,10 +11,10 @@ class Wsu_eventTickets_Model_Resource_eventTickets_Collection extends Mage_Core_
      * Prepare for displaying in list
      *
      * @param integer $page
-     * @return Wsu_eventTickets_Model_Resource_eventTickets_Collection
+     * @return Wsu_Eventtickets_Model_Resource_Eventtickets_Collection
      */
     public function prepareForList($page) {
-        $this->setPageSize(Mage::helper('wsu_eventtickets')->geteventTicketsPerPage());
+        $this->setPageSize(Mage::helper('wsu_eventtickets')->getEventticketsPerPage());
         $this->setCurPage($page)->setOrder('published_at', Varien_Data_Collection::SORT_ORDER_DESC);
         return $this;
     }

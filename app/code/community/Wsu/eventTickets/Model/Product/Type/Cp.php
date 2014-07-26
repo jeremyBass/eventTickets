@@ -9,6 +9,6 @@
  * Mage_Catalog_Model_Product_Type_Grouped
  */
 
-class Wsu_eventTickets_Model_Product_Type_Cp extends Mage_Catalog_Model_Product_Type_Abstract {
+class Wsu_Eventtickets_Model_Product_Type_Cp extends Mage_Catalog_Model_Product_Type_Abstract {
 
 }

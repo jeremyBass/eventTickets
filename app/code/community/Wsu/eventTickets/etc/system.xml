@@ -2,7 +2,7 @@
 <!--
 /* 
  * @category  Event Manager Module
- * @package   Wsu_eventTickets 
+ * @package   Wsu_Eventtickets 
  * @author    Jeremy Bass <jeremy.bass@wsu.edu>
  * @license   MIT/GPL
  * @link N/A 
@@ -12,7 +12,7 @@
     <sections>
         <eventtickets>
             <class>separator-top</class>
-            <label>eventTickets</label>
+            <label>Eventtickets</label>
             <tab>catalog</tab>
             <frontend_type>text</frontend_type>
             <sort_order>500</sort_order>
@@ -22,7 +22,7 @@
 
             <groups>
                 <view translate="label">
-                    <label>eventTickets View Settings</label>
+                    <label>Eventtickets View Settings</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
@@ -30,7 +30,7 @@
                     <show_in_store>1</show_in_store>
                     <fields>
                         <enabled translate="label">
-                            <label>Enable eventTickets On Frontend</label>
+                            <label>Enable Eventtickets On Frontend</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>10</sort_order>
@@ -39,7 +39,7 @@
                             <show_in_store>1</show_in_store>
                         </enabled>
                         <items_per_page translate="label">
-                            <label>eventTickets Per Page</label>
+                            <label>Eventtickets Per Page</label>
                             <comment>Empty value is the same as default 20.</comment>
                             <sort_order>30</sort_order>
                             <depends><enabled>1</enabled></depends>

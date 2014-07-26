@@ -1,5 +1,5 @@
 <?php
-class Wsu_eventTickets_Model_eventTickets extends Mage_Core_Model_Abstract {
+class Wsu_Eventtickets_Model_Eventtickets extends Mage_Core_Model_Abstract {
     /**
      * Define resource model
      */
@@ -10,7 +10,7 @@ class Wsu_eventTickets_Model_eventTickets extends Mage_Core_Model_Abstract {
     /**
      * If object is new adds creation date
      *
-     * @return Wsu_eventTickets_Model_eventTickets
+     * @return Wsu_Eventtickets_Model_Eventtickets
      */
     protected function _beforeSave(){
         parent::_beforeSave();
