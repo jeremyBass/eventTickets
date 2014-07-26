@@ -177,11 +177,11 @@ try{
 }catch(Exception $e) {
 	$defaultAttrSetId = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product','Default');	
 }
+
 $SportingAttrSetInfo=null;
 $attributeSetName="Sporting Events";
-$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection(); 
-$attribute_set->addFieldToFilter("attribute_set_name", $attributeSetName)->getFirstItem();
-if($attribute_set->getAttributeSetId()){
+$attribute_set_id = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product',$attributeSetName);	
+if($attribute_set_id>0){
 	$SportingAttrSetInfo = $SU_helper->createAttributeSet($attributeSetName,
 		$defaultAttrSetId,
 		array('Gift Options','Recurring Profile'),
@@ -191,9 +191,8 @@ if($attribute_set->getAttributeSetId()){
 
 $EntertainmentSetInfo=null;
 $attributeSetName="Entertainment Events";
-$attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection(); 
-$attribute_set->addFieldToFilter("attribute_set_name", $attributeSetName)->getFirstItem();
-if($attribute_set->getAttributeSetId()){
+$attribute_set_id = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product',$attributeSetName);	
+if($attribute_set_id>0){
 	$EntertainmentSetInfo = $SU_helper->createAttributeSet($attributeSetName,
 		$defaultAttrSetId,
 		array('Gift Options','Recurring Profile'),
