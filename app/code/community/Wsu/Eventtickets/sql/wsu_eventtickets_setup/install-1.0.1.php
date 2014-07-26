@@ -167,17 +167,8 @@ $installer->addAttribute(
 
 $SU_helper = Mage::helper('storeutilities/utilities');
 
-$defaultAttrSetId = 0;
-try{
-	try{
-		$defaultAttrSetId = $this->getDefaultAttributeSetId();
-	}catch(Exception $e) {
-		$defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
-	}
-}catch(Exception $e) {
-	$defaultAttrSetId = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product','Default');	
-}
-
+$entityTypeID = Mage::getModel('catalog/product')->getResource()->getTypeId();
+$defaultAttrSetId = $this->getDefaultAttributeSetId($entityTypeID);
 
 $SportingAttrSetInfo=null;
 $attributeSetName="Sporting Events";
@@ -205,7 +196,7 @@ if($attribute_set_id<=0){
 		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	);
 }else{
-	$groupID=$installer->getAttributeGroupId($attributeSetName,"Event Details");
+	$groupID = $installer->getAttributeGroupId($attributeSetName,"Event Details");
 	$EntertainmentSetInfo=array( 'SetID'  => $attribute_set_id, 'GroupID' => $groupID, );
 }
 
