@@ -168,7 +168,7 @@ $installer->addAttribute(
 $SU_helper = Mage::helper('storeutilities/utilities');
 
 $entityTypeID = Mage::getModel('catalog/product')->getResource()->getTypeId();
-$defaultAttrSetId = $this->getDefaultAttributeSetId($entityTypeID);
+$defaultAttrSetId = $installer->getDefaultAttributeSetId($entityTypeID);
 
 $SportingAttrSetInfo=null;
 $attributeSetName="Sporting Events";
