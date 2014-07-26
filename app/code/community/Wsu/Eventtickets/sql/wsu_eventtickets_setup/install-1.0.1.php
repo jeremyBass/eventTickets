@@ -58,7 +58,7 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'attribute_n
 /**
  * Creating table wsu_eventtickets
  */
- $table_eventtickets = $installer->getTable('wsu_eventtickets/eventtickets');
+$table_eventtickets = $installer->getTable('wsu_eventtickets/eventtickets');
 $installer->run("
 	DROP TABLE IF EXISTS `{$table_eventtickets}`;
 	CREATE TABLE `{$table_eventtickets}` (
@@ -167,9 +167,12 @@ $installer->addAttribute(
 
 $SU_helper = Mage::helper('storeutilities/utilities');
 
-
-$defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
-
+$defaultAttrSetId = 0;
+try{
+	$defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
+}catch(Exception $e) {
+	$defaultAttrSetId = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product','Default');	
+}
 $SportingAttrSetInfo=null;
 $attributeSetName="Sporting Events";
 $attribute_set = Mage::getModel("eav/entity_attribute_set")->getCollection(); 
