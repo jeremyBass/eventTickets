@@ -291,8 +291,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'allow_guest
 				 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
 
-			 
-$SU_helper->createAttribute("Event start date","eventstartdate", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventstartdate')) {			 
+	$SU_helper->createAttribute("Event start date","eventstartdate", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
 		'default_value_text'            => '',
@@ -316,8 +316,10 @@ $SU_helper->createAttribute("Event start date","eventstartdate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-	
-$SU_helper->createAttribute("Event start time","eventstarttime", array(
+}
+
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventstarttime')) {		
+	$SU_helper->createAttribute("Event start time","eventstarttime", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
 		'default_value_text'            => '',
@@ -341,8 +343,10 @@ $SU_helper->createAttribute("Event start time","eventstarttime", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
+}
 
-$SU_helper->createAttribute("Event end date","eventenddate", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventenddate')) {	
+	$SU_helper->createAttribute("Event end date","eventenddate", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
 		'default_value_text'            => '',
@@ -366,8 +370,10 @@ $SU_helper->createAttribute("Event end date","eventenddate", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
+}
 
-$SU_helper->createAttribute("Event end time","eventendtime", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventendtime')) {	
+	$SU_helper->createAttribute("Event end time","eventendtime", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
 		'default_value_text'            => '',
@@ -391,8 +397,10 @@ $SU_helper->createAttribute("Event end time","eventendtime", array(
 		'backend_type'                  => 'datetime',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
+}
 
-Mage::helper('storeutilities/utilities')->createAttribute("Location","location", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'location')) {	
+	$SU_helper->createAttribute("Location","location", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
 		'default_value_text'            => '',
@@ -416,8 +424,10 @@ Mage::helper('storeutilities/utilities')->createAttribute("Location","location",
 		'backend_type'                  => 'text',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
+}
 
-Mage::helper('storeutilities/utilities')->createAttribute("Opponent","opponent", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'opponent')) {	
+	$SU_helper->createAttribute("Opponent","opponent", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
 		'default_value_text'            => '',
@@ -441,8 +451,10 @@ Mage::helper('storeutilities/utilities')->createAttribute("Opponent","opponent",
 		'backend_type'                  => 'text',
 		'default_value'                 => ''
 	),array("event"), $SportingAttrSetInfo);
+}
 
-Mage::helper('storeutilities/utilities')->createAttribute("Away Game","awaygame", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'opponent')) {	
+	$SU_helper->createAttribute("Away Game","awaygame", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'boolean',
 		'default_value_text'            => '',
@@ -466,26 +478,7 @@ Mage::helper('storeutilities/utilities')->createAttribute("Away Game","awaygame"
 		'backend_type'                  => 'int',
 		'default_value'                 => ''
 	),array("event"), $SportingAttrSetInfo);			
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -514,13 +507,6 @@ $installer->run("
 	) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ");
 
-
-
-
-
-
-
-
 $installer->addAttribute(
     Mage_Catalog_Model_Product::ENTITY,
     'affiliate_link',
@@ -547,10 +533,6 @@ $installer->addAttribute(
         'used_in_product_listing' => false
     )
 );
-
-
-
-
 
  */
 
