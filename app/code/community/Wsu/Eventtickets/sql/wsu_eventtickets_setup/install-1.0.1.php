@@ -169,7 +169,11 @@ $SU_helper = Mage::helper('storeutilities/utilities');
 
 $defaultAttrSetId = 0;
 try{
-	$defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
+	try{
+		$defaultAttrSetId = $this->getDefaultAttributeSetId();
+	}catch(Exception $e) {
+		$defaultAttrSetId = Mage::getModel('catalog/product')->getDefaultAttributeSetId();
+	}
 }catch(Exception $e) {
 	$defaultAttrSetId = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product','Default');	
 }
