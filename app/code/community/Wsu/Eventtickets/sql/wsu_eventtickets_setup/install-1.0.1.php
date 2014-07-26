@@ -459,7 +459,7 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'opponent'))
 	),array("event"), $SportingAttrSetInfo);
 }
 
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'opponent')) {	
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'awaygame')) {	
 	$SU_helper->createAttribute("Away Game","awaygame", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'boolean',
