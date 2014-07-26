@@ -189,7 +189,7 @@ if($attribute_set_id<=0){
 		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	); 
 }else{
-	$groupID=getAttributeGroupId($attributeSetName,"Event Details");
+	$groupID=$installer->getAttributeGroupId($attributeSetName,"Event Details");
 	$SportingAttrSetInfo=array( 'SetID' => $attribute_set_id, 'GroupID' => $groupID, );
 }
 
@@ -205,7 +205,7 @@ if($attribute_set_id<=0){
 		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	);
 }else{
-	$groupID=getAttributeGroupId($attributeSetName,"Event Details");
+	$groupID=$installer->getAttributeGroupId($attributeSetName,"Event Details");
 	$EntertainmentSetInfo=array( 'SetID'  => $attribute_set_id, 'GroupID' => $groupID, );
 }
 
