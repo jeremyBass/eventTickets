@@ -85,8 +85,8 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
 	
 	public function getDateTimeDisplay($product){
 		//this would be a block with in the event ext
-		$eventStart = strtotime($product->getEventStartDateTime());
-		$eventEnd = strtotime($product->getEventEndDateTime());
+		$eventStart = Mage::getModel('core/date')->timestamp($product->getEventStartDateTime());
+		$eventEnd = Mage::getModel('core/date')->timestamp($product->getEventEndDateTime());
 
 		$eventStart_date = date('l jS \of F Y',$eventStart);
 		$eventEnd_date = date('l jS \of F Y',$eventEnd);
