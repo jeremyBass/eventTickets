@@ -74,8 +74,7 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
      *
      * @return Wsu_Eventtickets_Model_Eventtickets
      */
-    public function getEventticketsItemInstance()
-    {
+    public function getEventticketsItemInstance(){
         if (!$this->_eventticketsItemInstance) {
             $this->_eventticketsItemInstance = Mage::registry('eventtickets_item');
 
@@ -86,4 +85,51 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
 
         return $this->_eventticketsItemInstance;
     }
+	
+	public function getDateTimeDisplay($product){
+		//this would be a block with in the event ext
+		$eventStart = strtotime($product->getEventStartDateTime());
+		$eventEnd = strtotime($product->getEventEndDateTime());
+
+		$eventStart_date = date('l jS \of F Y',$eventStart);
+		$eventEnd_date = date('l jS \of F Y',$eventEnd);
+
+		$eventStart_time = date('h:i A',$eventStart);
+		$eventEnd_time = date('h:i A',$eventEnd);		
+		
+		$dateTimeStr="";
+		$current_time = date("Y-m-d H:i:s");
+		
+		if($eventStart_date==$eventEnd_date){
+		// Starting at 7:00 PM on Thursday 1st of January 1970 
+		// Starting on Thursday 1st of January 1970 
+		// Starting at 7:00 PM on Thursday 1st of January 1970 <br/> Till  7:00 PM
+			$dateTimeStr .= "Starting";
+			if($eventStart_time!=$eventEnd_time || $eventStart_time!="12:00 AM"){
+				$dateTimeStr .= " at ".$eventStart_time;
+			}
+			$dateTimeStr .= " on ".$eventStart_date;
+			if($eventStart_time!=$eventEnd_time){
+				$dateTimeStr .= "<br/> Till ".$eventEnd_time;
+			}
+		}else{
+		// Starting at 7:00 PM on Thursday 1st of January 1970 
+		// Starting on Thursday 1st of January 1970 
+		// Starting at 7:00 PM on Thursday 1st of January 1970 <br/> Till  7:00 PM
+			$dateTimeStr .= "Starting on ".$eventStart_date;
+			if($eventStart_time!=$eventEnd_time){
+				$dateTimeStr .= " at ".$eventStart_time;
+			}
+			$dateTimeStr .= "<br/> Through ";
+			if($eventStart_time!=$eventEnd_time){
+				$dateTimeStr .= $eventEnd_time." on ";
+			}
+			$dateTimeStr .= $eventEnd_date;
+		}	
+		return $dateTimeStr;
+	}
+	
+	
+	
+	
 }
