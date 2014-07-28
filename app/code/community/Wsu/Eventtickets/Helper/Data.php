@@ -42,8 +42,7 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
      * @param integer|string|Mage_Core_Model_Store $store
      * @return boolean
      */
-    public function isEnabled($store = null)
-    {
+    public function isEnabled($store = null){
         return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED, $store);
     }
 
@@ -53,8 +52,7 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
      * @param integer|string|Mage_Core_Model_Store $store
      * @return int
      */
-    public function getEventticketsPerPage($store = null)
-    {
+    public function getEventticketsPerPage($store = null){
         return abs((int)Mage::getStoreConfig(self::XML_PATH_ITEMS_PER_PAGE, $store));
     }
 
@@ -64,8 +62,7 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
      * @param integer|string|Mage_Core_Model_Store $store
      * @return int
      */
-    public function getDaysDifference($store = null)
-    {
+    public function getDaysDifference($store = null){
         return abs((int)Mage::getStoreConfig(self::XML_PATH_DAYS_DIFFERENCE, $store));
     }
 
