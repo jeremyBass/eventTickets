@@ -298,6 +298,64 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'allow_guest
 				 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
 
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_relative_start_time')) {	
+	$SU_helper->createAttribute("Location","event_relative_start_time", array(
+		'is_global'                     => '0',
+		'frontend_input'                => 'text',
+		'default_value_text'            => '',
+		'default_value_yesno'           => '0',
+		'default_value_date'            => '',
+		'default_value_textarea'        => '',
+		'is_unique'                     => '0',
+		'is_required'                   => '0',
+		'frontend_class'                => '',
+		'is_searchable'                 => '1',
+		'is_visible_in_advanced_search' => '1',
+		'is_comparable'                 => '0',
+		'is_used_for_promo_rules'       => '0',
+		'is_html_allowed_on_front'      => '1',
+		'is_visible_on_front'           => '0',
+		'used_in_product_listing'       => '0',
+		'used_for_sort_by'              => '1',
+		'is_configurable'               => '0',
+		'is_filterable'                 => '0',
+		'is_filterable_in_search'       => '0',
+		'backend_type'                  => 'text',
+		'default_value'                 => ''
+	),array("event"), $allEventSets);
+}
+
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_relative_end_time')) {	
+	$SU_helper->createAttribute("Location","event_relative_start_time", array(
+		'is_global'                     => '0',
+		'frontend_input'                => 'text',
+		'default_value_text'            => '',
+		'default_value_yesno'           => '0',
+		'default_value_date'            => '',
+		'default_value_textarea'        => '',
+		'is_unique'                     => '0',
+		'is_required'                   => '0',
+		'frontend_class'                => '',
+		'is_searchable'                 => '1',
+		'is_visible_in_advanced_search' => '1',
+		'is_comparable'                 => '0',
+		'is_used_for_promo_rules'       => '0',
+		'is_html_allowed_on_front'      => '1',
+		'is_visible_on_front'           => '0',
+		'used_in_product_listing'       => '0',
+		'used_for_sort_by'              => '1',
+		'is_configurable'               => '0',
+		'is_filterable'                 => '0',
+		'is_filterable_in_search'       => '0',
+		'backend_type'                  => 'text',
+		'default_value'                 => ''
+	),array("event"), $allEventSets);
+}
+
+
+
+
+
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventstartdate')) {			 
 	$SU_helper->createAttribute("Event start date","eventstartdate", array(
 		'is_global'                     => '0',
