@@ -172,7 +172,8 @@ $defaultAttrSetId = $installer->getDefaultAttributeSetId($entityTypeID);
 
 $SportingAttrSetInfo=null;
 $attributeSetName="Sporting Events";
-$attribute_set_id = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product',$attributeSetName);	
+$attribute_set = new Varien_Object($installer->getAttributeSet($entityTypeID , $attributeSetName));
+$attribute_set_id = $attribute_set->getAttributeSetId();//Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product',$attributeSetName);	
 if($attribute_set_id<=0){
 	$SportingAttrSetInfo = $SU_helper->createAttributeSet($attributeSetName,
 		$defaultAttrSetId,
@@ -188,7 +189,8 @@ if($attribute_set_id<=0){
 
 $EntertainmentSetInfo=null;
 $attributeSetName="Entertainment Events";
-$attribute_set_id = Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product',$attributeSetName);	
+$attribute_set = new Varien_Object($installer->getAttributeSet($entityTypeID , $attributeSetName));
+$attribute_set_id = $attribute_set->getAttributeSetId();//Mage::getModel('eav/entity_setup','core_setup')->getAttributeSetId('catalog_product',$attributeSetName);	
 if($attribute_set_id<=0){
 	$EntertainmentSetInfo = $SU_helper->createAttributeSet($attributeSetName,
 		$defaultAttrSetId,
