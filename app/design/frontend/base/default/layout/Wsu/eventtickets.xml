@@ -37,13 +37,14 @@
         </reference>-->
 
     </default>
-	
+	<!--
 	<catalog_category_default>
 		<reference name="product_list">
 			<block type="core/template" name="block_category_above_product" template="Wsu/eventtickets/catalog/product/list/aboveproduct.phtml" />
 			<block type="core/template" name="block_category_below_product" template="Wsu/eventtickets/catalog/product/list/belowproduct.phtml" />
 		</reference>
 	</catalog_category_default>
+	-->
 	
     <wsu_eventtickets_index_index translate="label">
         <label>Eventtickets Page</label>
