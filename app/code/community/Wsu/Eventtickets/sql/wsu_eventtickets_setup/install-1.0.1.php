@@ -165,17 +165,6 @@ $installer->addAttribute(
     ));
 */
 
-if(!function_exists('getAttributeGroupId')){
-	function getAttributeGroupId($attribute_set_name,$attribute_group_name) {
-	 $entityTypeId = getEntityTypeId();
-	 $attributeSetId = getAttributeSetId($attribute_set_name);
-	 $installer = getInstaller();//new Mage_Eav_Model_Entity_Setup(‘core_setup’);
-	 $attributeGroupObject = new Varien_Object($installer->getAttributeGroup($entityTypeId ,$attributeSetId,$attribute_group_name));
-	 return $attributeGroupId = $attributeGroupObject->getAttributeGroupId();
-	}
-}
-
-
 
 $SU_helper = Mage::helper('storeutilities/utilities');
 
@@ -193,7 +182,7 @@ if($attribute_set_id<=0){
 		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	); 
 }else{
-	$groupID= getAttributeGroupId($attributeSetName,"Event Details");
+	$groupID= $SU_helper->getAttributeGroupId($attributeSetName,"Event Details");
 	$SportingAttrSetInfo=array( 'SetID' => $attribute_set_id, 'GroupID' => $groupID, );
 }
 
@@ -210,7 +199,7 @@ if($attribute_set_id<=0){
 		array('enable_googlecheckout','weight','country_of_manufacture','manufacturer','color','msrp_enabled','msrp_display_actual_price_type','msrp')
 	);
 }else{
-	$groupID = getAttributeGroupId($attributeSetName,"Event Details");
+	$groupID = $SU_helper->getAttributeGroupId($attributeSetName,"Event Details");
 	$EntertainmentSetInfo=array( 'SetID'  => $attribute_set_id, 'GroupID' => $groupID, );
 }
 
