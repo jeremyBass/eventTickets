@@ -6,17 +6,13 @@
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main
-    extends Mage_Adminhtml_Block_Widget_Form
-    implements Mage_Adminhtml_Block_Widget_Tab_Interface
-{
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface {
     /**
      * Prepare form elements for tab
      *
      * @return Mage_Adminhtml_Block_Widget_Form
      */
-    protected function _prepareForm()
-    {
+    protected function _prepareForm() {
         $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
 
         /**
