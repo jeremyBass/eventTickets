@@ -8,19 +8,6 @@
 			<table class="form-list" cellspacing="0">
 				<tbody>
 					<tr>
-						<td class="label"><label for="has_access_validation">Needs Access Validation</label></td>
-						<td class="value"><select name="product[has_access_validation]" class=" select" id="has_access_validation">
-								<option selected="selected" value="">No</option>
-								<option value="">Yes</option>
-							</select></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="label"><label for="access_code">Access Code</label></td>
-						<td class="value"><input name="product[access_code]" class=" input-text" id="access_code" type="text" value=""></td>
-						<td></td>
-					</tr>
-					<tr>
 						<td class="label"><label for="registration_closed">Registration end</label></td>
 						<td class="value">
 							<label for="location">Date
@@ -37,6 +24,16 @@
 							</label>
 							
 							</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="label"><label for="has_access_validation">Event access validation</label></td>
+						<td class="value"><select name="product[has_access_validation]" class=" select" id="has_access_validation">
+								<option selected="selected" value="">No</option>
+								<option value="">Yes</option>
+							</select>
+							<label for="access_code">Access Code: <input name="product[access_code]" class=" input-text" id="access_code" type="text" value=""></label>
+						</td>
 						<td></td>
 					</tr>
 				</tbody>
