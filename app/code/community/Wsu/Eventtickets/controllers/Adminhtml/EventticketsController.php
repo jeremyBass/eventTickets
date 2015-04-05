@@ -6,15 +6,13 @@
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_Controller_Action
-{
+class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_Controller_Action {
     /**
      * Init actions
      *
      * @return Wsu_Eventtickets_Adminhtml_EventticketsController
      */
-    protected function _initAction()
-    {
+    protected function _initAction() {
         // load layout, set active menu and breadcrumbs
         $this->loadLayout()
             ->_setActiveMenu('eventtickets/manage')
@@ -33,8 +31,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     /**
      * Index action
      */
-    public function indexAction()
-    {
+    public function indexAction()  {
         $this->_title($this->__('Eventtickets'))
              ->_title($this->__('Manage Eventtickets'));
 
@@ -45,8 +42,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     /**
      * Create new Eventtickets item
      */
-    public function newAction()
-    {
+    public function newAction() {
         // the same form is used to create and edit
         $this->_forward('edit');
     }
@@ -54,8 +50,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     /**
      * Edit Eventtickets item
      */
-    public function editAction()
-    {
+    public function editAction() {
         $this->_title($this->__('Eventtickets'))
              ->_title($this->__('Manage Eventtickets'));
 
@@ -101,8 +96,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     /**
      * Save action
      */
-    public function saveAction()
-    {
+    public function saveAction() {
         $redirectPath   = '*/*';
         $redirectParams = array();
 
@@ -183,8 +177,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     /**
      * Delete action
      */
-    public function deleteAction()
-    {
+    public function deleteAction() {
         // check if we know what should be deleted
         $itemId = $this->getRequest()->getParam('id');
         if ($itemId) {
@@ -220,8 +213,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
      *
      * @return boolean
      */
-    protected function _isAllowed()
-    {
+    protected function _isAllowed() {
         switch ($this->getRequest()->getActionName()) {
             case 'new':
             case 'save':
@@ -242,8 +234,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
      * @param array
      * @return array
      */
-    protected function _filterPostData($data)
-    {
+    protected function _filterPostData($data) {
         $data = $this->_filterDates($data, array('time_published'));
         return $data;
     }
@@ -251,8 +242,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     /**
      * Grid ajax action
      */
-    public function gridAction()
-    {
+    public function gridAction() {
         $this->loadLayout();
         $this->renderLayout();
     }
@@ -260,8 +250,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     /**
      * Flush Eventtickets Posts Images Cache action
      */
-    public function flushAction()
-    {
+    public function flushAction() {
         if (Mage::helper('wsu_eventtickets/image')->flushImagesCache()) {
             $this->_getSession()->addSuccess('Cache successfully flushed');
         } else {

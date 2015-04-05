@@ -10,14 +10,19 @@
 -->
 <layout version="0.1.0">
 
-  <PRODUCT_TYPE_event>
-    <reference name="product.info">
-      <action method="setTemplate">
-        <template>Wsu/eventtickets/event/item.phtml</template>
-      </action>
-    </reference>
-  </PRODUCT_TYPE_event>
-
+	<PRODUCT_TYPE_event>
+		<reference name="product.info">
+			<action method="setTemplate">
+				<template>Wsu/eventtickets/event/item.phtml</template>
+			</action>
+		</reference>
+		<reference name="category.view">
+			<action method="setTemplate"><template>Wsu/eventtickes/catalog/category/view.phtml</template></action>
+		</reference>
+		<reference name="product.list">
+			<action method="setTemplate"><template>Wsu/eventtickes/catalog/product/list.phtml</template></action>
+		</reference>
+	</PRODUCT_TYPE_event>
     <default>
         <reference name="footer_links">
             <action method="addLink" translate="label title" module="wsu_eventtickets">

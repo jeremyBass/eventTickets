@@ -6,14 +6,12 @@
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
-{
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit extends Mage_Adminhtml_Block_Widget_Form_Container {
     /**
      * Initialize edit form container
      *
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->_objectId   = 'id';
         $this->_blockGroup = 'wsu_eventtickets';
         $this->_controller = 'adminhtml_eventtickets';
@@ -57,8 +55,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit extends Mage_Adminhtml_
      *
      * @return string
      */
-    public function getHeaderText()
-    {
+    public function getHeaderText() {
         $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
         if ($model->getId()) {
             return Mage::helper('wsu_eventtickets')->__("Edit Eventtickets Item '%s'",
