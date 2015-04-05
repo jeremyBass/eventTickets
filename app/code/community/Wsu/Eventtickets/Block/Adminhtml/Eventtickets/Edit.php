@@ -58,10 +58,10 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit extends Mage_Adminhtml_
     public function getHeaderText() {
         $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
         if ($model->getId()) {
-            return Mage::helper('wsu_eventtickets')->__("Edit Eventtickets Item '%s'",
+            return Mage::helper('wsu_eventtickets')->__("Edit Event ticket item '%s'",
                  $this->escapeHtml($model->getTitle()));
         } else {
-            return Mage::helper('wsu_eventtickets')->__('New Eventtickets Item');
+            return Mage::helper('wsu_eventtickets')->__('New Event ticket item');
         }
     }
 }

@@ -29,7 +29,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Guests extends Mage
         $form->setHtmlIdPrefix('news_main_');
 
         $fieldset = $form->addFieldset('base_fieldset', array(
-            'legend' => Mage::helper('wsu_eventtickets')->__('Guests')
+            'legend' => Mage::helper('wsu_eventtickets')->__('Ticket Guests')
         ));
 		
         if ($model->getId()) {
@@ -85,7 +85,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Guests extends Mage
      * @return string
      */
     public function getTabLabel()  {
-        return Mage::helper('wsu_eventtickets')->__('Guests');
+        return Mage::helper('wsu_eventtickets')->__('Ticket Guests');
     }
 
     /**
@@ -94,7 +94,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Guests extends Mage
      * @return string
      */
     public function getTabTitle() {
-        return Mage::helper('wsu_eventtickets')->__('Guests');
+        return Mage::helper('wsu_eventtickets')->__('Ticket Guests');
     }
 
     /**
