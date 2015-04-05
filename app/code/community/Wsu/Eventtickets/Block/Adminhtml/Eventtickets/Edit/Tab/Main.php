@@ -85,7 +85,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
      * @return string
      */
     public function getTabLabel() {
-        return Mage::helper('wsu_eventtickets')->__('Eventtickets Info');
+        return Mage::helper('wsu_eventtickets')->__('General Info');
     }
 
     /**
@@ -94,7 +94,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
      * @return string
      */
     public function getTabTitle() {
-        return Mage::helper('wsu_eventtickets')->__('Eventtickets Info');
+        return Mage::helper('wsu_eventtickets')->__('General Info');
     }
 
     /**

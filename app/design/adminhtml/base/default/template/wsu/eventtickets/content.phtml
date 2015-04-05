@@ -7,7 +7,7 @@
 		<div class="hor-scroll">
 			<table class="form-list" cellspacing="0">
 				<tbody>
-					<tr>
+					<!--<tr>
 						<td class="label"><label for="event_start_date_time">Date &amp; Time</label></td>
 						<td class="value"><input name="product[event_start_date_time]" class=" input-text" id="event_start_date_time" style="width: 50%;" type="text" value="">
 							<i class="fa fa-calendar"  id="event_start_date_time_trig" style=" cursor:pointer;"></i>
@@ -20,7 +20,53 @@
 							<i class="fa fa-calendar"  id="event_end_date_time_trig" style=" cursor:pointer;"></i>
 							<script type="text/javascript">Calendar.setup({inputField:"event_end_date_time",ifFormat:"%m/%e/%Y %I:%M %p",showsTime:true,button:"event_end_date_time_trig",align:"Bl",singleClick:true});</script></td>
 						<td></td>
+					</tr>-->
+					
+					
+					
+					
+					<tr>
+						<td class="label"><label>Start</label></td>
+						<td class="value">
+							<label for="location">Date
+							<input name="product[event_start_date]" class=" input-text" id="event_start_date" style="width: 110px !important;" type="text" value="">
+							<i class="fa fa-calendar" id="event_start_date_trig" style=" cursor:pointer;"></i> 
+							<script type="text/javascript">Calendar.setup({inputField:"event_start_date",ifFormat:"%m/%e/%Y",showsTime:false,button:"event_start_date_trig",align:"Bl",singleClick:true});</script>
+							</label>
+							<br/>
+							
+							<label for="location">Time
+							<input name="product[event_start_time]" class=" input-text" id="event_start_time" style="width: 110px !important;" type="text" value="">
+							<i class="fa fa-clock-o" id="event_start_time_trig" style=" cursor:pointer;"></i> 
+							<script type="text/javascript">Calendar.setup({ inputField:"event_start_time", ifFormat:"%H:%M:%S", time24:"24", showsTime:true, button:"event_start_time_trig", align:"Bl", singleClick:true, weekNumbers:false, });</script>
+							</label>
+							
+							</td>
+						<td></td>
 					</tr>
+					
+					<tr>
+						<td class="label"><label>End</label></td>
+						<td class="value">
+							<label for="location">Date
+							<input name="product[event_end_date]" class=" input-text" id="event_end_date" style="width: 110px !important;" type="text" value="">
+							<i class="fa fa-calendar" id="event_end_date_trig" style=" cursor:pointer;"></i> 
+							<script type="text/javascript">Calendar.setup({inputField:"event_end_date",ifFormat:"%m/%e/%Y",showsTime:false,button:"event_end_date_trig",align:"Bl",singleClick:true});</script>
+							</label>
+							<br/>
+							
+							<label for="location">Time
+							<input name="product[event_end_time]" class=" input-text" id="event_end_time" style="width: 110px !important;" type="text" value="">
+							<i class="fa fa-clock-o" id="event_end_time_trig" style=" cursor:pointer;"></i> 
+							<script type="text/javascript">Calendar.setup({ inputField:"event_end_time", ifFormat:"%H:%M:%S", time24:"24", showsTime:true, button:"event_end_time_trig", align:"Bl", singleClick:true, weekNumbers:false, });</script>
+							</label>
+							
+							</td>
+						<td></td>
+					</tr>
+					
+					
+					
 					<tr>
 						<td class="label"><label for="guest_limit">Guest Limit</label></td>
 						<td class="value"><select name="product[guest_limit]" class=" select" id="guest_limit">
