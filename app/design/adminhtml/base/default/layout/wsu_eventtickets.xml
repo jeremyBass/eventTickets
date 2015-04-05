@@ -34,8 +34,12 @@
                 <block type="wsu_eventtickets/adminhtml_eventtickets_edit_tab_main" name="eventtickets_edit_tab_main" template="wsu/eventtickets/content.phtml"/>
                 <block type="wsu_eventtickets/adminhtml_eventtickets_edit_tab_content" name="eventtickets_edit_tab_content" />
                 <block type="wsu_eventtickets/adminhtml_eventtickets_edit_tab_image" name="eventtickets_edit_tab_image" />
+				<block type="wsu_eventtickets/adminhtml_eventtickets_edit_tab_location" name="eventtickets_edit_tab_location" template="wsu/eventtickets/location.phtml"/>
+				
+				
                 <action method="addTab"><name>main_section</name><block>eventtickets_edit_tab_main</block></action>
-				 <action method="addTab"><name>constrants_section</name><block>eventtickets_edit_tab_constrants</block></action>
+				<action method="addTab"><name>constrants_section</name><block>eventtickets_edit_tab_constrants</block></action>
+				<action method="addTab"><name>location_section</name><block>eventtickets_edit_tab_location</block></action>
                 <action method="addTab"><name>content_section</name><block>eventtickets_edit_tab_content</block></action>
                 <action method="addTab"><name>image_section</name><block>eventtickets_edit_tab_image</block></action>
             </block>
