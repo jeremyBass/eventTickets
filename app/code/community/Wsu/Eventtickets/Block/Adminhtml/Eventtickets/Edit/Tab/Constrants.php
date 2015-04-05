@@ -6,7 +6,7 @@
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface {
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Constrants extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface {
     /**
      * Prepare form elements for tab
      *
@@ -31,13 +31,13 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
         $fieldset = $form->addFieldset('base_fieldset', array(
             'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Item Info')
         ));
-
+		
         if ($model->getId()) {
             $fieldset->addField('eventtickets_id', 'hidden', array(
                 'name' => 'eventtickets_id',
             ));
         }
-
+		/*
         $fieldset->addField('title', 'text', array(
             'name'     => 'title',
             'label'    => Mage::helper('wsu_eventtickets')->__('Eventtickets Title'),
@@ -69,9 +69,9 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
             'label'    => Mage::helper('wsu_eventtickets')->__('Publishing Date'),
             'title'    => Mage::helper('wsu_eventtickets')->__('Publishing Date'),
             'required' => true
-        ));
+        ));*/
 
-        Mage::dispatchEvent('adminhtml_eventtickets_edit_tab_main_prepare_form', array('form' => $form));
+        Mage::dispatchEvent('adminhtml_eventtickets_edit_tab_constrants_prepare_form', array('form' => $form));
 
         $form->setValues($model->getData());
         $this->setForm($form);
@@ -84,8 +84,8 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
      *
      * @return string
      */
-    public function getTabLabel() {
-        return Mage::helper('wsu_eventtickets')->__('Eventtickets Info');
+    public function getTabLabel()  {
+        return Mage::helper('wsu_eventtickets')->__('Sales constrants');
     }
 
     /**
@@ -94,7 +94,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
      * @return string
      */
     public function getTabTitle() {
-        return Mage::helper('wsu_eventtickets')->__('Eventtickets Info');
+        return Mage::helper('wsu_eventtickets')->__('Sales constrants');
     }
 
     /**
@@ -102,7 +102,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
      *
      * @return true
      */
-    public function canShowTab()  {
+    public function canShowTab() {
         return true;
     }
 
