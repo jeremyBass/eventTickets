@@ -15,6 +15,17 @@
 						<td></td>
 					</tr>
 					<tr>
+						<td class="label"><label for="name">Event Type</label></td>
+						<td class="value">
+							<select name="product[attribute_set]" class=" select" id="attribute_set" style="width: 150px !important;">
+								<option selected="selected" value="<?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_GENERAL?>">General Events</option>
+								<option><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_SPORTS?></option>
+								<option><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_ENTERTAINMENT?></option>
+							</select>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
 						<td class="label"><label>Start</label></td>
 						<td class="value">
 							<label for="location">Date
@@ -59,7 +70,15 @@
 							</td>
 						<td></td>
 					</tr>
-					
+					<!--
+					<tr>
+						<td class="label"><label for="provide">Allow custom responses</label></td>
+						<td class="value"><select name="product[custom_accommodation_response]" class=" select" id="request_seating">
+								<option selected="selected" value="">No</option>
+								<option value="">Yes</option>
+							</select></td>
+						<td></td>
+					</tr>-->
 					
 					
 					

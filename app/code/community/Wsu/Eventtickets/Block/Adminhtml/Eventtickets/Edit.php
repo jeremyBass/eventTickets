@@ -19,9 +19,9 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit extends Mage_Adminhtml_
         parent::__construct();
 
         if (Mage::helper('wsu_eventtickets/admin')->isActionAllowed('save')) {
-            $this->_updateButton('save', 'label', Mage::helper('wsu_eventtickets')->__('Save Eventtickets Item'));
+            $this->_updateButton('save', 'label', Mage::helper('wsu_eventtickets')->__('Save Ticket'));
             $this->_addButton('saveandcontinue', array(
-                'label'   => Mage::helper('adminhtml')->__('Save and Continue Edit'),
+                'label'   => Mage::helper('adminhtml')->__('Save and Continue'),
                 'onclick' => 'saveAndContinueEdit()',
                 'class'   => 'save',
             ), -100);
@@ -30,7 +30,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit extends Mage_Adminhtml_
         }
 
         if (Mage::helper('wsu_eventtickets/admin')->isActionAllowed('delete')) {
-            $this->_updateButton('delete', 'label', Mage::helper('wsu_eventtickets')->__('Delete Eventtickets Item'));
+            $this->_updateButton('delete', 'label', Mage::helper('wsu_eventtickets')->__('Delete Ticket'));
         } else {
             $this->_removeButton('delete');
         }

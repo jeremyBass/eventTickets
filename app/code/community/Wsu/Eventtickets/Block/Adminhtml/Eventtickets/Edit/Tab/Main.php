@@ -27,7 +27,10 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
         $form = new Varien_Data_Form();
 
         $form->setHtmlIdPrefix('news_main_');
-
+		
+		
+		
+		
         $fieldset = $form->addFieldset('base_fieldset', array(
             'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Item Info')
         ));

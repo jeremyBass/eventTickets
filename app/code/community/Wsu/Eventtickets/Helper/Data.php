@@ -1,13 +1,6 @@
 <?php
-/* 
- * @category  Event Manager Module
- * @package   Wsu_Eventtickets 
- * @author    Jeremy Bass <jeremy.bass@wsu.edu>
- * @license   MIT/GPL
- * @link N/A 
- */
-class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
-{
+class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data {
+
     /**
      * Path to store config if front-end output is enabled
      *
@@ -35,6 +28,11 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data
      * @var Wsu_Eventtickets_Model_Eventtickets
      */
     protected $_eventticketsItemInstance;
+
+	public $_ET_ATTRSET_NAME_GENERAL		= "Events";
+	public $_ET_ATTRSET_NAME_SPORTS			= "Sports Events";
+	public $_ET_ATTRSET_NAME_ENTERTAINMENT	= "Entertainment Events";
+
 
     /**
      * Checks whether eventtickets can be displayed in the frontend

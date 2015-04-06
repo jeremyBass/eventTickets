@@ -7,6 +7,7 @@
  * @link N/A 
  */
 class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_Controller_Action {
+	
     /**
      * Init actions
      *
@@ -102,6 +103,75 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 
         // check if data sent
         $data = $this->getRequest()->getPost();
+		
+		
+		
+	$data = array(
+		array(
+			'sku' => 'event_'.getUniqueCode(10),
+			'_type' => Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT,//'simple',
+			'product_type' => 'main product',
+			'_attribute_set' => 'Events'.$runid,
+			'_product_websites' => $websiteCodes,
+			'website' => $websiteCodeId,
+			'name' => "Event ".getUniqueCode(2),
+			'price' =>45.99,
+			'_category' => $eventsCatId,
+			'description' => 'Default',
+			'short_description' => 'Default',
+			'eventstartdate'.$runid =>date('m-d-Y', strtotime('+45 days')),
+			'eventenddate'.$runid =>date('m-d-Y', strtotime('+45 days')),
+			'opponent'.$runid=>'UTAH',
+			'awaygame'.$runid=>1,
+			'meta_title' => 'Default',
+			'meta_description' => 'Default',
+			'meta_keywords' => 'Default',
+			'status' => 1,
+			'visibility' => 4,
+			'tax_class_id' => 2,
+			'qty' => 50,
+			'is_in_stock' => 1,
+			'enable_googlecheckout' => '0',
+			'gift_message_available' => '0',
+			'url_key' => strtolower(getUniqueCode(10)),
+			'media_gallery' => $media_gallery_id,
+			"_media_attribute_id" => $media_gallery_id,
+			"_media_lable" =>"Game Day",
+			"_media_position" => 1,
+			"_media_is_disabled" => 0,
+			"_media_image" => "http://football-weekends.wsu.edu/Content/images/Landing05.jpg",
+			'image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
+			'small_image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
+			'thumbnail' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
+		),
+	);	
+		
+		
+		
+		var_dump($data);die();
+		
+		
+
+
+$import = Mage::getModel('fastsimpleimport/import');
+/*
+var_dump($data);
+$import
+	->setPartialIndexing(true)
+	->setBehavior(Mage_ImportExport_Model_Import::BEHAVIOR_APPEND)
+	->dryrunProductImport($data);
+
+*/
+$import
+	->setPartialIndexing(true)
+	->setBehavior(Mage_ImportExport_Model_Import::BEHAVIOR_APPEND)
+	->processProductImport($data);
+
+		
+		
+		
+		
+		
         if ($data) {
             $data = $this->_filterPostData($data);
             // init model and set data
