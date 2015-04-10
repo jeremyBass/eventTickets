@@ -54,29 +54,20 @@
 											"metadata":[{}],
 											"shapes":[{}]
 										 });
-										 
-										 
-										
 									});	
 									map.on('wsu_maps:marker_added',function(e,marker){
-										console.log('set to drag');
-										console.log(marker);
-										marker.setDraggable(true);
+										marker.setDraggable(true); //note should be able to set in the style but works here to
 									});
 									
 									map.on('wsu_maps:marker_dragend',function(e,marker){
-										console.log('drangin');
 										var placePos = marker.getPosition();
 										var lat = placePos.lat();
 										var lng = placePos.lng();
-										console.log(lat );
-										console.log(lng );
+
+										var geo_obj = $.wsu_maps.geocode(lat,lng);
+										
 										$('#location_lat').val(lat);
 										$('#location_long').val(lng);
-										
-										
-										var geo_obj = $.wsu_maps.geocode(lat,lng);
-
 										$('#location_zip').val(geo_obj.zip);
 										$('#location_city').val(geo_obj.city);
 										$('#location_state').val(geo_obj.state);
