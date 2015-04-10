@@ -1,6 +1,7 @@
 <?php
 
 $product = [
+	'location_type'=>'physical',
 	'location_lat'=>'46.725722661815745',
 	'location_long'=>'-117.16131040741038',
 	'location_name'=>''
@@ -18,31 +19,44 @@ $product = [
 			<table class="form-list" cellspacing="0">
 				<tbody>
 					<tr>
+						<td class="label"><label for="location_type">Location Type</label></td>
+						<td class="value"><select name="product[location_type]" class=" select" id="location_type">
+								<option selected="selected" value="physical">Physical</option>
+								<option value="online">Online</option>
+							</select></td>
+						<td></td>
+					</tr>
+					<tr class="typed online" <?=($product['location_type']!='online'?'style="display:none"':'')?>>
+						<td class="label"><label for="location_url">Url</label></td>
+						<td class="value"><input name="product[location_url]" class=" input-text" id="location_url" type="text" value=""></td>
+						<td></td>
+					</tr>
+					<tr class="typed physical" <?=($product['location_type']!='physical'?'style="display:none"':'')?>>
 						<td class="label"><label for="location_name">Location Name</label></td>
 						<td class="value"><input name="product[location_name]" class=" input-text" id="location_name" type="text" value=""></td>
 						<td></td>
 					</tr>
-					<tr>
+					<tr class="typed physical" <?=($product['location_type']!='physical'?'style="display:none"':'')?>>
 						<td class="label"><label for="location_street">Street Address</label></td>
 						<td class="value"><input name="product[location_street]" class=" input-text" id="location_street" type="text" value=""></td>
 						<td></td>
 					</tr>
-					<tr>
+					<tr class="typed physical" <?=($product['location_type']!='physical'?'style="display:none"':'')?>>
 						<td class="label"><label for="location_city">City</label></td>
 						<td class="value"><input name="product[location_city]" class=" input-text" id="location_city" type="text" value=""></td>
 						<td></td>
 					</tr>
-					<tr>
+					<tr class="typed physical" <?=($product['location_type']!='physical'?'style="display:none"':'')?>>
 						<td class="label"><label for="location_name">State</label></td>
 						<td class="value"><input name="product[location_state]" class=" input-text" id="location_state" type="text" value=""></td>
 						<td></td>
 					</tr>
-					<tr>
+					<tr class="typed physical" <?=($product['location_type']!='physical'?'style="display:none"':'')?>>
 						<td class="label"><label for="location_zip">Zip</label></td>
 						<td class="value"><input name="product[location_zip]" class=" input-text" id="location_zip" type="text" value=""></td>
 						<td></td>
 					</tr>
-					<tr>
+					<tr class="typed physical" <?=($product['location_type']!='physical'?'style="display:none"':'')?>>
 						<td class="label"><label for="location">Location</label></td>
 						<td class="value">
 						<label for="location">latitude<input name="product[location_lat]" class=" input-text" id="location_lat" type="text" value=""></label>
@@ -84,6 +98,14 @@ $product = [
 										$('#location_street').val(geo_obj.street_number + ' ' + geo_obj.street);
 									});
 								});
+								
+								$('#location_type').on('change',function(){
+									$('.typed').hide();
+									$('.' + $(this).val()).show();
+								});
+								
+								
+								
 							})(jQuery);
 						</script>
 						<script type="text/javascript" src="https://beta.maps.wsu.edu/embed/store-event-location-tool?dyno=true"></script>
@@ -91,7 +113,11 @@ $product = [
 						</td>
 						<td></td>
 					</tr>
-					
+					<tr class="">
+						<td class="label"><label for="location_notes">Notes</label></td>
+						<td class="value"><textarea name="product[location_notes]" class="input-textarea" id="location_notes" ></textarea></td>
+						<td></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
