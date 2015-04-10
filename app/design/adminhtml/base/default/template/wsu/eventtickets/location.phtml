@@ -83,6 +83,7 @@
 												var itemLocality='';
 												var itemCountry='';
 												var itemPc='';
+												var itemState='';
 												var itemSnumber='';
 												//$('#place_address').val('');
 												//$('#place_street').val('');			
@@ -90,27 +91,28 @@
 												$.each(arrAddress, function (i, address_component) {
 													if (address_component.types[0] === "route"){//": route:"
 														itemRoute = address_component.long_name;
-														$('#location_street').val(itemRoute);
 													}
 													if (address_component.types[0] === "locality"){//"town:"
 														itemLocality = address_component.long_name;
-														$('#location_city').val(itemLocality);
 													}
 													if (address_component.types[0] === "country"){ //"country:"
 														itemCountry = address_component.long_name;
 													}
 													if (address_component.types[0] === "postal_code"){ //"pc:"
 														itemPc = address_component.long_name;
-														$('#location_zip').val(itemPc);
+														
 													}
 													if (address_component.types[0] === "administrative_area_level_1"){ //"pc:"
-														itemPc = address_component.long_name;
-														$('#location_state').val(itemPc);
+														itemState = address_component.long_name;
 													}
 													if (address_component.types[0] === "street_number"){ //"street_number:"
 														itemSnumber = address_component.long_name;
-														$('#location_address').val(itemSnumber);
 													}
+													$('#location_zip').val(itemPc);
+													$('#location_city').val(itemLocality);
+													$('#location_state').val(itemState);
+													$('#location_street').val(itemSnumber + ' ' + itemRoute);
+													
 												});
 												if (results[1]) {
 													//alert( results[1].formatted_address);
