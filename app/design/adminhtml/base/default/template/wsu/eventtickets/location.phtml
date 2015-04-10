@@ -44,7 +44,7 @@
 							(function($){
 								$(function() {
 									var map = $('#WSU_MAPS_NS');
-									var geocoder = null;
+									
 									map.on('wsu_maps:completed',function(){
 										geocoder = new google.maps.Geocoder();
 										$.wsu_maps.markers.make_Marker(1,1,{
@@ -74,56 +74,13 @@
 										$('#location_lat').val(lat);
 										$('#location_long').val(lng);
 										
-										var loca = new google.maps.LatLng(lat,lng);
-										geocoder.geocode({'latLng':loca}, function(results, status) {
-											if (status === google.maps.GeocoderStatus.OK) { 
-												var arrAddress = results[0].address_components;
-												
-												var itemRoute='';
-												var itemLocality='';
-												var itemCountry='';
-												var itemPc='';
-												var itemState='';
-												var itemSnumber='';
-												//$('#place_address').val('');
-												//$('#place_street').val('');			
-												// iterate through address_component array
-												$.each(arrAddress, function (i, address_component) {
-													if (address_component.types[0] === "route"){//": route:"
-														itemRoute = address_component.long_name;
-													}
-													if (address_component.types[0] === "locality"){//"town:"
-														itemLocality = address_component.long_name;
-													}
-													if (address_component.types[0] === "country"){ //"country:"
-														itemCountry = address_component.long_name;
-													}
-													if (address_component.types[0] === "postal_code"){ //"pc:"
-														itemPc = address_component.long_name;
-														
-													}
-													if (address_component.types[0] === "administrative_area_level_1"){ //"pc:"
-														itemState = address_component.long_name;
-													}
-													if (address_component.types[0] === "street_number"){ //"street_number:"
-														itemSnumber = address_component.long_name;
-													}
-													$('#location_zip').val(itemPc);
-													$('#location_city').val(itemLocality);
-													$('#location_state').val(itemState);
-													$('#location_street').val(itemSnumber + ' ' + itemRoute);
-													
-												});
-												if (results[1]) {
-													//alert( results[1].formatted_address);
-													//obj.val(itemSnumber);
-												}
-											} else {
-												alert("Geocoder failed due to: " + status);
-											}
-										});
 										
-										
+										var geo_obj = $.wsu_maps.geocode(lat,lng);
+
+										$('#location_zip').val(geo_obj.zip);
+										$('#location_city').val(geo_obj.city);
+										$('#location_state').val(geo_obj.state);
+										$('#location_street').val(geo_obj.street_number + ' ' + geo_obj.street);
 									});
 								});
 							})(jQuery);
