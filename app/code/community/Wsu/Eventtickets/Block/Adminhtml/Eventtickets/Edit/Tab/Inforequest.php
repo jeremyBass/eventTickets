@@ -7,7 +7,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Inforequest extends
      */
     protected function _prepareForm() {
         $model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
-
+		$webforms_enabled = Mage::helper('core')->isModuleEnabled('Wsu_WebForms');
         /**
          * Checking if user have permissions to save information
          */
@@ -30,39 +30,6 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Inforequest extends
                 'name' => 'eventtickets_id',
             ));
         }
-		/*
-        $fieldset->addField('title', 'text', array(
-            'name'     => 'title',
-            'label'    => Mage::helper('wsu_eventtickets')->__('Eventtickets Title'),
-            'title'    => Mage::helper('wsu_eventtickets')->__('Eventtickets Title'),
-            'required' => true,
-            'disabled' => $isElementDisabled
-        ));
-
-        $fieldset->addField('venue', 'text', array(
-            'name'     => 'venue',
-            'label'    => Mage::helper('wsu_eventtickets')->__('Venue'),
-            'title'    => Mage::helper('wsu_eventtickets')->__('Venue'),
-            'required' => true,
-            'disabled' => $isElementDisabled
-        ));
-		
-		 $fieldset->addField('entry_fee', 'text', array(
-            'name'     => 'entry_fee',
-            'label'    => Mage::helper('wsu_eventtickets')->__('Entry Fee'),
-            'title'    => Mage::helper('wsu_eventtickets')->__('Entry Fee'),
-            'required' => true,
-            'disabled' => $isElementDisabled
-        ));
-
-        $fieldset->addField('published_at', 'date', array(
-            'name'     => 'published_at',
-            'format'   => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
-            'image'    => $this->getSkinUrl('images/grid-cal.gif'),
-            'label'    => Mage::helper('wsu_eventtickets')->__('Publishing Date'),
-            'title'    => Mage::helper('wsu_eventtickets')->__('Publishing Date'),
-            'required' => true
-        ));*/
 
         Mage::dispatchEvent('adminhtml_eventtickets_edit_tab_inforequest_prepare_form', array('form' => $form));
 
@@ -96,7 +63,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Inforequest extends
      * @return true
      */
     public function canShowTab() {
-        return true;
+        return Mage::helper('core')->isModuleEnabled('Wsu_WebForms');
     }
 
     /**
