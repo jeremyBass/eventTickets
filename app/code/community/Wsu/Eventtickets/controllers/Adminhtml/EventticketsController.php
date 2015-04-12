@@ -103,52 +103,51 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 
         // check if data sent
         $data = $this->getRequest()->getPost();
+
 		
-		
-		
-	$data = array(
-		array(
-			'sku' => 'event_'.getUniqueCode(10),
-			'_type' => Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT,//'simple',
-			'product_type' => 'main product',
-			'_attribute_set' => 'Events'.$runid,
-			'_product_websites' => $websiteCodes,
-			'website' => $websiteCodeId,
-			'name' => "Event ".getUniqueCode(2),
-			'price' =>45.99,
-			'_category' => $eventsCatId,
-			'description' => 'Default',
-			'short_description' => 'Default',
-			'eventstartdate'.$runid =>date('m-d-Y', strtotime('+45 days')),
-			'eventenddate'.$runid =>date('m-d-Y', strtotime('+45 days')),
-			'opponent'.$runid=>'UTAH',
-			'awaygame'.$runid=>1,
-			'meta_title' => 'Default',
-			'meta_description' => 'Default',
-			'meta_keywords' => 'Default',
-			'status' => 1,
-			'visibility' => 4,
-			'tax_class_id' => 2,
-			'qty' => 50,
-			'is_in_stock' => 1,
-			'enable_googlecheckout' => '0',
-			'gift_message_available' => '0',
-			'url_key' => strtolower(getUniqueCode(10)),
-			'media_gallery' => $media_gallery_id,
-			"_media_attribute_id" => $media_gallery_id,
-			"_media_lable" =>"Game Day",
-			"_media_position" => 1,
-			"_media_is_disabled" => 0,
-			"_media_image" => "http://football-weekends.wsu.edu/Content/images/Landing05.jpg",
-			'image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
-			'small_image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
-			'thumbnail' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
-		),
-	);	
-		
-		
-		
-		var_dump($data);die();
+		$data = array(
+			array(
+				'sku' => 'event1',
+				'_type' => Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT,//'simple',
+				'product_type' => 'main product',
+				'_attribute_set' => 'Entertainment Events',
+				//'_product_websites' => $websiteCodes,
+				//'website' => $websiteCodeId,
+				'name' => $data['product']['name'],
+				'price' => 0,
+				//'_category' => $eventsCatId,
+				'description' => $data['details'],
+				'short_description' => $data['details'],
+				'event_start_date' =>$data['product']['event_start_date'],
+				'event_start_time' =>$data['product']['event_start_time'],
+				'event_end_date' =>$data['product']['event_end_date'],
+				'event_end_time' =>$data['product']['event_end_time'],
+				'registration_closed' =>$data['product']['registration_closed'],
+				'registration_closed_time' =>$data['product']['registration_closed_time'],
+				'has_access_validation' =>$data['product']['has_access_validation'],
+				'access_code' =>$data['product']['access_code'],
+				'meta_title' => 'Default',
+				'meta_description' => 'Default',
+				'meta_keywords' => 'Default',
+				'status' => 1,
+				'visibility' => 4,
+				'tax_class_id' => 2,
+				'qty' => 50,
+				'is_in_stock' => 1,
+				'enable_googlecheckout' => '0',
+				'gift_message_available' => '0',
+				'url_key' => strtolower(str_replace(' ','-',$data['product']['name'])),
+				/*'media_gallery' => $media_gallery_id,
+				"_media_attribute_id" => $media_gallery_id,
+				"_media_lable" =>"Game Day",
+				"_media_position" => 1,
+				"_media_is_disabled" => 0,
+				"_media_image" => "http://football-weekends.wsu.edu/Content/images/Landing05.jpg",
+				'image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
+				'small_image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
+				'thumbnail' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),*/
+			),
+		);	
 		
 		
 
@@ -170,78 +169,79 @@ $import
 		
 		
 		
-		
-		
-        if ($data) {
-            $data = $this->_filterPostData($data);
-            // init model and set data
-            /* @var $model Wsu_Eventtickets_Model_Item */
-            $model = Mage::getModel('wsu_eventtickets/eventtickets');
-
-            // if eventtickets item exists, try to load it
-            $eventticketsId = $this->getRequest()->getParam('eventtickets_id');
-            if ($eventticketsId) {
-                $model->load($eventticketsId);
-            }
-            // save image data and remove from data array
-            if (isset($data['image'])) {
-                $imageData = $data['image'];
-                unset($data['image']);
-            } else {
-                $imageData = array();
-            }
-            $model->addData($data);
-
-            try {
-                $hasError = false;
-                /* @var $imageHelper Wsu_Eventtickets_Helper_Image */
-                $imageHelper = Mage::helper('wsu_eventtickets/image');
-                // remove image
-
-                if (isset($imageData['delete']) && $model->getImage()) {
-                    $imageHelper->removeImage($model->getImage());
-                    $model->setImage(null);
-                }
-
-                // upload new image
-                $imageFile = $imageHelper->uploadImage('image');
-                if ($imageFile) {
-                    if ($model->getImage()) {
-                        $imageHelper->removeImage($model->getImage());
-                    }
-                    $model->setImage($imageFile);
-                }
-                // save the data
-                $model->save();
-
-                // display success message
-                $this->_getSession()->addSuccess(
-                    Mage::helper('wsu_eventtickets')->__('The eventtickets item has been saved.')
-                );
-
-                // check if 'Save and Continue'
-                if ($this->getRequest()->getParam('back')) {
-                    $redirectPath   = '*/*/edit';
-                    $redirectParams = array('id' => $model->getId());
-                }
-            } catch (Mage_Core_Exception $e) {
-                $hasError = true;
-                $this->_getSession()->addError($e->getMessage());
-            } catch (Exception $e) {
-                $hasError = true;
-                $this->_getSession()->addException($e,
-                    Mage::helper('wsu_eventtickets')->__('An error occurred while saving the eventtickets item.')
-                );
-            }
-
-            if ($hasError) {
-                $this->_getSession()->setFormData($data);
-                $redirectPath   = '*/*/edit';
-                $redirectParams = array('id' => $this->getRequest()->getParam('id'));
-            }
-        }
-
-        $this->_redirect($redirectPath, $redirectParams);
+//
+//		
+//        if ($data) {
+//            $data = $this->_filterPostData($data);
+//            // init model and set data
+//            // @var $model Wsu_Eventtickets_Model_Item 
+//            $model = Mage::getModel('wsu_eventtickets/eventtickets');
+//
+//            // if eventtickets item exists, try to load it
+//            $eventticketsId = $this->getRequest()->getParam('eventtickets_id');
+//            if ($eventticketsId) {
+//                $model->load($eventticketsId);
+//            }
+//            // save image data and remove from data array
+//            if (isset($data['image'])) {
+//                $imageData = $data['image'];
+//                unset($data['image']);
+//            } else {
+//                $imageData = array();
+//            }
+//            $model->addData($data);
+//
+//            try {
+//                $hasError = false;
+//                // @var $imageHelper Wsu_Eventtickets_Helper_Image 
+//                $imageHelper = Mage::helper('wsu_eventtickets/image');
+//                // remove image
+//
+//                if (isset($imageData['delete']) && $model->getImage()) {
+//                    $imageHelper->removeImage($model->getImage());
+//                    $model->setImage(null);
+//                }
+//
+//                // upload new image
+//                $imageFile = $imageHelper->uploadImage('image');
+//                if ($imageFile) {
+//                    if ($model->getImage()) {
+//                        $imageHelper->removeImage($model->getImage());
+//                    }
+//                    $model->setImage($imageFile);
+//                }
+//                // save the data
+//                $model->save();
+//
+//                // display success message
+//                $this->_getSession()->addSuccess(
+//                    Mage::helper('wsu_eventtickets')->__('The eventtickets item has been saved.')
+//                );
+//
+//                // check if 'Save and Continue'
+//                if ($this->getRequest()->getParam('back')) {
+//                    $redirectPath   = '*/*/edit';
+//                    $redirectParams = array('id' => $model->getId());
+//                }
+//            } catch (Mage_Core_Exception $e) {
+//                $hasError = true;
+//                $this->_getSession()->addError($e->getMessage());
+//            } catch (Exception $e) {
+//                $hasError = true;
+//                $this->_getSession()->addException($e,
+//                    Mage::helper('wsu_eventtickets')->__('An error occurred while saving the eventtickets item.')
+//                );
+//            }
+//
+//            if ($hasError) {
+//                $this->_getSession()->setFormData($data);
+//                $redirectPath   = '*/*/edit';
+//                $redirectParams = array('id' => $this->getRequest()->getParam('id'));
+//            }
+//        }
+//
+//        $this->_redirect($redirectPath, $redirectParams);
+$this->_redirect('*/*/');
     }
 
     /**
