@@ -304,6 +304,12 @@ $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);
 $yes_no_inputs = array(
 	'has_access_validation'=>'Has access validation',
 	'allow_guests'=>'Allow Guests',
+	'food_options'=>'has a food option',
+	'request_seating'=>'Able to make seating request',
+	'custom_accommodation_response'=>'Allow custom responses',
+	'custom_accommodation_response'=>'Allow custom responses',
+	'has_sales_limit'=>'Limit sales per order',
+	'collect_guest_info'=>'Collect Guest info'
 	);
 
 foreach($yes_no_inputs as $key=>$name){
@@ -366,7 +372,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_relat
 
 $date_inputs = array(
 	'event_start_date'=>'Event start date',
-	'event_end_date'=>'Event end date'
+	'event_end_date'=>'Event end date',
+	'registration_closes_date'=>'Registration end Date'
 	);
 
 foreach($date_inputs as $key=>$name){
@@ -400,7 +407,8 @@ foreach($date_inputs as $key=>$name){
 
 $time_inputs = array(
 	'event_start_time'=>'Event start time',
-	'event_end_time'=>'Event end time'
+	'event_end_time'=>'Event end time',
+	'registration_closes_time'=>'Registration end time'
 	);
 
 foreach($time_inputs as $key=>$name){

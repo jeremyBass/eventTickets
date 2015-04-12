@@ -8,19 +8,19 @@
 			<table class="form-list" cellspacing="0">
 				<tbody>
 					<tr>
-						<td class="label"><label for="registration_closed">Registration end</label></td>
+						<td class="label"><label for="registration_closes_date">Registration end</label></td>
 						<td class="value">
 							<label for="location">Date
-							<input name="product[registration_closed]" class=" input-text" id="registration_closed" style="width: 110px !important;" type="text" value="">
+							<input name="product[registration_closes_date]" class=" input-text" id="registration_closes_date" style="width: 110px !important;" type="text" value="">
 							<i class="fa fa-calendar" id="registration_closed_trig" style=" cursor:pointer;"></i> 
-							<script type="text/javascript">Calendar.setup({inputField:"registration_closed",ifFormat:"%m/%e/%Y",showsTime:false,button:"registration_closed_trig",align:"Bl",singleClick:true});</script>
+							<script type="text/javascript">Calendar.setup({inputField:"registration_closes_date",ifFormat:"%m/%e/%Y",showsTime:false,button:"registration_closed_trig",align:"Bl",singleClick:true});</script>
 							</label>
 							<br/>
 							
 							<label for="location">Time
-							<input name="product[registration_closed_time]" class=" input-text" id="registration_closed_time" style="width: 110px !important;" type="text" value="">
+							<input name="product[registration_closes_time]" class=" input-text" id="registration_closes_time" style="width: 110px !important;" type="text" value="">
 							<i class="fa fa-clock-o" id="registration_closed_time_trig" style=" cursor:pointer;"></i> 
-							<script type="text/javascript">Calendar.setup({ inputField:"registration_closed_time", ifFormat:"%H:%M:%S", time24:"24", showsTime:true, button:"registration_closed_time_trig", align:"Bl", singleClick:true, weekNumbers:false, });</script>
+							<script type="text/javascript">Calendar.setup({ inputField:"registration_closes_time", ifFormat:"%H:%M:%S", time24:"24", showsTime:true, button:"registration_closed_time_trig", align:"Bl", singleClick:true, weekNumbers:false, });</script>
 							</label>
 							
 							</td>
@@ -38,9 +38,9 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td class="label"><label for="sales_limit">Limit sales quantity</label></td>
+						<td class="label"><label for="has_sales_limit">Limit sales quantity</label></td>
 						<td class="value">
-							<select name="product[sales_limit]" class=" select" id="sales_limit" style="width: 110px !important;">
+							<select name="product[has_sales_limit]" class=" select" id="has_sales_limit" style="width: 110px !important;">
 								<option selected="selected" value="">No</option>
 								<option value="">Yes</option>
 							</select>
