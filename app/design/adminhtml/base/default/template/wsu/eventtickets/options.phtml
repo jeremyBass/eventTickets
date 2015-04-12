@@ -1,4 +1,12 @@
-<div class="entry-edit">
+<?php
+
+$product = [
+	'food_options'=>'no',
+];
+
+
+
+?><div class="entry-edit">
 	<div class="entry-edit-head">
 		<h4 class="icon-head head-edit-form-guests fieldset-legend">Food options</h4>
 		<div class="form-buttons"></div>
@@ -9,17 +17,17 @@
 				<tbody>
 					<tr>
 						<td class="label"><label for="food_options">Has Food Options</label></td>
-						<td class="value"><select name="product[food_options]" class=" select" id="food_options">
-								<option selected="selected" value="">No</option>
-								<option value="">Yes</option>
+						<td class="value"><select name="product[food_options]" class=" select switch" data-type="food_options" id="food_options">
+								<option selected="selected" value="no">No</option>
+								<option value="yes">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
-					<tr>
+					<tr class="food_options" <?=($product['food_options']!='yes'?'style="display:none"':'')?>>
 						<td class="label"><label for="menu_age_price_range">Is there an age range for the menu</label></td>
 						<td class="value"><select name="product[menu_age_price_range]" class=" select" id="menu_age_price_range">
-								<option value="">No</option>
-								<option selected="selected" value="">Yes</option>
+								<option selected="selected" value="">No</option>
+								<option value="">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
@@ -39,7 +47,7 @@
 				<tbody>				
 					<tr>
 						<td class="label"><label for="request_seating">Can request seating</label></td>
-						<td class="value"><select name="product[request_seating]" class=" select" id="request_seating">
+						<td class="value"><select name="product[request_seating]" class="select" id="request_seating">
 								<option selected="selected" value="">No</option>
 								<option value="">Yes</option>
 							</select></td>
@@ -58,3 +66,17 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			$('.switch').on('change',function(){
+				var type = $('.' + $(this).data('type'));
+				if($(this).val()==="no"){
+					type.hide();
+				}else{
+					type.show();
+				}
+			});
+		});
+	})(jQuery);
+</script>
