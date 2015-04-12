@@ -6,14 +6,12 @@
  * @license   MIT/GPL
  * @link N/A 
  */
-class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_Block_Widget_Grid
-{
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_Block_Widget_Grid {
     /**
      * Init Grid default properties
      *
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->setId('eventtickets_list_grid');
         $this->setDefaultSort('created_at');
@@ -27,9 +25,10 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
      *
      * @return Wsu_Eventtickets_Block_Adminhtml_Grid
      */
-    protected function _prepareCollection()
-    {
-        $collection = Mage::getModel('wsu_eventtickets/eventtickets')->getResourceCollection();
+    protected function _prepareCollection() {
+        $collection = Mage::getResourceModel('catalog/product_collection')
+        ->addAttributeToSelect('*')
+        ->addAttributeToFilter('type_id', Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT);//Mage::getModel('wsu_eventtickets/eventtickets')->getResourceCollection();
 		//echo "<pre>";var_dump($collection);echo "</pre>";
 
         $this->setCollection($collection);
@@ -41,38 +40,40 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
      *
      * @return Mage_Adminhtml_Block_Catalog_Search_Grid
      */
-    protected function _prepareColumns()
-    {
-        $this->addColumn('eventtickets_id', array(
+    protected function _prepareColumns()  {
+        $this->addColumn('entity_id', array(
             'header'    => Mage::helper('wsu_eventtickets')->__('ID #'),
             'width'     => '50px',
-            'index'     => 'eventtickets_id',
+            'index'     => 'entity_id',
         ));
 
-        $this->addColumn('title', array(
+        $this->addColumn('name', array(
             'header'    => Mage::helper('wsu_eventtickets')->__('Title'),
-            'index'     => 'title',
+            'index'     => 'name',
         ));
 		
 		/*$this->addColumn('details', array(
             'header'    => Mage::helper('wsu_eventtickets')->__('Details'),
             'index'     => 'details',
         ));*/
-		$this->addColumn('entry_fee', array(
-            'header'    => Mage::helper('wsu_eventtickets')->__('Entry Fee'),
-            'index'     => 'entry_fee',
-        ));
-
-        $this->addColumn('venue', array(
-            'header'    => Mage::helper('wsu_eventtickets')->__('Venue'),
-            'index'     => 'venue',
-        ));
-
-        $this->addColumn('published_at', array(
-            'header'   => Mage::helper('wsu_eventtickets')->__('Published On'),
+		$this->addColumn('event_start_date', array(
+            'header'    => Mage::helper('wsu_eventtickets')->__('Starting on'),
             'sortable' => true,
             'width'    => '170px',
-            'index'    => 'published_at',
+            'index'     => 'event_start_date',
+            'type'     => 'date',
+        ));
+
+        $this->addColumn('location', array(
+            'header'    => Mage::helper('wsu_eventtickets')->__('Location'),
+            'index'     => 'location',
+        ));
+
+        $this->addColumn('registration_closes', array(
+            'header'   => Mage::helper('wsu_eventtickets')->__('reg closes on'),
+            'sortable' => true,
+            'width'    => '170px',
+            'index'    => 'registration_closes',
             'type'     => 'date',
         ));
 
@@ -108,8 +109,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
      *
      * @return string
      */
-    public function getRowUrl($row)
-    {
+    public function getRowUrl($row) {
         return $this->getUrl('*/*/edit', array('id' => $row->getId()));
     }
 
@@ -118,8 +118,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
      *
      * @return string current grid url
      */
-    public function getGridUrl()
-    {
+    public function getGridUrl() {
         return $this->getUrl('*/*/grid', array('_current' => true));
     }
 }
