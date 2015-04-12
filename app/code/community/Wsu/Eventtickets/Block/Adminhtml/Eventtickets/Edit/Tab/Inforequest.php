@@ -63,7 +63,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Inforequest extends
      * @return true
      */
     public function canShowTab() {
-        return Mage::helper('core')->isModuleEnabled('Wsu_WebForms');
+        return Mage::helper('core')->isModuleOutputEnabled('Wsu_WebForms');
     }
 
     /**
