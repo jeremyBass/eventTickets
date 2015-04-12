@@ -304,7 +304,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'allow_guest
 
 	$SU_helper->createAttribute("Allow Guests","allow_guests", array(
 		'is_global'                     => '1',
-		'frontend_input'                => 'select',
+		'frontend_input'                => 'boolean',
+		'backend_type'                  => 'int',
 		'source_model'					=> 'eav/entity_attribute_source_boolean',
 		'default_value_text'            => '',
 		'default_value_yesno'           => '0',
@@ -324,7 +325,6 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'allow_guest
 		'is_configurable'               => '0',
 		'is_filterable'                 => '0',
 		'is_filterable_in_search'       => '0',
-		'backend_type'                  => 'int',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
 } 
@@ -335,7 +335,7 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'has_access_
 
 	$SU_helper->createAttribute("Has access validation","has_access_validation", array(
 		'is_global'                     => '1',
-		'frontend_input'                => 'select',
+		'frontend_input'                => 'boolean',
 		'source_model'					=> 'eav/entity_attribute_source_boolean',
 		'default_value_text'            => '',
 		'default_value_yesno'           => '0',
