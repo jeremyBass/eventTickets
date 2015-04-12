@@ -406,9 +406,9 @@ foreach($date_inputs as $key=>$name){
 }
 
 $time_inputs = array(
-	'event_start_time'=>'Event start time',
-	'event_end_time'=>'Event end time',
-	'registration_closes_time'=>'Registration end time'
+	//'event_start_time'=>'Event start time',
+	//'event_end_time'=>'Event end time',
+	//'registration_closes_time'=>'Registration end time'
 	);
 
 foreach($time_inputs as $key=>$name){

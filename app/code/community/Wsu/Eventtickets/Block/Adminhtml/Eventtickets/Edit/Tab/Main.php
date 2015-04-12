@@ -41,8 +41,8 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Main extends Mage_A
             ));
         }
 
-        $fieldset->addField('title', 'text', array(
-            'name'     => 'title',
+        $fieldset->addField('name', 'text', array(
+            'name'     => 'name',
             'label'    => Mage::helper('wsu_eventtickets')->__('Eventtickets Title'),
             'title'    => Mage::helper('wsu_eventtickets')->__('Eventtickets Title'),
             'required' => true,
