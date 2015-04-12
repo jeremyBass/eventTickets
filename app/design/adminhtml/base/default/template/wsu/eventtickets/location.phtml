@@ -2,8 +2,8 @@
 
 $product = [
 	'location_type'=>'physical',
-	'location_lat'=>'46.725722661815745',
-	'location_long'=>'-117.16131040741038',
+	'location_lat'=>'46.73207659846422',
+	'location_long'=>'-117.15444395233226',
 	'location_name'=>''
 ];
 
@@ -62,54 +62,6 @@ $product = [
 						<label for="location">latitude<input name="product[location_lat]" class=" input-text" id="location_lat" type="text" value=""></label>
 						<br/>
 						<label for="location">longitude<input name="product[location_long]" class=" input-text" id="location_long" type="text" value=""></label>
-						
-						
-						<script type="text/javascript">
-							(function($){
-								$(function() {
-									var map = $('#WSU_MAPS_NS');
-									
-									map.on('wsu_maps:completed',function(){
-										geocoder = new google.maps.Geocoder();
-										$.wsu_maps.markers.make_Marker(1,1,{
-											"position":{ "latitude":"<?=$product['location_lat']?>", "longitude":"<?=$product['location_long']?>" },
-											"labels":{ "title":"<?=$product['location_name']?>" },
-											"content":"test",
-											"metadata":[{}],
-											"shapes":[{}]
-										 });
-									});	
-									map.on('wsu_maps:marker_added',function(e,marker){
-										marker.setDraggable(true); //note should be able to set in the style but works here to
-									});
-									
-									map.on('wsu_maps:marker_dragend',function(e,marker){
-										var placePos = marker.getPosition();
-										var lat = placePos.lat();
-										var lng = placePos.lng();
-
-										var geo_obj = $.wsu_maps.geocode(lat,lng);
-										
-										$('#location_lat').val(lat);
-										$('#location_long').val(lng);
-										$('#location_zip').val(geo_obj.zip);
-										$('#location_city').val(geo_obj.city);
-										$('#location_state').val(geo_obj.state);
-										$('#location_street').val(geo_obj.street_number + ' ' + geo_obj.street);
-									});
-								});
-								
-								$('#location_type').on('change',function(){
-									$('.typed').hide();
-									$('.' + $(this).val()).show();
-								});
-								
-								
-								
-							})(jQuery);
-						</script>
-						<script type="text/javascript" src="https://beta.maps.wsu.edu/embed/store-event-location-tool?dyno=true"></script>
-		
 						</td>
 						<td></td>
 					</tr>
@@ -120,6 +72,66 @@ $product = [
 					</tr>
 				</tbody>
 			</table>
+			<div class="typed physical">
+				<h3>on the map</h3>
+				<h5>Drag the point around to adjust the location</h5>
+				<script type="text/javascript">
+					(function($){
+						$(function() {
+							var map = $('#WSU_MAPS_NS');
+
+							map.on('wsu_maps:loaded_options',function(e,map_op){
+								console.log("setting up options before load");
+								console.log(map_op);
+								
+								<?php if( !empty($product['location_lat']) && !empty($product['location_long']) ):?>
+									$.wsu_maps.state.fit_to_bound=false;
+								<?php endif; ?>
+								return {<?= ( !empty($product['location_lat']) && !empty($product['location_long']) )? "'center': '".$product['location_lat'].",".$product['location_long']."'" : ''?> , 'zoom':15 };
+							});
+			
+			
+							map.on('wsu_maps:completed',function(){
+								geocoder = new google.maps.Geocoder();
+								$.wsu_maps.markers.make_Marker(1,1,{
+									"position":{ "latitude":"<?=$product['location_lat']?>", "longitude":"<?=$product['location_long']?>" },
+									"labels":{ "title":"<?=$product['location_name']?>" },
+									"content":"test",
+									"metadata":[{}],
+									"shapes":[{}]
+								 });
+							});	
+							map.on('wsu_maps:marker_added',function(e,marker){
+								marker.setDraggable(true); //note should be able to set in the style but works here to
+							});
+							
+							map.on('wsu_maps:marker_dragend',function(e,marker){
+								var placePos = marker.getPosition();
+								var lat = placePos.lat();
+								var lng = placePos.lng();
+				
+								var geo_obj = $.wsu_maps.geocode(lat,lng);
+								
+								$('#location_lat').val(lat);
+								$('#location_long').val(lng);
+								$('#location_zip').val(geo_obj.zip);
+								$('#location_city').val(geo_obj.city);
+								$('#location_state').val(geo_obj.state);
+								$('#location_street').val(geo_obj.street_number + ' ' + geo_obj.street);
+							});
+						});
+						
+						$('#location_type').on('change',function(){
+							$('.typed').hide();
+							$('.' + $(this).val()).show();
+						});
+						
+						
+						
+					})(jQuery);
+				</script>
+				<script type="text/javascript" src="https://beta.maps.wsu.edu/embed/store-event-location-tool?dyno=true?debug=true"></script>
+			</div>
 		</div>
 	</div>
 </div>
