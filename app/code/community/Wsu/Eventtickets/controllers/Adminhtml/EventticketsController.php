@@ -55,14 +55,13 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
         $this->_title($this->__('Eventtickets'))
              ->_title($this->__('Manage Eventtickets'));
 
-        // 1. instance eventtickets model
-        /* @var $model Wsu_Eventtickets_Model_Item */
-        $model = Mage::getModel('wsu_eventtickets/eventtickets');
+        $model = Mage::getModel('catalog/product');
 
+		
         // 2. if exists id, check it and load data
-        $eventticketsId = $this->getRequest()->getParam('id');
-        if ($eventticketsId) {
-            $model->load($eventticketsId);
+        $id = $this->getRequest()->getParam('id');
+        if ($id) {
+			$model->load($id);
 
             if (!$model->getId()) {
                 $this->_getSession()->addError(
@@ -71,7 +70,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
                 return $this->_redirect('*/*/');
             }
             // prepare title
-            $this->_title($model->getTitle());
+            $this->_title($model->getName());
             $breadCrumb = Mage::helper('wsu_eventtickets')->__('Edit Item');
         } else {
             $this->_title(Mage::helper('wsu_eventtickets')->__('New Item'));
@@ -122,10 +121,16 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 				'event_start_time' =>$data['product']['event_start_time'],
 				'event_end_date' =>$data['product']['event_end_date'],
 				'event_end_time' =>$data['product']['event_end_time'],
-				'registration_closed' =>$data['product']['registration_closed'],
-				'registration_closed_time' =>$data['product']['registration_closed_time'],
+				'registration_closes_date' =>$data['product']['registration_closes_date'],
+				'registration_closed_time' =>$data['product']['registration_closes_time'],
 				'has_access_validation' =>$data['product']['has_access_validation'],
 				'access_code' =>$data['product']['access_code'],
+				'food_options' =>$data['product']['food_options'],
+				'request_seating' =>$data['product']['request_seating'],
+				'custom_accommodation_response' =>$data['product']['custom_accommodation_response'],
+				'has_sales_limit' =>$data['product']['has_sales_limit'],
+				'collect_guest_info' =>$data['product']['collect_guest_info'],
+				//'event_relative_end_time' =>$data['product']['event_relative_end_time'],
 				'meta_title' => 'Default',
 				'meta_description' => 'Default',
 				'meta_keywords' => 'Default',
