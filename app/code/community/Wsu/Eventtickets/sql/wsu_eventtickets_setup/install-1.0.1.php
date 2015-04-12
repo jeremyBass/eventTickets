@@ -203,29 +203,13 @@ if($attribute_set_id<=0){
 	$EntertainmentSetInfo=array( 'SetID'  => $attribute_set_id, 'GroupID' => $groupID, );
 }
 
-
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time')) {
-	 $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_start_date_time', array(
-		 'input'         => 'datetime',
-		 'type'          => 'datetime',
-		 'time'          => true,
-		 'label'         => 'Date & Time',
-		 'input_renderer'=> 'wsu_eventtickets/adminhtml_renderer_attribute_datetime',
-		 'visible'       => true,
-		 'required'      => false,
-		 'user_defined'  => true,
-		 'visible_on_front' => true,
-		 'backend'       => 'eav/entity_attribute_backend_time_created',
-		 'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
-	 ));
-}
-
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_end_date_time')) {
-	$installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_end_date_time', array(
+/*
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_start_time')) {
+	$installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_start_time', array(
 		'input'         => 'datetime',
 		'type'          => 'datetime',
 		'time'          => true,
-		'label'         => 'Date & Time',
+		'label'         => 'Start Time',
 		'input_renderer'=> 'wsu_eventtickets/adminhtml_renderer_attribute_datetime',
 		'visible'       => true,
 		'required'      => false,
@@ -235,6 +219,51 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_end_d
 		'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
 	));
 }
+
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_end_date')) {
+	$installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_end_date', array(
+		'input'         => 'datetime',
+		'type'          => 'datetime',
+		'time'          => true,
+		'label'         => 'End date',
+		'input_renderer'=> 'wsu_eventtickets/adminhtml_renderer_attribute_datetime',
+		'visible'       => true,
+		'required'      => false,
+		'user_defined'  => true,
+		'visible_on_front' => true,
+		'backend'       => 'eav/entity_attribute_backend_time_created',
+		'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
+	));
+}
+
+
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_end_time')) {
+	$installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'event_end_time', array(
+		'input'         => 'datetime',
+		'type'          => 'datetime',
+		'time'          => true,
+		'label'         => 'End Time',
+		'input_renderer'=> 'wsu_eventtickets/adminhtml_renderer_attribute_datetime',
+		'visible'       => true,
+		'required'      => false,
+		'user_defined'  => true,
+		'visible_on_front' => true,
+		'backend'       => 'eav/entity_attribute_backend_time_created',
+		'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL
+	));
+}
+*/
+/*
+	'event_start_date' =>$data['product']['event_start_date'],
+	'event_start_time' =>$data['product']['event_start_time'],
+	'event_end_date' =>$data['product']['event_end_date'],
+	'event_end_time' =>$data['product']['event_end_time'],
+	'registration_closed' =>$data['product']['registration_closed'],
+	'registration_closed_time' =>$data['product']['registration_closed_time'],
+	'has_access_validation' =>$data['product']['has_access_validation'],
+	'access_code' =>$data['product']['access_code'],
+*/
+
  
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'guest_limit')) {
 	$installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'guest_limit', array(
@@ -270,41 +299,44 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'guest_limit
 	));
 }
  
+$allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'allow_guests')) {
-	$installer->addAttribute('catalog_product', 'allow_guests', array(
-			'input'                     => 'select',
-			'type'                      => 'int',
-			'label'                     => 'Allow Guests',
-			'source'                    => 'eav/entity_attribute_source_boolean',
-			'global'                    => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-			'visible'                   => 1,
-			'required'                  => 0,
-			'visible_on_front'          => 0,
-			'is_html_allowed_on_front'  => 0,
-			'is_configurable'           => 0,
-			'searchable'                => 0,
-			'filterable'                => 0,
-			'comparable'                => 0,
-			'unique'                    => false,
-			'user_defined'              => false,
-			'default'					=> '',
-			'is_user_defined'           => false,
-			'used_in_product_listing'   => true
-	));
-}
 
-
-
-
-
+	$SU_helper->createAttribute("Allow Guests","allow_guests", array(
+		'is_global'                     => '1',
+		'frontend_input'                => 'select',
+		'source_model'					=> 'eav/entity_attribute_source_boolean',
+		'default_value_text'            => '',
+		'default_value_yesno'           => '0',
+		'default_value_date'            => '',
+		'default_value_textarea'        => '',
+		'is_unique'                     => '0',
+		'is_required'                   => '0',
+		'frontend_class'                => '',
+		'is_searchable'                 => '1',
+		'is_visible_in_advanced_search' => '1',
+		'is_comparable'                 => '0',
+		'is_used_for_promo_rules'       => '0',
+		'is_html_allowed_on_front'      => '1',
+		'is_visible_on_front'           => '0',
+		'used_in_product_listing'       => '0',
+		'used_for_sort_by'              => '1',
+		'is_configurable'               => '0',
+		'is_filterable'                 => '0',
+		'is_filterable_in_search'       => '0',
+		'backend_type'                  => 'int',
+		'default_value'                 => ''
+	),array("event"), $allEventSets);
+} 
 
 				 
 $allEventSets = array($SportingAttrSetInfo,$EntertainmentSetInfo);			 
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'has_access_validation')) {
 
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_relative_start_time')) {	
-	$SU_helper->createAttribute("Location","event_relative_start_time", array(
-		'is_global'                     => '0',
-		'frontend_input'                => 'text',
+	$SU_helper->createAttribute("Has access validation","has_access_validation", array(
+		'is_global'                     => '1',
+		'frontend_input'                => 'select',
+		'source_model'					=> 'eav/entity_attribute_source_boolean',
 		'default_value_text'            => '',
 		'default_value_yesno'           => '0',
 		'default_value_date'            => '',
@@ -323,13 +355,14 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_relat
 		'is_configurable'               => '0',
 		'is_filterable'                 => '0',
 		'is_filterable_in_search'       => '0',
-		'backend_type'                  => 'text',
+		'backend_type'                  => 'int',
 		'default_value'                 => ''
 	),array("event"), $allEventSets);
-}
+} 
+
 
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_relative_end_time')) {	
-	$SU_helper->createAttribute("Location","event_relative_start_time", array(
+	$SU_helper->createAttribute("Relative start time","event_relative_start_time", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
 		'default_value_text'            => '',
@@ -359,8 +392,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_relat
 
 
 
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventstartdate')) {			 
-	$SU_helper->createAttribute("Event start date","eventstartdate", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_start_date')) {			 
+	$SU_helper->createAttribute("Event start date","event_start_date", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
 		'default_value_text'            => '',
@@ -386,8 +419,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventstartd
 	),array("event"), $allEventSets);
 }
 
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventstarttime')) {		
-	$SU_helper->createAttribute("Event start time","eventstarttime", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_start_time')) {		
+	$SU_helper->createAttribute("Event start time","event_start_time", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
 		'default_value_text'            => '',
@@ -413,8 +446,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventstartt
 	),array("event"), $allEventSets);
 }
 
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventenddate')) {	
-	$SU_helper->createAttribute("Event end date","eventenddate", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_end_date')) {	
+	$SU_helper->createAttribute("Event end date","event_end_date", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'date',
 		'default_value_text'            => '',
@@ -440,8 +473,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventenddat
 	),array("event"), $allEventSets);
 }
 
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'eventendtime')) {	
-	$SU_helper->createAttribute("Event end time","eventendtime", array(
+if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'event_end_time')) {	
+	$SU_helper->createAttribute("Event end time","event_end_time", array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'time',
 		'default_value_text'            => '',
