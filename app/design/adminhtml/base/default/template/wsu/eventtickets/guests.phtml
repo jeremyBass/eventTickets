@@ -1,11 +1,7 @@
 <?php
-
-$product = [
-	'allow_guests'=>'no',
-];
-
-
-
+$model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
+$su = Mage::helper('storeutilities/utilities');
+$guest_allowed = $model->getAllowGuests();
 ?><div class="entry-edit">
 	<div class="entry-edit-head">
 		<h4 class="icon-head head-edit-form-guests fieldset-legend">Ticket guest options</h4>
@@ -18,34 +14,27 @@ $product = [
 					<tr>
 						<td class="label"><label for="allow_guests">Allow Guests</label></td>
 						<td class="value"><select name="product[allow_guests]" class=" select switch" data-type="allow_guests" id="allow_guests">
-								<option selected="selected" value="no">No</option>
-								<option value="yes">Yes</option>
+								<option <?=$su->selected('0',$guest_allowed)?> value="0">No</option>
+								<option <?=$su->selected('1',$guest_allowed)?> value="1">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
-					<tr class="allow_guests" <?=($product['allow_guests']!='yes'?'style="display:none"':'')?>>
+					<tr class="allow_guests" <?=($guest_allowed!='1'?'style="display:none"':'')?>>
 						<td class="label"><label for="collect_guest_info">Collect Guest info</label></td>
 						<td class="value"><select name="product[collect_guest_info]" class=" select" id="collect_guest_info">
-								<option selected="selected" value="no">No</option>
-								<option value="yes">Yes</option>
+								<option <?=$su->selected('0',$model->getCollectGuestInfo())?> value="0">No</option>
+								<option <?=$su->selected('1',$model->getCollectGuestInfo())?> value="1">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
-					<tr class="allow_guests" <?=($product['allow_guests']!='yes'?'style="display:none"':'')?>>
+					<tr class="allow_guests" <?=($guest_allowed!='1'?'style="display:none"':'')?>>
 						<td class="label"><label for="guest_limit">Guest Limit</label></td>
 						<td class="value"><select name="product[guest_limit]" class=" select" id="guest_limit">
-								<option selected="selected" value=""></option>
-								<option value="unlimited">unlimited</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
+								<option <?=$su->selected('',$model->getCollectGuestInfo())?> value=""></option>
+								<option <?=$su->selected('unlimited',$model->getCollectGuestInfo())?> value="unlimited">unlimited</option>
+								<?php for( $i=1; $i<16; $i++ ): ?>
+									<option <?=$su->selected($i,$model->getCollectGuestInfo())?>><?=$i?></option>
+								<?php endfor; ?>
 							</select></td>
 						<td></td>
 					</tr>

@@ -1,11 +1,7 @@
 <?php
-
-$product = [
-	'food_options'=>'no',
-];
-
-
-
+$model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
+$su = Mage::helper('storeutilities/utilities');
+$food_options = $model->getFoodOptions();
 ?><div class="entry-edit">
 	<div class="entry-edit-head">
 		<h4 class="icon-head head-edit-form-guests fieldset-legend">Food options</h4>
@@ -18,16 +14,16 @@ $product = [
 					<tr>
 						<td class="label"><label for="food_options">Has Food Options</label></td>
 						<td class="value"><select name="product[food_options]" class=" select switch" data-type="food_options" id="food_options">
-								<option selected="selected" value="no">No</option>
-								<option value="yes">Yes</option>
+								<option <?=$su->selected('0',$food_options)?> value="0">No</option>
+								<option <?=$su->selected('1',$food_options)?> value="1">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
-					<tr class="food_options" <?=($product['food_options']!='yes'?'style="display:none"':'')?>>
+					<tr class="food_options" <?=($food_options!='1'?'style="display:none"':'')?>>
 						<td class="label"><label for="menu_age_price_range">Is there an age range for the menu</label></td>
 						<td class="value"><select name="product[menu_age_price_range]" class=" select" id="menu_age_price_range">
-								<option selected="selected" value="">No</option>
-								<option value="">Yes</option>
+								<option <?=$su->selected('0',$model->getMenuAgePriceRange())?> value="0">No</option>
+								<option <?=$su->selected('1',$model->getMenuAgePriceRange())?> value="1">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
@@ -48,16 +44,16 @@ $product = [
 					<tr>
 						<td class="label"><label for="request_seating">Can request seating</label></td>
 						<td class="value"><select name="product[request_seating]" class="select" id="request_seating">
-								<option selected="selected" value="">No</option>
-								<option value="">Yes</option>
+								<option <?=$su->selected('0',$model->getRequestSeating())?> value="0">No</option>
+								<option <?=$su->selected('1',$model->getRequestSeating())?> value="1">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td class="label"><label for="custom_accommodation_response">Allow custom responses</label></td>
 						<td class="value"><select name="product[custom_accommodation_response]" class=" select" id="request_seating">
-								<option selected="selected" value="">No</option>
-								<option value="">Yes</option>
+								<option <?=$su->selected('0',$model->getCustomAccommodationResponse())?> value="0">No</option>
+								<option <?=$su->selected('1',$model->getCustomAccommodationResponse())?> value="1">Yes</option>
 							</select></td>
 						<td></td>
 					</tr>
@@ -71,7 +67,7 @@ $product = [
 		$(function() {
 			$('.switch').on('change',function(){
 				var type = $('.' + $(this).data('type'));
-				if($(this).val()==="no"){
+				if($(this).val()==="0"){
 					type.hide();
 				}else{
 					type.show();

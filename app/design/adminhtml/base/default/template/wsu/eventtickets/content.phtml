@@ -1,4 +1,7 @@
-<div class="entry-edit">
+<?php 
+$model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
+$su = Mage::helper('storeutilities/utilities');
+?><div class="entry-edit">
 	<div class="entry-edit-head">
 		<h4 class="icon-head head-edit-form-general fieldset-legend">General info</h4>
 		<div class="form-buttons"><!--<button title="Create New Attribute" class="scalable add" id="create_attribute_252" onclick="create_attribute_252JsObject.create();" type="button"><span><span><span>Create New Attribute</span></span></span></button><script type="text/javascript">var create_attribute_252JsObject=new Product.Attributes('create_attribute_252');create_attribute_252JsObject.setConfig({"tab_id":"group_252","group_id":"252","store_id":0,"attribute_set_id":"67","type_id":"simple","product_id":"171","url":"http:\/\/store.wsu.edu\/index.php\/admin\/catalog_product_attribute\/new\/group\/252\/tab\/group_252\/store\/0\/product\/171\/set\/67\/type\/simple\/popup\/1\/key\/2bbbb4ce18231281f2a8b68472685ddc\/"});</script>--></div>
@@ -10,7 +13,7 @@
 					<tr>
 						<td class="label"><label for="name">Name</label></td>
 						<td class="value">
-							<input name="product[name]" class=" input-text" id="name" type="text" value=""/>
+							<input name="product[name]" class=" input-text" id="name" type="text" value="<?=$model->getName()?>"/>
 						</td>
 						<td></td>
 					</tr>
@@ -18,9 +21,9 @@
 						<td class="label"><label for="name">Event Type</label></td>
 						<td class="value">
 							<select name="product[attribute_set]" class=" select" id="attribute_set" style="width: 150px !important;">
-								<option selected="selected" value="<?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_GENERAL?>">General Events</option>
-								<option><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_SPORTS?></option>
-								<option><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_ENTERTAINMENT?></option>
+								<option selected="selected" <?=$su->selected(Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_GENERAL,$model->getAttributeSet())?> value="<?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_GENERAL?>">General Events</option>
+								<option <?=$su->selected(Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_SPORTS,$model->getAttributeSet())?>><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_SPORTS?></option>
+								<option <?=$su->selected(Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_ENTERTAINMENT,$model->getAttributeSet())?>><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_ENTERTAINMENT?></option>
 							</select>
 						</td>
 						<td></td>
@@ -29,14 +32,14 @@
 						<td class="label"><label>Start</label></td>
 						<td class="value">
 							<label for="location">Date
-							<input name="product[event_start_date]" class=" input-text" id="event_start_date" style="width: 110px !important;" type="text" value="">
+							<input name="product[event_start_date]" class=" input-text" id="event_start_date" style="width: 110px !important;" type="text" value="<?=$model->getEventStartDate()?>">
 							<i class="fa fa-calendar" id="event_start_date_trig" style=" cursor:pointer;"></i> 
 							<script type="text/javascript">Calendar.setup({inputField:"event_start_date",ifFormat:"%m/%e/%Y",showsTime:false,button:"event_start_date_trig",align:"Bl",singleClick:true});</script>
 							</label>
 							<br/>
 							
 							<label for="location">Time
-							<input name="product[event_start_time]" class=" input-text" id="event_start_time" style="width: 110px !important;" type="text" value="">
+							<input name="product[event_start_time]" class=" input-text" id="event_start_time" style="width: 110px !important;" type="text" value="<?=$model->getEventStartTime()?>">
 							<i class="fa fa-clock-o" id="event_start_time_trig" style=" cursor:pointer;"></i> 
 							<script type="text/javascript">Calendar.setup({ inputField:"event_start_time", ifFormat:"%H:%M:%S", time24:"24", showsTime:true, button:"event_start_time_trig", align:"Bl", singleClick:true, weekNumbers:false, });</script>&nbsp;&nbsp;
 							</label>
@@ -52,14 +55,14 @@
 						<td class="label"><label>End</label></td>
 						<td class="value">
 							<label for="location">Date
-							<input name="product[event_end_date]" class=" input-text" id="event_end_date" style="width: 110px !important;" type="text" value="">
+							<input name="product[event_end_date]" class=" input-text" id="event_end_date" style="width: 110px !important;" type="text" value="<?=$model->getEventEndDate()?>">
 							<i class="fa fa-calendar" id="event_end_date_trig" style=" cursor:pointer;"></i> 
 							<script type="text/javascript">Calendar.setup({inputField:"event_end_date",ifFormat:"%m/%e/%Y",showsTime:false,button:"event_end_date_trig",align:"Bl",singleClick:true});</script>
 							</label>
 							<br/>
 							
 							<label for="location">Time
-							<input name="product[event_end_time]" class=" input-text" id="event_end_time" style="width: 110px !important;" type="text" value="">
+							<input name="product[event_end_time]" class=" input-text" id="event_end_time" style="width: 110px !important;" type="text" value="<?=$model->getEventEndTime()?>">
 							<i class="fa fa-clock-o" id="event_end_time_trig" style=" cursor:pointer;"></i> 
 							<script type="text/javascript">Calendar.setup({ inputField:"event_end_time", ifFormat:"%H:%M:%S", time24:"24", showsTime:true, button:"event_end_time_trig", align:"Bl", singleClick:true, weekNumbers:false, });</script>
 							</label>&nbsp;&nbsp;
