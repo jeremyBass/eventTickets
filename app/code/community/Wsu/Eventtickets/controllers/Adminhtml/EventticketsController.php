@@ -103,74 +103,133 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
         // check if data sent
         $data = $this->getRequest()->getPost();
 
+		Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+		$product = Mage::getModel('catalog/product');
 		
-		$data = array(
-			array(
-				'sku' => 'event1',
-				'_type' => Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT,//'simple',
-				'product_type' => 'main product',
-				'_attribute_set' => 'Entertainment Events',
-				//'_product_websites' => $websiteCodes,
-				//'website' => $websiteCodeId,
-				'name' => $data['product']['name'],
-				'price' => 0,
-				//'_category' => $eventsCatId,
-				'description' => $data['details'],
-				'short_description' => $data['details'],
-				'event_start_date' =>$data['product']['event_start_date'],
-				'event_start_time' =>$data['product']['event_start_time'],
-				'event_end_date' =>$data['product']['event_end_date'],
-				'event_end_time' =>$data['product']['event_end_time'],
-				'registration_closes_date' =>$data['product']['registration_closes_date'],
-				'registration_closed_time' =>$data['product']['registration_closes_time'],
-				'has_access_validation' =>$data['product']['has_access_validation'],
-				'access_code' =>$data['product']['access_code'],
-				'food_options' =>$data['product']['food_options'],
-				'request_seating' =>$data['product']['request_seating'],
-				'custom_accommodation_response' =>$data['product']['custom_accommodation_response'],
-				'has_sales_limit' =>$data['product']['has_sales_limit'],
-				'collect_guest_info' =>$data['product']['collect_guest_info'],
-				//'event_relative_end_time' =>$data['product']['event_relative_end_time'],
-				'meta_title' => 'Default',
-				'meta_description' => 'Default',
-				'meta_keywords' => 'Default',
-				'status' => 1,
-				'visibility' => 4,
-				'tax_class_id' => 2,
-				'qty' => 50,
-				'is_in_stock' => 1,
-				'enable_googlecheckout' => '0',
-				'gift_message_available' => '0',
-				'url_key' => strtolower(str_replace(' ','-',$data['product']['name'])),
-				/*'media_gallery' => $media_gallery_id,
-				"_media_attribute_id" => $media_gallery_id,
-				"_media_lable" =>"Game Day",
-				"_media_position" => 1,
-				"_media_is_disabled" => 0,
-				"_media_image" => "http://football-weekends.wsu.edu/Content/images/Landing05.jpg",
-				'image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
-				'small_image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
-				'thumbnail' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),*/
-			),
-		);	
+		$su = Mage::helper('storeutilities/utilities');
+		
+		$new = true;
+		$product->load($data['product']['id']);
+		if($product->getId()){
+			$new = false;
+		}
+		try{
+			$product
+			//->setStoreId(1) //you can set data in store scope
+			->setWebsiteIds(array(1)) //website ID the product is assigned to, as an array
+			->setAttributeSetId($su->getAttributeSetId($data['product']['attribute_set'])) //ID of a attribute set named 'default'
+			->setTypeId(Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT) //product type
+
+			->setSku( $data['product']['sku'] ) //SKU
+			->setName( $data['product']['name'] ) //product name
+			->setUrl_key( strtolower( str_replace( ' ', '-', $data['product']['name'] ) ) )
+			
+			//required parts to work
+			->setWeight(0)
+			->setStatus(1) //product status (1 - enabled, 2 - disabled)
+			->setTaxClassId(0) //tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
+			->setVisibility( Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH ) //catalog and search visibility
+			->setPrice(0)//$data['product']['price'])
+			->setCost(0)
+			->setDescription( $data['description'] )
+			->setShortDescription( $data['short_description'] )
+			//->setMetaTitle('test meta title 2')
+			//->setMetaKeyword('test meta keyword 2')
+			//->setMetaDescription('test meta description 2')
+
+		 	//event data
+		 	->setEventStartDate( $data['product']['event_start_date'] )
+			->setEventStartTime( $data['product']['event_start_time'] )
+			->setEventEndDate( $data['product']['event_end_date'] )
+			->setEventEndTime( $data['product']['event_end_time'] )
+			->setRegistrationClosesDate( $data['product']['registration_closes_date'] )
+			->setRegistrationClosedTime( $data['product']['registration_closes_time'] )
+			->setHasAccessValidation( $data['product']['has_access_validation'] )
+			->setAccessCode( $data['product']['access_code'] )
+			->setFoodOptions( $data['product']['food_options'] )
+			->setRequestSeating( $data['product']['request_seating'] )
+			->setCustomAccommodationResponse( $data['product']['custom_accommodation_response'] )
+			->setHasSalesLimit( $data['product']['has_sales_limit'] )
+			->setCollectGuestInfo( $data['product']['collect_guest_info'] )
+
+			//->setMediaGallery (array('images'=>array (), 'values'=>array ())) //media gallery initialization
+			//->addImageToMediaGallery('media/catalog/product/1/0/10243-1.png', array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
+		 /*
+			->setStockData(array(
+							   'use_config_manage_stock' => 0, //'Use config settings' checkbox
+							   'manage_stock'=>1, //manage stock
+							   'min_sale_qty'=>1, //Minimum Qty Allowed in Shopping Cart
+							   'max_sale_qty'=>2, //Maximum Qty Allowed in Shopping Cart
+							   'is_in_stock' => 1, //Stock Availability
+							   'qty' => 999 //qty
+						   )
+			)*/
+		 
+			//->setCategoryIds(array(3, 10))
+			; //assign product to categories
+			if($new){
+				$product->setCreatedAt(strtotime('now')); //product creation time
+			}
+			$product->setUpdatedAt(strtotime('now')); //product update time
+			$product->save();
+		}catch(Exception $e){
+			Mage::log($e->getMessage());
+		}
+//		$data = array(
+//			array(
+//				'sku' => 'event1',
+//				'_type' => Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT,//'simple',
+//				'product_type' => 'main product',
+//				'_attribute_set' => 'Entertainment Events',
+//				//'_product_websites' => $websiteCodes,
+//				//'website' => $websiteCodeId,
+//				'name' => $data['product']['name'],
+//				'price' => 0,
+//				//'_category' => $eventsCatId,
+//				'description' => $data['details'],
+//				'short_description' => $data['details'],
+//
+//				//'event_relative_end_time' =>$data['product']['event_relative_end_time'],
+//				'meta_title' => 'Default',
+//				'meta_description' => 'Default',
+//				'meta_keywords' => 'Default',
+//				'status' => 1,
+//				'visibility' => 4,
+//				'tax_class_id' => 2,
+//				'qty' => 50,
+//				'is_in_stock' => 1,
+//				'enable_googlecheckout' => '0',
+//				'gift_message_available' => '0',
+//				
+//				/*'media_gallery' => $media_gallery_id,
+//				"_media_attribute_id" => $media_gallery_id,
+//				"_media_lable" =>"Game Day",
+//				"_media_position" => 1,
+//				"_media_is_disabled" => 0,
+//				"_media_image" => "http://football-weekends.wsu.edu/Content/images/Landing05.jpg",
+//				'image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
+//				'small_image' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),
+//				'thumbnail' => basename("http://football-weekends.wsu.edu/Content/images/Landing05.jpg"),*/
+//			),
+//		);	
 		
 		
 
-
-$import = Mage::getModel('fastsimpleimport/import');
 /*
+$import = Mage::getModel('fastsimpleimport/import');
+
 var_dump($data);
 $import
 	->setPartialIndexing(true)
 	->setBehavior(Mage_ImportExport_Model_Import::BEHAVIOR_APPEND)
 	->dryrunProductImport($data);
 
-*/
+
 $import
 	->setPartialIndexing(true)
 	->setBehavior(Mage_ImportExport_Model_Import::BEHAVIOR_APPEND)
 	->processProductImport($data);
-
+*/
 		
 		
 		

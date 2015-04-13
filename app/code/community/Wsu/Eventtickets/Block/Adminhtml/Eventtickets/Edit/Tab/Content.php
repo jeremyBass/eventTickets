@@ -33,22 +33,22 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Content extends Mag
             'tab_id' => $this->getTabId()
         ));
         $fieldset         = $form->addFieldset('eligibility_fieldset', array(
-            'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Eligibility'),
+            'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Short description'),
             'class' => 'fieldset-wide'
         ));
-        $eligibilityField = $fieldset->addField('eligibility', 'editor', array(
-            'name' => 'eligibility',
+        $eligibilityField = $fieldset->addField('short_description', 'editor', array(
+            'name' => 'short_description',
             'style' => 'height:6em;',
             'required' => true,
             'disabled' => $isElementDisabled,
             'config' => $wysiwygConfig
         ));
         $fieldset         = $form->addFieldset('content_fieldset', array(
-            'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Details'),
+            'legend' => Mage::helper('wsu_eventtickets')->__('Eventtickets Description'),
             'class' => 'fieldset-wide'
         ));
-        $contentField     = $fieldset->addField('details', 'editor', array(
-            'name' => 'details',
+        $contentField     = $fieldset->addField('description', 'editor', array(
+            'name' => 'description',
             'style' => 'height:16em;',
             'required' => true,
             'disabled' => $isElementDisabled,

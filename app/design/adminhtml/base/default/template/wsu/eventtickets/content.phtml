@@ -1,7 +1,52 @@
 <?php 
-$model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
+$et = Mage::helper('wsu_eventtickets');
+$model = $et->getEventticketsItemInstance();
 $su = Mage::helper('storeutilities/utilities');
-?><div class="entry-edit">
+
+
+$attributeSetModel = Mage::getModel("eav/entity_attribute_set");
+$attributeSetModel->load($model->getAttributeSetId());
+$attributeSetName  = $attributeSetModel->getAttributeSetName();
+
+?>
+<style>
+#sku_area{
+	display:inline-block;
+	max-width:50%;
+	padding-right:35px;
+	box-sizing:border-box;
+	position:relative;
+}
+.editing_button{
+	font-size: 1.25em;
+	width: 25px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: pointer;
+	background-color: #d5d5d5;
+	height: 25px;
+	line-height: 1.25em;
+	text-align: center;
+	margin-top: -3px;
+	opacity:0.5;
+}
+#sku{
+	padding:0px 3px;
+}
+.editing_button:hover{ color:#585858; opacity:1; }
+#sku_area:hover .editing_button{ opacity:1; }
+span[contenteditable="true"]{
+	border:1px solid #D7D7D7;
+	box-shadow:0px 0px 5px #767676;
+}
+</style>
+
+
+<input type="hidden" value="<?=$model->getId()?>" name="product[id]" />
+
+
+<div class="entry-edit">
 	<div class="entry-edit-head">
 		<h4 class="icon-head head-edit-form-general fieldset-legend">General info</h4>
 		<div class="form-buttons"><!--<button title="Create New Attribute" class="scalable add" id="create_attribute_252" onclick="create_attribute_252JsObject.create();" type="button"><span><span><span>Create New Attribute</span></span></span></button><script type="text/javascript">var create_attribute_252JsObject=new Product.Attributes('create_attribute_252');create_attribute_252JsObject.setConfig({"tab_id":"group_252","group_id":"252","store_id":0,"attribute_set_id":"67","type_id":"simple","product_id":"171","url":"http:\/\/store.wsu.edu\/index.php\/admin\/catalog_product_attribute\/new\/group\/252\/tab\/group_252\/store\/0\/product\/171\/set\/67\/type\/simple\/popup\/1\/key\/2bbbb4ce18231281f2a8b68472685ddc\/"});</script>--></div>
@@ -13,7 +58,14 @@ $su = Mage::helper('storeutilities/utilities');
 					<tr>
 						<td class="label"><label for="name">Name</label></td>
 						<td class="value">
-							<input name="product[name]" class=" input-text" id="name" type="text" value="<?=$model->getName()?>"/>
+							<input name="product[name]" class=" input-text" id="name" type="text" value="<?=$model->getName()?>" style="width:50% !important"/>
+							<span id="sku_area" >
+								Sku: 
+								<span id="sku" ><?=$model->getSku()?></span>
+								<i id="edit_sku" class="editing_button fa fa-pencil"></i>
+							</span>
+							
+							<input type="hidden" value="<?=$model->getSku()?>" name="product[sku]" />
 						</td>
 						<td></td>
 					</tr>
@@ -21,9 +73,13 @@ $su = Mage::helper('storeutilities/utilities');
 						<td class="label"><label for="name">Event Type</label></td>
 						<td class="value">
 							<select name="product[attribute_set]" class=" select" id="attribute_set" style="width: 150px !important;">
-								<option selected="selected" <?=$su->selected(Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_GENERAL,$model->getAttributeSet())?> value="<?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_GENERAL?>">General Events</option>
-								<option <?=$su->selected(Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_SPORTS,$model->getAttributeSet())?>><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_SPORTS?></option>
-								<option <?=$su->selected(Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_ENTERTAINMENT,$model->getAttributeSet())?>><?=Mage::helper('wsu_eventtickets')->_ET_ATTRSET_NAME_ENTERTAINMENT?></option>
+							
+							
+							
+							
+								<option selected="selected" <?=$su->selected( $et->_ET_ATTRSET_NAME_GENERAL,$attributeSetName)?> value="<?=$et->_ET_ATTRSET_NAME_GENERAL?>">General Events</option>
+								<option <?=$su->selected( $et->_ET_ATTRSET_NAME_SPORTS,$attributeSetName)?>><?=$et->_ET_ATTRSET_NAME_SPORTS?></option>
+								<option <?=$su->selected( $et->_ET_ATTRSET_NAME_ENTERTAINMENT,$attributeSetName)?>><?=$et->_ET_ATTRSET_NAME_ENTERTAINMENT?></option>
 							</select>
 						</td>
 						<td></td>
@@ -91,3 +147,25 @@ $su = Mage::helper('storeutilities/utilities');
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			$('#edit_sku').on('click',function(){
+				if( ! $('#sku').is( $('[contenteditable="true"]') ) ){
+					$('#sku').attr('contenteditable',true);
+					$('#sku').bind("DOMSubtreeModified",function(){
+						var properTest = $('#sku').text().split(' ').join('-');
+						$('[name="product[sku]"]').val( properTest );
+						$('#sku').text( properTest );
+					});
+				}
+				$('#sku').off().on('blur',function(){
+					$('#sku').attr('contenteditable',false);
+					var properTest = $('#sku').text().split(' ').join('-');
+					$('[name="product[sku]"]').val( properTest );
+					$('#sku').text( properTest );
+				});
+			});
+		});
+	})(jQuery);
+</script>
