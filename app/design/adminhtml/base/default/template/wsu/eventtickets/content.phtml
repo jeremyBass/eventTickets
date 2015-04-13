@@ -160,8 +160,12 @@ span[contenteditable="true"]{
 	(function($){
 		$(function() {
 			$('#edit_sku').on('click',function(){
+				$('#name').off('blur');
+				$('#name').off('change');
+				
 				if( ! $('#sku').is( $('[contenteditable="true"]') ) ){
 					$('#sku').attr('contenteditable',true);
+					$('#sku').focus();
 					$('#sku').bind("DOMSubtreeModified",function(){
 						var properTest = $('#sku').text().split(' ').join('-');
 						$('[name="product[sku]"]').val( properTest );
@@ -175,6 +179,18 @@ span[contenteditable="true"]{
 					$('#sku').text( properTest );
 				});
 			});
+			if($('#sku').text()===""){
+				$('#name').on('keydown',function(){
+					var properTest = $('#name').val().split(' ').join('-');
+					$('[name="product[sku]"]').val( properTest );
+					$('#sku').text( properTest );
+				});
+				$('#name').on('blur',function(){
+					var properTest = $('#name').val().split(' ').join('-');
+					$('[name="product[sku]"]').val( properTest );
+					$('#sku').text( properTest );
+				});
+			}
 		});
 	})(jQuery);
 </script>
