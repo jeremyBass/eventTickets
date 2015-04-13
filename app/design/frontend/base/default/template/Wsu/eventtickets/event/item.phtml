@@ -1,5 +1,82 @@
-<?php $_helper = $this->helper('catalog/output'); ?>
-<?php $_product = $this->getProduct(); ?>
+<?php 
+$_helper = $this->helper('catalog/output'); 
+$_product = $this->getProduct();
+
+$RegistrationClosesDate = str_replace(' 00:00:00','',$_product->getRegistrationClosesDate());
+
+$RegistrationClosesTime = $_product->getRegistrationClosesDate();
+if( $RegistrationClosesTime == "" || $RegistrationClosesTime == "00:00:00" ){
+$RegistrationClosesTime = '23:59:00';
+}
+$current_time = date("Y-m-d H:i:s");
+$hasRegCloseDate = true;
+$showItem=true;
+$reg_deadline = $RegistrationClosesDate . ' ' . $RegistrationClosesTime;
+if($RegistrationClosesDate =="" || strtotime($current_time) < strtotime($reg_deadline)){
+	if($RegistrationClosesDate==""){
+		$hasRegCloseDate = false;
+	}
+}else{
+	$showItem=false;
+	if(Mage::helper('wsu_networksecurities')->adminInFrontend()){
+		$showItem=true;
+	}
+}
+
+$FoodOptions = $_product->getFoodOptions();
+$RequestSeating=$_product->getRequestSeating();
+$HasAccessValidation = $_product->getHasAccessValidation();
+$AccessCode = $_product->getAccessCode();
+$Location = $_product->getLocation();
+
+
+//this would be a block with in the event ext
+$eventStart = Mage::getModel('core/date')->timestamp($_product->getEventStartDateTime());
+$eventEnd = Mage::getModel('core/date')->timestamp($_product->getEventEndDateTime());
+
+
+$relative_starttime = $_product->getRelativeStarttime();
+$relative_endtime = $_product->getRelativeEndtime();
+
+
+
+$eventStart_date = date('l, F jS, Y',$eventStart);
+$eventEnd_date = date('l, F jS, Y',$eventEnd);
+
+$eventStart_time = date('g:i a',$eventStart);
+$eventEnd_time = date('g:i a',$eventEnd);		
+
+$dateStr="";
+$timeStr="";
+
+if($eventStart_date==$eventEnd_date){
+	$dateStr="<b>Date:</b> <i>$eventStart_date</i><br/>";
+
+	$timeStr= ($relative_starttime!="") ? $relative_starttime : $eventStart_time;
+	if($eventStart_time!=$eventEnd_time){
+		$timeStr .= " to ";
+		$timeStr .= ($relative_endtime!="") ? $relative_endtime : $eventEnd_time;
+	}
+	$timeStr= "<b>Time:</b> <i>$timeStr</i><br/>";
+	$dateTimeHtml=$dateStr.$timeStr;
+}
+if($eventStart_date!=$eventEnd_date){
+	$dateStr="<b>Date:</b> <i>$eventStart_date</i><br/>";
+	$timeStr= ($relative_starttime!="") ? $relative_starttime : $eventStart_time;
+
+	$timeStr= "<b>Time:</b> <i>$timeStr</i><br/>";
+	$dateTimeHtml=$dateStr.$timeStr;
+
+	$dateStr="<b>Date:</b> <i>$eventEnd_date</i><br/>";
+	$timeStr= ($relative_endtime!="") ? $relative_endtime : $eventEnd_time;
+
+	$timeStr= "<b>Time:</b> <i>$timeStr</i><br/>";
+
+	$dateTimeHtml=$dateTimeHtml.$dateStr.$timeStr;
+}
+
+
+?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
@@ -15,9 +92,9 @@
         <div class="product-shop">
             <div class="product-name">
                 <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
-                <h2><?php echo strftime("%A %e, %B %Y",strtotime($_product->getEventstartdate())); ?></h2>
+                <h2><?php echo strftime("%A %e, %B %Y",strtotime($_product->getEventStartDate())); ?></h2>
 				<?php               
-                    $cdate = strtotime($_product->getEventstartdate());
+                    $cdate = strtotime($_product->getEventStartDate());
                     $today = time();
                     $tillevent = $cdate - $today;
                     if ($tillevent < 0) { $tillevent = 0; }
@@ -43,6 +120,16 @@
                 <?php $qtyStock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();
 					echo sprintf("Currently there are %d tickets left",$qtyStock);
 				 ?>
+				 
+					<?php if($HasAccessValidation): ?>
+						<div class="validation_overlay">
+							<div class="access_form">Enter Access Code<br/>
+								<input type="text" class="full" data-valid="<?=$AccessCode?>"/>
+							</div>
+						</div>
+					<?php endif; ?>
+				 
+				 
                     <div class="add-to-box">
                         <?php if($_product->isSaleable()): ?>
                             <?php echo $this->getChildHtml('addtocart') ?>
