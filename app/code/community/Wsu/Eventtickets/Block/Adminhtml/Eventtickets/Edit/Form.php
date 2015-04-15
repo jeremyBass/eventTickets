@@ -21,8 +21,9 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Form extends Mage_Admin
             'method'  => 'post',
             'enctype' => 'multipart/form-data'
         ));
-
+		
         $form->setUseContainer(true);
+		
         $this->setForm($form);
         return parent::_prepareForm();
     }

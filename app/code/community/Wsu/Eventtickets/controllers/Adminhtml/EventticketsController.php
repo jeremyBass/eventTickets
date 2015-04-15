@@ -39,6 +39,30 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
         $this->_initAction();
         $this->renderLayout();
     }
+	
+	public function categoriesAction(){
+		$this->_initProduct();
+		$this->loadLayout();
+		$this->renderLayout();
+	}
+	
+	public function categoriesJsonAction(){
+		$this->_initProduct();
+		$this->getResponse()->setBody(
+			$this->getLayout()->createBlock('wsu_eventtickets/adminhtml_eventtickets_edit_tab_categories')
+				->getCategoryChildrenJson($this->getRequest()->getParam('category'))
+		);
+	}
+	protected function _initProduct(){
+		$productId  = (int) $this->getRequest()->getParam('id');
+		$product    = Mage::getModel('catalog/product');
+	
+		if ($productId) {
+			$product->load($productId);
+		}
+		Mage::register('current_product', $product);
+		return $product;
+	}
 
     /**
      * Create new Eventtickets item

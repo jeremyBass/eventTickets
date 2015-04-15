@@ -9,5 +9,10 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tabs extends Mage_Admin
         $this->setId('page_tabs');
         $this->setDestElementId('edit_form');
         $this->setTitle(Mage::helper('wsu_eventtickets')->__('Ticket Profile'));
+		//$this->addTab('categories', array(
+//			'label' => Mage::helper('wsu_eventtickets')->__('Associated categories'),
+//			'url'   => $this->getUrl('*/*/categories', array('_current' => true)),
+//			'class'    => 'ajax'
+//		));
     }
 }
