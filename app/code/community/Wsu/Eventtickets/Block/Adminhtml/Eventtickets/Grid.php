@@ -51,11 +51,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
             'header'    => Mage::helper('wsu_eventtickets')->__('Title'),
             'index'     => 'name',
         ));
-		
-		/*$this->addColumn('details', array(
-            'header'    => Mage::helper('wsu_eventtickets')->__('Details'),
-            'index'     => 'details',
-        ));*/
+
 		$this->addColumn('event_start_date', array(
             'header'    => Mage::helper('wsu_eventtickets')->__('Starting on'),
             'sortable' => true,

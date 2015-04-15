@@ -45,6 +45,60 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
         return parent::_prepareCollection();
     }
 
+
+
+
+    protected function _addColumnFilterToCollection($column){
+        $filterArr = Mage::registry('preparedFilter');
+        /*if (($column->getId() === 'store_id' || $column->getId() === 'status') 
+			&& $column->getFilter()->getValue() && strpos($column->getFilter()->getValue(), ',')) {
+            $_inNin = explode(',', $column->getFilter()->getValue());
+            $inNin = array();
+            foreach ($_inNin as $k => $v) {
+                if (is_string($v) && strlen(trim($v))) {
+                    $inNin[] = trim($v);
+                }
+            }
+            if (count($inNin)>1 && in_array($inNin[0], array('in', 'nin'))) {
+                $in = $inNin[0];
+                $values = array_slice($inNin, 1);
+                $this->getCollection()->addFieldToFilter($column->getId(), array($in => $values));
+            } else {
+                parent::_addColumnFilterToCollection($column);
+            }
+        } elseif (is_array($filterArr) && array_key_exists($column->getId(), $filterArr) && isset($filterArr[$column->getId()])) {
+            $this->getCollection()->addFieldToFilter($column->getId(), $filterArr[$column->getId()]);
+        } else {
+            parent::_addColumnFilterToCollection($column);
+        }*/
+		
+		//print((string)$this->getCollection()->getSelect());
+		//var_dump($filterArr);
+        //Zend_Debug::dump((string)$this->getCollection()->getSelect(), 'Prepared filter:');
+		
+		/*
+		Mage::unregister('dyno_col'); 
+		Mage::register('dyno_col', Mage::helper('xreports')->dynoColCallback($this->getCollection()));
+		$newCollection = new Varien_Data_Collection();
+		$dyno_col=(array)Mage::registry('dyno_col');
+		
+		foreach($this->getCollection() as $item){
+			foreach($dyno_col as $keyed){
+				$item->setData("${keyed}",Mage::helper('xreports')->dynoColValue($item,$keyed));
+			 }
+			 $newCollection->addItem($item);
+		}
+		
+		$this->setCollection($newCollection);
+		var_dump($newCollection);
+		
+		die();*/
+
+        return $this;
+    }
+
+
+
     /**
      * Prepare Grid columns
      *
@@ -70,40 +124,42 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 		//var_dump($_col);die();
 		if(empty($_col) || isset($_col['increment_id'])){
 			$this->addColumn('increment_id', array(
-				'header' => Mage::helper('xreports')->__('Order #'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Order #'),
 				'index' => 'increment_id',
 				'width' => '80',
 				'type' => 'text',
 				'sortable' => true,
-				'totals_label' => Mage::helper('xreports')->__('Total'),
+				'totals_label' => Mage::helper('wsu_eventtickets')->__('Total'),
 				'html_decorators' => array('nobr')
 			));
+			//var_dump($this);
+			//die('should have added the increment_id col');
 		}
 		if(empty($_col) || isset($_col['sku'])){
 			$this->addColumn('sku', array(
-				'header' => Mage::helper('xreports')->__('Sku'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Sku'),
 				'align' => 'left',
 				'index' => 'sku',
 				'type' => 'text',
 				'width' => '200',
-				'renderer' => 'Wsu_Xreports_Block_Adminhtml_Report_Guestreport_Renderer_Sku',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Sku',
 				'sortable' => true
 			));
 		}
 		if(empty($_col) || isset($_col['name'])){
 			$this->addColumn('name', array(
-				'header' => Mage::helper('xreports')->__('Name'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Name'),
 				'align' => 'left',
 				'index' => 'name',
 				'type' => 'text',
 				'width' => '200',
-				'renderer' => 'Wsu_Xreports_Block_Adminhtml_Report_Guestreport_Renderer_Productname',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Productname',
 				'sortable' => true
 			));
 		}		
 		if(empty($_col) || isset($_col['customer_firstname'])){
 			$this->addColumn('customer_firstname', array(
-				'header' => Mage::helper('xreports')->__('Customer first name'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Customer first name'),
 				'align' => 'left',
 				'width' => '250',
 				'index' => 'customer_firstname',
@@ -113,7 +169,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 		}
 		if(empty($_col) || isset($_col['customer_lastname'])){
 			$this->addColumn('customer_lastname', array(
-				'header' => Mage::helper('xreports')->__('Customer last name'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Customer last name'),
 				'align' => 'left',
 				'width' => '250',
 				'index' => 'customer_lastname',
@@ -123,25 +179,25 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 		}
 		if(empty($_col) || isset($_col['total_qty_ordered'])){
 			$this->addColumn('total_qty_ordered', array(
-				'header' => Mage::helper('xreports')->__('Qty. Ordered'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Qty. Ordered'),
 				'align' => 'left',
 				'index' => 'total_qty_ordered',
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Xreports_Block_Adminhtml_Report_Guestreport_Renderer_Qtyordered',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyordered',
 			));
 		}
 		$dyno_col=(array)Mage::registry('dyno_col');
 		foreach($dyno_col as $keyed){
 			$this->addColumn("option_${keyed}", array(
-				'header' => Mage::helper('xreports')->__('Option').' '.str_replace('_',' ',$keyed),
+				'header' => Mage::helper('wsu_eventtickets')->__('Option').' '.str_replace('_',' ',$keyed),
 				'index' => "${keyed}",
 				'type' => 'text',
 				'width' => '100',
 				'sortable' => true,
 				'filter' => false,
-				'renderer' => 'Wsu_Xreports_Block_Adminhtml_Report_Guestreport_Renderer_Option'
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Option'
 			));	
 		}
 		
@@ -149,12 +205,12 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 		
 		if(empty($_col) || isset($_col['created_at'])){
 			$this->addColumn('created_at', array(
-				'header' => Mage::helper('xreports')->__('Order Date'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Order Date'),
 				'index' => 'main_table.created_at',
 				'type' => 'datetime',
 				'width' => '100',
 				'sortable' => true,
-				'renderer' => 'Wsu_Xreports_Block_Adminhtml_Report_Salesreport_Renderer_Createdat',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Createdat',
 				'filter_condition_callback' => array($this, '_fromFilter'),
 			));
 		}
@@ -172,12 +228,12 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 
 		if(empty($_col) || isset($_col['dyno_options'])){
 			$this->addColumn('dyno_options', array(
-				'header' => Mage::helper('xreports')->__('Item options'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Item options'),
 				'align' => 'left',
 				'width' => '250',
 				'index' => 'increment_id',
 				'type' => 'text',
-				'renderer' => 'Wsu_Xreports_Block_Adminhtml_Report_Salesreport_Renderer_Item',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Item',
 				'sortable' => true
 			));
 		}
@@ -185,43 +241,43 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 		
 		if(empty($_col) || isset($_col['qty_invoiced'])){
 			$this->addColumn('qty_invoiced', array(
-				'header' => Mage::helper('xreports')->__('Qty. Invoiced'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Qty. Invoiced'),
 				'align' => 'left',
 				'index' => 'qty_invoiced',
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Xreports_Block_Adminhtml_Report_Guestreport_Renderer_Qtyinvoiced',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyinvoiced',
 			));
 		}
 		
 		if(empty($_col) || isset($_col['qty_shipped'])){
 			$this->addColumn('qty_shipped', array(
-				'header' => Mage::helper('xreports')->__('Qty. Shipped'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Qty. Shipped'),
 				'align' => 'left',
 				'index' => 'qty_shipped',
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Xreports_Block_Adminhtml_Report_Guestreport_Renderer_Qtyshipped',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyshipped',
 			));
 		}
 		
 		if(empty($_col) || isset($_col['qty_refunded'])){
 			$this->addColumn('qty_refunded', array(
-				'header' => Mage::helper('xreports')->__('Qty. Refunded'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Qty. Refunded'),
 				'align' => 'left',
 				'index' => 'qty_refunded',
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Xreports_Block_Adminhtml_Report_Guestreport_Renderer_Qtyrefunded',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyrefunded',
 			));
 		}
 		
 		if(empty($_col) || isset($_col['subtotal'])){
 			$this->addColumn('subtotal', array(
-				'header' => Mage::helper('xreports')->__('Subtotal'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Subtotal'),
 				'align' => 'right',
 				'index' => 'subtotal',
 				'currency_code' => $currencyCode,
@@ -235,7 +291,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 				
 		if(empty($_col) || isset($_col['customer_email'])){
 			$this->addColumn('customer_email', array(
-				'header' => Mage::helper('xreports')->__('Customer Email'),
+				'header' => Mage::helper('wsu_eventtickets')->__('Customer Email'),
 				'align' => 'left',
 				'width' => '250',
 				'index' => 'customer_email',
@@ -244,9 +300,9 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 			));
 		}
 
-		//$this->addExportType('*/*/exportCsvEnhanced', Mage::helper('xreports')->__('Guest List'));
-        $this->addExportType('*/*/exportGuestReportCsv', Mage::helper('xreports')->__('CSV'));
-        //$this->addExportType('*/*/exportGuestReportExcel', Mage::helper('xreports')->__('Excel XML'));
+		//$this->addExportType('*/*/exportCsvEnhanced', Mage::helper('wsu_eventtickets')->__('Guest List'));
+        $this->addExportType('*/*/exportGuestReportCsv', Mage::helper('wsu_eventtickets')->__('CSV'));
+        //$this->addExportType('*/*/exportGuestReportExcel', Mage::helper('wsu_eventtickets')->__('Excel XML'));
 
         return parent::_prepareColumns();
     }
@@ -271,4 +327,28 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 	public function getCurrentCurrencyCode() {
         return Mage::app()->getStore()->getBaseCurrencyCode();
     }
+	protected function _fromFilter($collection, $column) {
+        /* if (!$value = $column->getFilter()->getValue()) {
+            return $this;
+        }
+		
+		var_dump($value);
+		
+		
+		if(isset($value['from'])){
+        	//$this->getCollection()->getSelect()->where( "main_table.created_at >= ?" , $value['from']->toString('Y-m-d H:i:s') );
+		}
+		
+		
+		Format our dates */
+
+		
+		
+		
+		
+		
+        return $this;
+    }
+
+
 }

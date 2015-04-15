@@ -1,4 +1,5 @@
 <?php
+
 $numColumns = sizeof($this->getColumns());
 $request = Mage::app()->getRequest();
 $requestData =    Mage::helper('adminhtml')->prepareFilterString($request->getParam('filter'));
@@ -216,6 +217,10 @@ $_col = $request->getParam('_col');
 <?php if($this->getMassactionBlock()->isAvailable()): ?>
 	<?php echo $this->getMassactionBlockHtml() ?>
 <?php endif ?>
+
+
+
+
 <div class="grid" style="min-height: <?php echo count($this->getCollection())*67?>px;">
     <div class="hor-scroll">
 		<table cellspacing="0" class="data" id="<?php echo $this->getId() ?>_table">

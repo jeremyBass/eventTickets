@@ -218,14 +218,14 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data {
 		
 		set_time_limit ('600');
 			Mage::unregister('dyno_col'); 
-			Mage::register('dyno_col', Mage::helper('xreports')->dynoColCallback($collection));
+			Mage::register('dyno_col', Mage::helper('wsu_eventtickets')->dynoColCallback($collection));
 			$newCollection = new Varien_Data_Collection();
 			$dyno_col=(array)Mage::registry('dyno_col');
 			$collection=Mage::registry('collection');
 			if(!empty($collection)){
 				foreach($collection as $item){
 					foreach($dyno_col as $keyed){
-						$value=Mage::helper('xreports')->dynoColValue($item,$keyed);
+						$value=Mage::helper('wsu_eventtickets')->dynoColValue($item,$keyed);
 						$item->setData("${keyed}",$value);
 					 }
 					 $newCollection->addItem($item);
@@ -234,6 +234,117 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data {
 		set_time_limit ('60');
 		return $newCollection;
 	}
+
+
+	// callback method
+	public function dynoColValue($_item,$key) {
+		$finalResult = array();
+		$dynoResult = $_item->getData('dynoresult');
+		if(isset($dynoResult)){
+			$finalResult=$dynoResult;
+		}else{
+			$model = Mage::getModel('sales/order')->load($_item->getId());
+			// Loop through all items in the cart
+			foreach ($model->getAllVisibleItems() as $item) {
+				$product = $item->getProduct();
+				// Array to hold the item's options
+				$result = array();
+				// Load the configured product options
+				$options = $item->getProductOptions();
+				//$finalResult = array_merge($finalResult, $options);
+				// Check for options
+				if (isset($options['info_buyRequest'])){
+					$info = $options['info_buyRequest'];
+					if (isset($info['options'])){
+					//	$result = array_merge($result, $info['options']);
+					}
+					if (isset($info['options']['additional_options'])){
+						$result = array_merge($result, unserialize($info['options']['additional_options']) );
+					}
+					if (!empty($info['attributes_info'])){
+						$result = array_merge($info['attributes_info'], $result);
+					}
+				}
+				$finalResult = array_merge($finalResult, $result);
+			}
+		}
+		foreach ($finalResult as $_option){
+			$label = trim($this->escapeHtml($_option['label']));
+			if ($label==$key){
+				return $_option['value'];
+			}
+		}
+		return "";
+	}
+
+
+	// callback method
+	public function dynoColCallback($collection) {
+		$optionkeyarray=array();
+		$request = Mage::app()->getRequest();
+		$requestData = Mage::helper('adminhtml')->prepareFilterString($request->getParam('filter'));
+		try{
+			$newCollection = new Varien_Data_Collection();
+			foreach($collection as $_item){
+				$finalResult = array();
+				$model = Mage::getModel('sales/order')->load($_item->getId());
+				
+				// Loop through all items in the cart
+				foreach ($model->getAllVisibleItems() as $item) {
+					$product = $item->getProduct();
+					$result = array();
+					if(isset( $requestData['sku'] ) && strtolower($requestData['sku'])==strtolower($item->getSku()) || !isset( $requestData['sku'] )){
+						// Array to hold the item's options
+						
+						// Load the configured product options
+						$options = $item->getProductOptions();
+						//$finalResult = array_merge($finalResult, $options);
+						// Check for options
+						if (isset($options['info_buyRequest'])){
+							$info = $options['info_buyRequest'];
+							if (isset($info['options'])){
+							//	$result = array_merge($result, $info['options']);
+							}
+							if (isset($info['options']['additional_options'])){
+								$result = array_merge($result, unserialize($info['options']['additional_options']) );
+							}
+							if (!empty($info['attributes_info'])){
+								$result = array_merge($info['attributes_info'], $result);
+							}
+						}
+						$finalResult = array_merge($finalResult, $result);
+					}
+				}
+					/*if($_item->getId()==94){
+						
+						var_dump($requestData['sku']);
+						var_dump($finalResult);
+						var_dump($model->getAllVisibleItems());
+						die('94');	
+					}*/
+				foreach ($finalResult as $_option){
+					$label = trim($this->escapeHtml($_option['label']));
+					if ($label!=="" && strpos($label,'guest_')===false ){
+						$optionkeyarray[]=$label;
+					}
+					if ( $label!=="" && strpos($label,'guest_')!==false && strpos($label,'_{%d%}_')===false ){
+						$optionkeyarray[]=$label;
+					}
+				}
+				
+				$_item->setData("dynoresult",$finalResult);
+				$newCollection->addItem($_item);
+			}
+			Mage::unregister('collection'); 
+			Mage::register('collection', $newCollection);
+		}catch(Exception $e){
+			Mage::log($e,Zend_Log::ERR,"xRport.txt");
+		}
+		$optionkeyarray=array_unique($optionkeyarray);
+		return $optionkeyarray;
+	}
+
+
 
 	
 }
