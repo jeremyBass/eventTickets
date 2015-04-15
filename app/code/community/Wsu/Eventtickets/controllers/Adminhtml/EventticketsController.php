@@ -137,6 +137,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 		if($product->getId()){
 			$new = false;
 		}
+		//var_dump($data);die();
 		try{
 			$product
 			//->setStoreId(1) //you can set data in store scope
@@ -189,7 +190,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 						   )
 			)*/
 		 
-			//->setCategoryIds(array(3, 10))
+			->setCategoryIds( explode(',', $data['category_ids']) )
 			; //assign product to categories
 			if($new){
 				$product->setCreatedAt(strtotime('now')); //product creation time

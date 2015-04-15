@@ -81,7 +81,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Edit_Tab_Categories extends 
 	
 	
 	
-    public function getProduct(){ //$model = Mage::helper('wsu_eventtickets')->getEventticketsItemInstance();
+    public function getProduct(){ 
         return Mage::helper('wsu_eventtickets')->getEventticketsItemInstance(); //use other registration key if you have one
     }
 
