@@ -84,7 +84,21 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
             'index'    => 'created_at',
             'type'     => 'datetime',
         ));
-
+        $this->addColumn('registered',
+            array(
+                'header'    => Mage::helper('wsu_eventtickets')->__('Registrants'),
+                'width'     => '100px',
+                'type'      => 'action',
+                'getter'    => 'getId',
+                'actions'   => array(array(
+                    'caption' => Mage::helper('wsu_eventtickets')->__('View'),
+                    'url'     => array('base' => '*/*/view_registrants'),
+                    'field'   => 'id'
+                )),
+                'filter'    => false,
+                'sortable'  => false,
+                'index'     => 'news',
+        ));
         $this->addColumn('action',
             array(
                 'header'    => Mage::helper('wsu_eventtickets')->__('Action'),
