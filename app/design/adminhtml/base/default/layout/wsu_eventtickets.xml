@@ -20,8 +20,9 @@
     </adminhtml_eventtickets_grid>
     <adminhtml_eventtickets_registrants>
         <reference name="content">
-            <block type="wsu_eventtickets/adminhtml_eventtickets_registrants" name="eventtickets" />
+            <block type="wsu_eventtickets/adminhtml_eventtickets_registrants" name="eventtickets_registrants" />
         </reference>
+        
     </adminhtml_eventtickets_registrants>
 
     <adminhtml_eventtickets_new>

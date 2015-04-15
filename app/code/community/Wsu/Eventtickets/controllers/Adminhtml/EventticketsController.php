@@ -73,15 +73,6 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
     }
 
 
-	/**
-     * View "registrants" for a Eventtickets item.  Note that a sale order is a mark for a registrant
-     */
-    public function registrantsAction() {
-        $this->loadLayout();
-        $this->renderLayout();
-
-    }
-
 
 
 
@@ -316,6 +307,18 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
         $this->loadLayout();
         $this->renderLayout();
     }
+
+
+
+	/**
+     * View "registrants" for a Eventtickets item.  Note that a sale order is a mark for a registrant
+     */
+    public function registrantsAction() {
+        $this->loadLayout();
+        $this->renderLayout();
+
+    }
+
 
     /**
      * Flush Eventtickets Posts Images Cache action

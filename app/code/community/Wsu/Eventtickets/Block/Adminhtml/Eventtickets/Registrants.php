@@ -18,7 +18,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
         $this->setSaveParametersInSession(true);
         $this->setUseAjax(true);*/
 		
-        $this->setTemplate('wsu/xreports/report/guestreport/grid.phtml');
+        $this->setTemplate('wsu/eventtickets/report/guestreport/grid.phtml');
         $this->setId('eventtickets_list_registrants');
         $this->setPagerVisibility(false);
         //$this->setCountTotals(true);
@@ -67,7 +67,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants extends Mage_Adm
 		
 
 		//*/
-		//var_dump($_col);
+		//var_dump($_col);die();
 		if(empty($_col) || isset($_col['increment_id'])){
 			$this->addColumn('increment_id', array(
 				'header' => Mage::helper('xreports')->__('Order #'),
