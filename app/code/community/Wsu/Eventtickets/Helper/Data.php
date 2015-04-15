@@ -125,6 +125,115 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data {
 	}
 	
 	
-	
+	public function _findCollection($id=0){
+		$request = Mage::app()->getRequest();
+        $requestData = Mage::helper('adminhtml')->prepareFilterString($request->getParam('filter'));
+		
+		//var_dump($requestData);die();
+		
+		
+		$collection = Mage::getModel('sales/order')->getCollection();
+
+		$fromDate = date('Y-m-d H:i:s', strtotime("-1 year", time()));
+		$toDate = date('Y-m-d H:i:s', strtotime('now'));
+		if (!empty($requestData) && isset($requestData['created_at'])) {
+			if( isset($requestData['created_at']['from'])
+				 && strtotime($requestData['created_at']['from'].' 00:00:00' ) < strtotime('now')
+				 && strtotime($requestData['created_at']['from'].' 00:00:00' ) < strtotime($requestData['created_at']['to'].' 23:59:59' )
+			){
+				$fromDate=date('Y-m-d H:i:s', strtotime( $requestData['created_at']['from'].' 00:00:00' ));
+			}
+			if( isset($requestData['created_at']['to']) 
+			    && strtotime($requestData['created_at']['to'].' 23:59:59' )<strtotime('now')
+			){
+				$toDate=date('Y-m-d H:i:s', strtotime($requestData['created_at']['to'].' 23:59:59' ));
+			}
+		}
+		$collection->addAttributeToFilter('main_table.created_at', array('from'=>$fromDate,'to'=>$toDate));
+
+		$collection->getSelect()->join(
+				Mage::getSingleton('core/resource')->getTableName('sales_flat_order_address'),
+				'main_table.billing_address_id = ' . Mage::getSingleton('core/resource')->getTableName('sales_flat_order_address') . '.entity_id',
+					array('country_id',
+						'region',
+						'city',
+						'postcode',
+						'main_table.total_qty_ordered',
+						'main_table.subtotal',
+						'main_table.tax_amount',
+						'main_table.discount_amount',
+						'main_table.grand_total',
+						'main_table.total_invoiced',
+						'main_table.total_refunded'
+					 )
+			);
+		$collection->join(
+				'sales/order_item', '`sales/order_item`.order_id=`main_table`.entity_id', array(
+					'skus' => new Zend_Db_Expr('group_concat(`sales/order_item`.sku SEPARATOR ",")'),
+					'names' => new Zend_Db_Expr('group_concat(`sales/order_item`.name SEPARATOR ",")'),
+					'product_id',
+					'product_type',
+					'qty_invoiced',
+					'qty_shipped',
+					'qty_refunded',
+				)
+		);
+		$collection->getSelect()->group('main_table.entity_id');
+
+		$storeIds = $request->getParam('store_ids');
+		if (!is_null($storeIds)) {
+			$arrStoreIds = explode(',', $storeIds);
+			$collection->getSelect()->where('main_table.store_id IN(?)', $arrStoreIds);
+		}
+		if (!empty($requestData)) {
+			if(isset( $requestData['status'] )){
+				$collection->getSelect()->Where('main_table.status = ?',$requestData['status']);
+			}
+			if(isset( $requestData['customer_email'] )){
+				$collection->getSelect()->Where('main_table.customer_email LIKE CONCAT(?,\'%\')',$requestData['customer_email']);
+			}
+			if(isset( $requestData['customer_firstname'] )){
+				$collection->getSelect()->Where('main_table.customer_firstname LIKE CONCAT(?,\'%\')',$requestData['customer_firstname']);
+			}
+			if(isset( $requestData['customer_lastname'] )){
+				$collection->getSelect()->Where('main_table.customer_lastname LIKE CONCAT(?,\'%\')',$requestData['customer_lastname']);
+			}
+			if(isset( $requestData['name'] )){
+				$collection->getSelect()->Having('names LIKE CONCAT(\'%\',?,\'%\')',$requestData['name']);
+			}
+			if(isset( $requestData['sku'] )){
+				$collection->getSelect()->Having('skus LIKE CONCAT(\'%\',?,\'%\')', $requestData['sku']);
+			}
+			if(isset( $requestData['product_id'] )){
+				$collection->getSelect()->Where('product_id = ?', $requestData['product_id']);
+			}
+        }
+		if(isset( $id ) && $id>0){
+			$collection->getSelect()->Where('product_id = ?', $id);
+		}
+		
+		$collection->getSelect()->Where('product_type = ?', Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT);
+		//print(Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT);
+		//print((string) $collection->getSelect());die();
+		
+		set_time_limit ('600');
+			Mage::unregister('dyno_col'); 
+			Mage::register('dyno_col', Mage::helper('xreports')->dynoColCallback($collection));
+			$newCollection = new Varien_Data_Collection();
+			$dyno_col=(array)Mage::registry('dyno_col');
+			$collection=Mage::registry('collection');
+			if(!empty($collection)){
+				foreach($collection as $item){
+					foreach($dyno_col as $keyed){
+						$value=Mage::helper('xreports')->dynoColValue($item,$keyed);
+						$item->setData("${keyed}",$value);
+					 }
+					 $newCollection->addItem($item);
+				}
+			}
+		set_time_limit ('60');
+		return $newCollection;
+	}
+
 	
 }

@@ -92,7 +92,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
                 'getter'    => 'getId',
                 'actions'   => array(array(
                     'caption' => Mage::helper('wsu_eventtickets')->__('View'),
-                    'url'     => array('base' => '*/*/view_registrants'),
+                    'url'     => array('base' => '*/*/registrants'),
                     'field'   => 'id'
                 )),
                 'filter'    => false,

@@ -72,6 +72,19 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
         $this->_forward('edit');
     }
 
+
+	/**
+     * View "registrants" for a Eventtickets item.  Note that a sale order is a mark for a registrant
+     */
+    public function registrantsAction() {
+        $this->loadLayout();
+        $this->renderLayout();
+
+    }
+
+
+
+
     /**
      * Edit Eventtickets item
      */

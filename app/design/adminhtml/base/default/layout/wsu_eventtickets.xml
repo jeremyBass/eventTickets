@@ -18,15 +18,16 @@
     <adminhtml_eventtickets_grid>
         <block type="wsu_eventtickets/adminhtml_eventtickets_grid" name="root"/>
     </adminhtml_eventtickets_grid>
+    <adminhtml_eventtickets_registrants>
+        <reference name="content">
+            <block type="wsu_eventtickets/adminhtml_eventtickets_registrants" name="eventtickets" />
+        </reference>
+    </adminhtml_eventtickets_registrants>
 
     <adminhtml_eventtickets_new>
         <update handle="adminhtml_eventtickets_edit" />
     </adminhtml_eventtickets_new>
-	<!--<adminhtml_eventtickets_product_categories>
-		<block type="core/text_list" name="root" output="toHtml">
-			
-		</block>
-	</adminhtml_eventtickets_product_categories>-->
+	
     <adminhtml_eventtickets_edit>
         <update handle="editor"/>
         <reference name="content">
