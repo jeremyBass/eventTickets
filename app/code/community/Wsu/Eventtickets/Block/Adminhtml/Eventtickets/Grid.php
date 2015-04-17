@@ -88,7 +88,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
                 'getter'    => 'getId',
                 'filter'    => false,
                 'sortable'  => false,
-				'renderer'  => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Preview',
+				'renderer'  => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Preview',
                 'index'     => 'news',
         ));
         $this->addColumn('registered',
@@ -104,6 +104,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
                 )),
                 'filter'    => false,
                 'sortable'  => false,
+				'renderer'  => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Getlist',
                 'index'     => 'news',
         ));
         $this->addColumn('action',

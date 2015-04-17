@@ -299,7 +299,17 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'sortable' => true
 			));
 		}
-
+        $this->addColumn('edit',
+            array(
+                'header'    => Mage::helper('wsu_eventtickets')->__('Edit'),
+                'width'     => '100px',
+                'type'      => 'action',
+                'getter'    => 'getId',
+                'filter'    => false,
+                'sortable'  => false,
+				'renderer'  => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Saleedit',
+                'index'     => 'news',
+        ));
 		//$this->addExportType('*/*/exportCsvEnhanced', Mage::helper('wsu_eventtickets')->__('Guest List'));
         $this->addExportType('*/*/exportGuestReportCsv', Mage::helper('wsu_eventtickets')->__('CSV'));
         //$this->addExportType('*/*/exportGuestReportExcel', Mage::helper('wsu_eventtickets')->__('Excel XML'));
@@ -312,18 +322,18 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
      *
      * @return string
      */
-    public function getRowUrl($row) {
-        return $this->getUrl('*/sales_order/view', array('order_id' => $row->getId()));
-    }
+    //public function getRowUrl($row) {
+    //    return $this->getUrl('*/sales_order/view', array('order_id' => $row->getId()));
+    //}
 
     /**
      * Grid url getter
      *
      * @return string current grid url
      */
-    public function getGridUrl() {
-        return $this->getUrl('*/*/registrants', array('_current' => true));
-    }
+    //public function getGridUrl() {
+    //    return $this->getUrl('*/*/registrants', array('_current' => true));
+    //}
 	public function getCurrentCurrencyCode() {
         return Mage::app()->getStore()->getBaseCurrencyCode();
     }
