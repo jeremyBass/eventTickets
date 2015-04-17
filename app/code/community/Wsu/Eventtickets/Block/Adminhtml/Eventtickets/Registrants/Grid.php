@@ -313,7 +313,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
      * @return string
      */
     public function getRowUrl($row) {
-        return $this->getUrl('*/*/edit', array('id' => $row->getId()));
+        return $this->getUrl('*/sales_order/view', array('order_id' => $row->getId()));
     }
 
     /**
