@@ -142,7 +142,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'index' => 'sku',
 				'type' => 'text',
 				'width' => '200',
-				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Sku',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Sku',
 				'sortable' => true
 			));
 		}
@@ -153,7 +153,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'index' => 'name',
 				'type' => 'text',
 				'width' => '200',
-				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Productname',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Productname',
 				'sortable' => true
 			));
 		}		
@@ -185,7 +185,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyordered',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Qtyordered',
 			));
 		}
 		$dyno_col=(array)Mage::registry('dyno_col');
@@ -197,7 +197,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'width' => '100',
 				'sortable' => true,
 				'filter' => false,
-				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Option'
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Option'
 			));	
 		}
 		
@@ -210,7 +210,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'type' => 'datetime',
 				'width' => '100',
 				'sortable' => true,
-				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Createdat',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Createdat',
 				'filter_condition_callback' => array($this, '_fromFilter'),
 			));
 		}
@@ -233,7 +233,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'width' => '250',
 				'index' => 'increment_id',
 				'type' => 'text',
-				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Item',
+				'renderer' => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Item',
 				'sortable' => true
 			));
 		}
@@ -247,7 +247,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyinvoiced',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Qtyinvoiced',
 			));
 		}
 		
@@ -259,7 +259,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyshipped',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Qtyshipped',
 			));
 		}
 		
@@ -271,7 +271,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Grid extends Mag
 				'type' => 'number',
 				'total' => 'sum',
 				'sortable' => true,
-				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Qtyrefunded',
+				'renderer'          => 'Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Renderer_Qtyrefunded',
 			));
 		}
 		

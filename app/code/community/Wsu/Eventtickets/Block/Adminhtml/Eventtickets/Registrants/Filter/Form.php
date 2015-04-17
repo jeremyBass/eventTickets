@@ -1,6 +1,6 @@
 <?php
 
-class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Filter_Form extends Mage_Adminhtml_Block_Widget_Form {
+class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Registrants_Filter_Form extends Mage_Adminhtml_Block_Widget_Form {
 
     /**
      * Report type options
