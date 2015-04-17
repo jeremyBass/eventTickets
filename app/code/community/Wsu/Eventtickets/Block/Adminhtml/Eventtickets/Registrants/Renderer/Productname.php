@@ -4,7 +4,6 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Productname extends
 
     public function render(Varien_Object $row) {
         $id = $row->getData('entity_id');
-		
 		$request = Mage::app()->getRequest();
 		$requestData = Mage::helper('adminhtml')->prepareFilterString($request->getParam('filter'));
 		
@@ -23,8 +22,6 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Renderer_Productname extends
 			$model->getFirstItem();
 			$html = $model->getName();
 		}
-		
-		
 		
         //$model = Mage::getModel('sales/order_item')->getCollection()->addFieldToFilter('order_id', array('eq' => $id))->getFirstItem();
         //$html = $model->getName();

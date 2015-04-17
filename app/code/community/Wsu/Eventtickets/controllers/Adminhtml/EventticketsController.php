@@ -314,10 +314,46 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
      * View "registrants" for a Eventtickets item.  Note that a sale order is a mark for a registrant
      */
     public function registrantsAction() {
-        $this->loadLayout();
-        $this->renderLayout();
-
+		$this->_title($this->__('wsu_eventtickets'))->_title($this->__('Registrants'));
+		if((Mage::registry('csv_export')!=true)){ Mage::register('csv_export', false); }
+		
+		$collection = Mage::helper('wsu_eventtickets')->_findCollection();
+		Mage::unregister('collection');
+		Mage::register( 'collection', $collection );
+		
+		$this->_initAction()
+				->_setActiveMenu('eventtickets/manage')
+				->_addBreadcrumb(Mage::helper('wsu_eventtickets')->__('Registrants'), Mage::helper('wsu_eventtickets')->__('Registrants'))
+				->_addContent($this->getLayout()->createBlock('wsu_eventtickets/adminhtml_eventtickets_registrants_grid'));
+		$this->renderLayout();
+		Mage::unregister('csv_export');
     }
+
+    public function exportGuestReportCsvAction() {
+        $fileName = 'guest_report-' . gmdate('YmdHis') . '.csv';
+		
+		$collection = Mage::helper('wsu_eventtickets')->_findCollection();
+		Mage::unregister('collection');
+		Mage::register( 'collection', $collection );
+		
+		$grid = $this->getLayout()->createBlock('wsu_eventtickets/adminhtml_eventtickets_registrants_grid');
+        $this->_initReportAction($grid);
+		
+        $this->_prepareDownloadResponse($fileName, $grid->getCsvFile($fileName));
+    }
+
+    public function exportGuestReportExcelAction() {
+        $fileName = 'guest_report.xml';
+		
+		$collection = Mage::helper('xreports')->_findCollection();
+		Mage::unregister('collection');
+		Mage::register( 'collection', $collection );
+		
+		$grid = $this->getLayout()->createBlock('wsu_eventtickets/adminhtml_eventtickets_registrants_grid');
+        $this->_initReportAction($grid);
+        $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
+    }
+
 
 
     /**
