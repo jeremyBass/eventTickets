@@ -18,12 +18,12 @@
     <adminhtml_eventtickets_grid>
         <block type="wsu_eventtickets/adminhtml_eventtickets_grid" name="root"/>
     </adminhtml_eventtickets_grid>
-    <adminhtml_eventtickets_registrants>
+    <!--<adminhtml_eventtickets_registrants>
         <reference name="content">
             <block type="wsu_eventtickets/adminhtml_eventtickets_registrants" name="eventtickets_registrants" />
         </reference>
         
-    </adminhtml_eventtickets_registrants>
+    </adminhtml_eventtickets_registrants>-->
 
     <adminhtml_eventtickets_new>
         <update handle="adminhtml_eventtickets_edit" />
