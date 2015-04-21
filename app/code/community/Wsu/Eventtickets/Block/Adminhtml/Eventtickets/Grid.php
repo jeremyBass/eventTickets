@@ -28,7 +28,7 @@ class Wsu_Eventtickets_Block_Adminhtml_Eventtickets_Grid extends Mage_Adminhtml_
     protected function _prepareCollection() {
         $collection = Mage::getResourceModel('catalog/product_collection')
         ->addAttributeToSelect('*')
-        ->addAttributeToFilter('type_id', Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT);//Mage::getModel('wsu_eventtickets/eventtickets')->getResourceCollection();
+        ->addAttributeToFilter('type_id', Wsu_Eventtickets_Model_Product_Type::TYPE_CP_PRODUCT);//Mage::getModel('wsu_eventtickets/eventtickets')->getResourceCollection();
 		//echo "<pre>";var_dump($collection);echo "</pre>";
 
         $this->setCollection($collection);

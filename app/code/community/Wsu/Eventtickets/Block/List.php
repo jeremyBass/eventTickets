@@ -14,7 +14,7 @@ class Wsu_Eventtickets_Block_List extends Mage_Core_Block_Template {
     protected function _getCollection() {
         return Mage::getResourceModel('catalog/product_collection')
         ->addAttributeToSelect('*')
-        ->addAttributeToFilter('type_id', Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT);
+        ->addAttributeToFilter('type_id', Wsu_Eventtickets_Model_Product_Type::TYPE_CP_PRODUCT);
     }
     /**
      * Retrieve prepared eventtickets collection

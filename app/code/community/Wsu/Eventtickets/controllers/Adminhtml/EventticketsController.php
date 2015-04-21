@@ -147,7 +147,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 			//->setStoreId(1) //you can set data in store scope
 			->setWebsiteIds(array(1)) //website ID the product is assigned to, as an array
 			->setAttributeSetId($su->getAttributeSetId($data['product']['attribute_set'])) //ID of a attribute set named 'default'
-			->setTypeId(Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT) //product type
+			->setTypeId(Wsu_Eventtickets_Model_Product_Type::TYPE_CP_PRODUCT) //product type
 
 			->setSku( $data['product']['sku'] ) //SKU
 			->setName( $data['product']['name'] ) //product name

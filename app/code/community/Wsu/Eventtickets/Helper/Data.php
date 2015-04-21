@@ -212,8 +212,8 @@ class Wsu_Eventtickets_Helper_Data extends Mage_Core_Helper_Data {
 			$collection->getSelect()->Where('product_id = ?', $id);
 		}
 		
-		$collection->getSelect()->Where('product_type = ?', Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT);
-		//print(Wsu_eventTickets_Model_Product_Type::TYPE_CP_PRODUCT);
+		$collection->getSelect()->Where('product_type = ?', Wsu_Eventtickets_Model_Product_Type::TYPE_CP_PRODUCT);
+		//print(Wsu_Eventtickets_Model_Product_Type::TYPE_CP_PRODUCT);
 		//print((string) $collection->getSelect());die();
 		
 		set_time_limit ('600');
