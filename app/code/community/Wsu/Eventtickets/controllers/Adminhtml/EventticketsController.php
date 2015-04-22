@@ -142,6 +142,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 			$new = false;
 		}
 		//var_dump($data);die();
+		$hasError = false;
 		try{
 			$product
 			//->setStoreId(1) //you can set data in store scope
@@ -201,38 +202,24 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 			}
 			$product->setUpdatedAt(strtotime('now')); //product update time
 			$product->save();
+			if ($this->getRequest()->getParam('back')) {
+				$redirectPath   = '*/*/edit';
+				$redirectParams = array('id' => $product->getId());
+			}
+		}catch (Mage_Core_Exception $e) {
+			$hasError = true;
+			$this->_getSession()->addError($e->getMessage());
 		}catch(Exception $e){
+			$hasError = true;
 			Mage::log($e->getMessage());
+			Mage::helper('wsu_eventtickets')->__('An error occurred while saving the eventtickets item.');
 		}
-		
-//
-//            try {
-//                $hasError = false;
-//
-//                // check if 'Save and Continue'
-//                if ($this->getRequest()->getParam('back')) {
-//                    $redirectPath   = '*/*/edit';
-//                    $redirectParams = array('id' => $model->getId());
-//                }
-//            } catch (Mage_Core_Exception $e) {
-//                $hasError = true;
-//                $this->_getSession()->addError($e->getMessage());
-//            } catch (Exception $e) {
-//                $hasError = true;
-//                $this->_getSession()->addException($e,
-//                    Mage::helper('wsu_eventtickets')->__('An error occurred while saving the eventtickets item.')
-//                );
-//            }
-//
-//            if ($hasError) {
-//                $this->_getSession()->setFormData($data);
-//                $redirectPath   = '*/*/edit';
-//                $redirectParams = array('id' => $this->getRequest()->getParam('id'));
-//            }
-//        }
-//
-//        $this->_redirect($redirectPath, $redirectParams);
-		$this->_redirect('*/*/');
+		if ($hasError) {
+			$this->_getSession()->setFormData($data);
+			$redirectPath   = '*/*/edit';
+			$redirectParams = array('id' => $this->getRequest()->getParam('id'));
+		}
+		$this->_redirect($redirectPath, $redirectParams);
     }
 
     /**
