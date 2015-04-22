@@ -21,8 +21,8 @@ $attributeSetModel->load($model->getAttributeSetId());
 $attributeSetName  = $attributeSetModel->getAttributeSetName();
 $product = [
 	'location_type'=>'physical',
-	'location_lat'=> !empty( $location_lat ) ? $location_lat : '46.73207659846422',
-	'location_long'=> !empty( $location_long ) ? $location_long : '-117.15444395233226',
+	'location_lat'=> $location_lat != "" ? $location_lat : '46.73207659846422',
+	'location_long'=> $location_long != ""  ? $location_long : '-117.15444395233226',
 	'location_name'=>!empty( $location_name ) ? $location_name : '',
 	'location_street'=>!empty( $location_street ) ? $location_street : '',
 	'location_city'=>!empty( $location_city ) ? $location_city : '',
