@@ -13,14 +13,14 @@
 	<PRODUCT_TYPE_event>
 		<reference name="product.info">
 			<action method="setTemplate">
-				<template>Wsu/eventtickets/event/item.phtml</template>
+				<template>wsu/eventtickets/event/item.phtml</template>
 			</action>
 		</reference>
 		<reference name="category.view">
-			<action method="setTemplate"><template>Wsu/eventtickes/catalog/category/view.phtml</template></action>
+			<action method="setTemplate"><template>wsu/eventtickes/catalog/category/view.phtml</template></action>
 		</reference>
 		<reference name="product.list">
-			<action method="setTemplate"><template>Wsu/eventtickes/catalog/product/list.phtml</template></action>
+			<action method="setTemplate"><template>wsu/eventtickes/catalog/product/list.phtml</template></action>
 		</reference>
 	</PRODUCT_TYPE_event>
     <default>
