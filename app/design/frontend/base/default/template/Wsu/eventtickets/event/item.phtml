@@ -184,12 +184,23 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
                 <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
             <?php endif;?>
 			
+			<?php if ( !empty($location_name) ):?>
+				<h3><?=$location_name?></h3>
+			<?php endif;?>
+			
+			<?php if ( !empty($location_street) ):?>
+				<h4>Directions</h4>
+				<?=$location_street?><br/>
+				<?=$location_city?>, <?=$location_state?> <?=$location_zip?><br/>
+				
+			<?php endif;?>
+
+			
 			<?php if ( !empty($location_lat) && !empty($location_long) ):?>
 			<script type="text/javascript">
 				(function($){
 					$(function() {
 						var map = $('#WSU_MAPS_NS');
-
 						map.on('wsu_maps:loaded_options',function(e,map_op){
 							<?php if( !empty($location_lat) && !empty($location_long) ):?>
 								$.wsu_maps.state.fit_to_bound=false;
@@ -197,7 +208,6 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
 							return {<?= ( !empty($location_lat) && !empty($location_long) )? "'center': '".$location_lat.",".$location_long."'" : ''?> , 'zoom':15 };
 						});
 						map.on('wsu_maps:completed',function(){
-							geocoder = new google.maps.Geocoder();
 							$.wsu_maps.markers.make_Marker(1,1,{
 								"position":{ "latitude":"<?=$location_lat?>", "longitude":"<?=$location_long?>" },
 								"labels":{ "title":"<?=$location_name?>" },
@@ -206,6 +216,7 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
 								"shapes":[{}]
 							 });
 						});
+					});
 				})(jQuery);
 			</script>
 			<script type="text/javascript" src="https://beta.maps.wsu.edu/embed/store-event-location-tool"></script>
