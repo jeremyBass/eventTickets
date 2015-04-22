@@ -441,9 +441,20 @@ foreach($time_inputs as $key=>$name){
 }
 
 
+$text_inputs = array(
+	'location_name'=>'Location Name',
+	'location_street'=>'Street Address',
+	'location_city'=>'City',
+	'location_state'=>'State',
+	'location_zip'=>'Zip',
+	'location_lat'=>'Latitude',
+	'location_long'=>'Longitude',
+	'location_url'=>'Url'
+);
 
-if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'location')) {	
-	$SU_helper->createAttribute("Location","location", array(
+foreach($text_inputs as $key=>$name){
+	if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, $key)) {			 
+		$SU_helper->createAttribute($name,$key, array(
 		'is_global'                     => '0',
 		'frontend_input'                => 'text',
 		'default_value_text'            => '',
@@ -466,7 +477,8 @@ if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'location'))
 		'is_filterable_in_search'       => '0',
 		'backend_type'                  => 'text',
 		'default_value'                 => ''
-	),array("event"), $allEventSets);
+		),array("event"), $allEventSets);
+	}
 }
 
 if (!$installer->getAttributeId(Mage_Catalog_Model_Product::ENTITY, 'opponent')) {	

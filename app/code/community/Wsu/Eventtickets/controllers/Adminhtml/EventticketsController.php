@@ -182,9 +182,22 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 			->setHasSalesLimit( $data['product']['has_sales_limit'] )
 			->setCollectGuestInfo( $data['product']['collect_guest_info'] )
 
+			->setLocationName( $data['product']['location_name'] )
+			->setLocationStreet( $data['product']['location_street'] )
+			->setLocationCity( $data['product']['location_city'] )
+			->setLocationState( $data['product']['location_state'] )
+			->setLocationZip( $data['product']['location_zip'] )
+			->setLocationLat( $data['product']['location_lat'] )
+			->setLocationLong( $data['product']['location_long'] )
+			->setLocationUrl( $data['product']['location_url'] )
+
+
+
+
+
 			//->setMediaGallery (array('images'=>array (), 'values'=>array ())) //media gallery initialization
 			//->addImageToMediaGallery('media/catalog/product/1/0/10243-1.png', array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
-		 /*
+			/*
 			->setStockData(array(
 							   'use_config_manage_stock' => 0, //'Use config settings' checkbox
 							   'manage_stock'=>1, //manage stock
@@ -195,8 +208,7 @@ class Wsu_Eventtickets_Adminhtml_EventticketsController extends Mage_Adminhtml_C
 						   )
 			)*/
 		 
-			->setCategoryIds( explode(',', $data['category_ids']) )
-			; //assign product to categories
+			->setCategoryIds( explode(',', $data['category_ids']) ); //assign product to categories
 			if($new){
 				$product->setCreatedAt(strtotime('now')); //product creation time
 			}

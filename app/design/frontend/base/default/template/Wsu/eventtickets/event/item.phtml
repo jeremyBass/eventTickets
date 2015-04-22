@@ -23,12 +23,33 @@ if($RegistrationClosesDate =="" || strtotime($current_time) < strtotime($reg_dea
 	}
 }
 
-$FoodOptions = $_product->getFoodOptions();
-$RequestSeating=$_product->getRequestSeating();
-$HasAccessValidation = $_product->getHasAccessValidation();
-$AccessCode = $_product->getAccessCode();
+$food_options = $_product->getFoodOptions();
+$request_seating=$_product->getRequestSeating();
+$has_access_validation = $_product->getHasAccessValidation();
+$access_code = $_product->getAccessCode();
 $Location = $_product->getLocation();
+$event_start_date = $_product->getEventStartDate();
+$event_start_time = $_product->getEventStartTime();
+$event_end_date = $_product->getEventEndDate();
+$event_end_time = $_product->getEventEndTime();
+$registration_closes_date = $_product->getRegistrationClosesDate();
+$registration_closes_time = $_product->getRegistrationClosedTime();
 
+
+$location_name = $_product->getLocationName();
+$location_street = $_product->getLocationStreet();
+$location_city = $_product->getLocationCity();
+$location_state = $_product->getLocationState();
+$location_zip = $_product->getLocationZip();
+$location_lat = $_product->getLocationLat();
+$location_long = $_product->getLocationLong();
+$location_url = $_product->getLocationUrl();
+$location_note = "";
+
+
+$custom_accommodation_response = $_product->getCustomAccommodationResponse();
+$has_sales_limit = $_product->getHasSalesLimit();
+$collect_guest_info = $_product->getCollectGuestInfo();
 
 //this would be a block with in the event ext
 $eventStart = Mage::getModel('core/date')->timestamp($_product->getEventStartDateTime());
@@ -131,16 +152,16 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
 					echo sprintf("Currently there are %d tickets left",$qtyStock);
 				 ?>
 				 
-					<?php if($HasAccessValidation): ?>
+					<?php if($has_access_validation): ?>
 						<div class="validation_overlay">
 							<div class="access_form">Enter Access Code<br/>
-								<input type="text" class="full" data-valid="<?=$AccessCode?>"/>
+								<input type="text" class="full" data-valid="<?=$access_code?>"/>
 							</div>
 						</div>
 					<?php endif; ?>
 				 
 				 
-                    <div class="add-to-box <?=($HasAccessValidation?"needs_validation":"")?>">
+                    <div class="add-to-box <?=($has_access_validation?"needs_validation":"")?>">
                         <?php if($_product->isSaleable()): ?>
                             <?php echo $this->getChildHtml('addtocart') ?>
                             <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
@@ -151,10 +172,10 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
                     </div>
                 <?php endif; ?>
 			<?php endif; ?>
-            <?php if ($_product->getShortDescription()):?>
-                <div class="short-description">
-                    <h2><?php echo $this->__('Quick Overview') ?></h2>
-                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+            <?php if ($_product->getDescription()):?>
+                <div class="description">
+                    <h2><?php echo $this->__('Overview') ?></h2>
+                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description') ?></div>
                 </div>
             <?php endif;?>
 
@@ -162,7 +183,33 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
             <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                 <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
             <?php endif;?>
+			
+			<?php if ( !empty($location_lat) && !empty($location_long) ):?>
+			<script type="text/javascript">
+				(function($){
+					$(function() {
+						var map = $('#WSU_MAPS_NS');
 
+						map.on('wsu_maps:loaded_options',function(e,map_op){
+							<?php if( !empty($location_lat) && !empty($location_long) ):?>
+								$.wsu_maps.state.fit_to_bound=false;
+							<?php endif; ?>
+							return {<?= ( !empty($location_lat) && !empty($location_long) )? "'center': '".$location_lat.",".$location_long."'" : ''?> , 'zoom':15 };
+						});
+						map.on('wsu_maps:completed',function(){
+							geocoder = new google.maps.Geocoder();
+							$.wsu_maps.markers.make_Marker(1,1,{
+								"position":{ "latitude":"<?=$location_lat?>", "longitude":"<?=$location_long?>" },
+								"labels":{ "title":"<?=$location_name?>" },
+								"content":"<?=$location_note?>",
+								"metadata":[{}],
+								"shapes":[{}]
+							 });
+						});
+				})(jQuery);
+			</script>
+			<script type="text/javascript" src="https://beta.maps.wsu.edu/embed/store-event-location-tool"></script>
+			<?php endif;?>
         </div>
 
         <div class="product-img-box column one">
@@ -183,8 +230,10 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
 	*/ ?>
     </div>
 
-    <div class="product-collateral">
-        <?php echo $this->getChildHtml('info_tabs') ?>
-        <?php echo $this->getChildHtml('product_additional_data') ?>
+    <div class="product-collateral row padding narrow">
+		<div class="column">
+			<?php echo $this->getChildHtml('info_tabs') ?>
+			<?php echo $this->getChildHtml('product_additional_data') ?>
+		</div>
     </div>
 </div>
