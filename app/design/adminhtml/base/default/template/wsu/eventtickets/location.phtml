@@ -21,17 +21,17 @@ $attributeSetModel->load($model->getAttributeSetId());
 $attributeSetName  = $attributeSetModel->getAttributeSetName();
 $product = [
 	'location_type'=>'physical',
-	'location_lat'=> isset( $location_lat ) ? $location_lat : '46.73207659846422',
-	'location_long'=> isset( $location_long ) ? $location_long : '-117.15444395233226',
-	'location_name'=>isset( $location_name ) ? $location_name : '',
-	'location_street'=>isset( $location_street ) ? $location_street : '',
-	'location_city'=>isset( $location_city ) ? $location_city : '',
-	'location_state'=>isset( $location_state ) ? $location_state : '',
-	'location_zip'=>isset( $location_zip ) ? $location_zip : '',
-	'location_lat'=>isset( $location_lat ) ? $location_lat : '',
-	'location_long'=>isset( $location_long ) ? $location_long : '',
-	'location_url'=>isset( $location_url ) ? $location_url : '',
-	'location_note'=>isset( $location_note ) ? $location_note : '',
+	'location_lat'=> !empty( $location_lat ) ? $location_lat : '46.73207659846422',
+	'location_long'=> !empty( $location_long ) ? $location_long : '-117.15444395233226',
+	'location_name'=>!empty( $location_name ) ? $location_name : '',
+	'location_street'=>!empty( $location_street ) ? $location_street : '',
+	'location_city'=>!empty( $location_city ) ? $location_city : '',
+	'location_state'=>!empty( $location_state ) ? $location_state : '',
+	'location_zip'=>!empty( $location_zip ) ? $location_zip : '',
+	'location_lat'=>!empty( $location_lat ) ? $location_lat : '',
+	'location_long'=>!empty( $location_long ) ? $location_long : '',
+	'location_url'=>!empty( $location_url ) ? $location_url : '',
+	'location_note'=>!empty( $location_note ) ? $location_note : '',
 ];
 
 
