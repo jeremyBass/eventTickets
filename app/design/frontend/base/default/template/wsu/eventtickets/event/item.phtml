@@ -178,6 +178,18 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
                     <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description') ?></div>
                 </div>
             <?php endif;?>
+			<?php if ( $food_options==1 ):?>
+				<label>What is your food preference?</label>
+				<input type="text" name="options[food_options]" />
+			<?php endif;?>
+
+			<?php if ( $request_seating==1 ):?>
+				<label>Do you need special seating?</label>
+				<input type="text" name="options[request_seating]" />
+			<?php endif;?>
+
+
+
 
             <?php echo $this->getChildHtml('other');?>
             <?php if ($_product->isSaleable() && $this->hasOptions()):?>
@@ -187,7 +199,6 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
 			<?php if ( !empty($location_name) ):?>
 				<h3><?=$location_name?></h3>
 			<?php endif;?>
-			
 			<?php if ( !empty($location_street) ):?>
 				<h4>Directions</h4>
 				<?=$location_street?><br/>
@@ -196,6 +207,11 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
 			<?php endif;?>
 
 			
+			
+        </div>
+
+        <div class="product-img-box column one">
+            <?php echo $this->getChildHtml('media') ?>
 			<?php if ( !empty($location_lat) && !empty($location_long) ):?>
 			<script type="text/javascript">
 				(function($){
@@ -221,10 +237,6 @@ $padding_ends			= $theme->getCfgLayout('product_view/padding_ends');
 			</script>
 			<script type="text/javascript" src="https://beta.maps.wsu.edu/embed/store-event-location-tool"></script>
 			<?php endif;?>
-        </div>
-
-        <div class="product-img-box column one">
-            <?php echo $this->getChildHtml('media') ?>
         </div>
 
         <div class="clearer"></div>
